@@ -33,6 +33,7 @@ const sidebars = {
         'concepts/zero-trust-programming',
         'concepts/declarative-dataflow',
         'concepts/resolvers',
+        'concepts/interceptors',
       ],
     },
     {

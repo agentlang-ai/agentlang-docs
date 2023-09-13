@@ -1,12 +1,12 @@
 # Zero-trust Programming
 
-By default, fractl programs do not permit any operations on entities and relationship. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, fractl incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on needs.
+By default, fractl programs do not permit any operations - read or write - on entities and relationship. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, fractl incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on needs.
 
-Note: An "entity" is different from an "instance of an entity" - the former is a type, whereas the latter is a value of that type.
+> **Note**: An "entity" is different from an "instance of an entity" - the former is a type, whereas the latter is a value of that type.
 
 ## Fine-granular Access Control
 
-The following are salient features of security in Fractl:
+The following are some of the salient security features in Fractl:
 
 * **Role-based Entity Permissions**: Developers can define permissions for users of different roles to perform CRUD operations of entities declaratively. 
 
@@ -18,7 +18,7 @@ In the example above, **any** user of the role "Manager" can perform Create, Rea
 
 ![Create-only permission](img/create-only-entity-permissions.png "Ownership with Create-only Permission")
 
-* **Permissions flow**: The **Graph-based Hierarchical Data Model** introduced by **Fractl** enables a zero-trust programming paradigm. Permissions flow down the data model tree via the `:contains` relationship links. This permission flow applies both to Role-based permissions and instance ownership-based permissions:
+* **Permissions flow**: The **Graph-based Hierarchical Data Model** introduced by **Fractl** enables a zero-trust programming paradigm with minimal configuration. Permissions flow down the data model tree via the `:contains` relationship links. This permission flow applies both to Role-based permissions and instance ownership-based permissions:
     * **RBAC**: In the example below, any user of the role manager can perform Create, Read, Update operations on entity "Company". As a result, the user can also perform the same exact set of operations on "Account" under "Company".
     * **Instance ownership**: A user who "owns" an instance of the entity "Company" automatically owns all instances of "Account" under "Company".
 
