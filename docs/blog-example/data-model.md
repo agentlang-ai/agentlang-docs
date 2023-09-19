@@ -14,18 +14,18 @@ We shall start with the definition of the user entity:
 
 ```clojure
 (entity :User
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
-  :Email :Kernel/Email})
+ {:FirstName :String
+  :LastName :String
+  :Email :Email})
 ```
 
 This `entity` definition prescribes that a user consists of three *attributes* - 
 first-name, last-name and an email address. An attribute must have a type-specification
 which controls the values that may be assigned to that attribute. For instance, the
-type-specification for the `:FirstName` attribute is `:Kernel/String` which means only
+type-specification for the `:FirstName` attribute is `:String` which means only
 a string value could be assigned to a user's first-name. (`:Kernel` is a component predefined
 by fractl which provide some general attribute and entity definitions). Similarly, the user's
-`:Email` attribute is assigned the type `:Kernel/Email` which will ensure that all values assigned
+`:Email` attribute is assigned the type `:Email` which will ensure that all values assigned
 conforms to the pattern of a valid email address.
 
 In addition to the basic type-specification, the domain-modeler may add more constraints to an
@@ -34,9 +34,9 @@ the definition of the entity should be updated as follows:
 
 ```clojure
 (entity :User
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
-  :Email {:type :Kernel/Email
+ {:FirstName :String
+  :LastName :String
+  :Email {:type :Email
           :identity true}})
 ```
 ### Complex attributes
@@ -46,21 +46,21 @@ the blog posts and comments. The definition of the blog-post entity is given bel
 
 ```clojure
 (entity :Post
- {:Title :Kernel/String
-  :Body :Kernel/String
-  :CreatedAt :Kernel/DateTime})
+ {:Title :String
+  :Body :String
+  :CreatedAt :DateTime})
 ```
 
-The `:Kernel/DateTime` type is used to represent a data-time value in the
+The `:DateTime` type is used to represent a data-time value in the
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (e.g `2023-01-17T12:41:15.3739`).
 We would like this attribute to be filled in automatically by the creation-time of the post. We would also like the post
 to have an auto-assigned unique identifier, preferably a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
-First, let's define a custom attribute of type `:Kernel/DateTime` which always defaults to the current system date-time value.
+First, let's define a custom attribute of type `:DateTime` which always defaults to the current system date-time value.
 
 ```clojure
 (attribute :Now
- {:type :Kernel/DateTime
+ {:type :DateTime
   :default now})
 ```
 
@@ -73,7 +73,7 @@ In similar fashion, we can solve the auto-id generation problem:
 
 ```clojure
 (attribute :AutoId
- {:type :Kernel/UUID
+ {:type :UUID
   :default uuid-string
   :identity true})
 ```
@@ -85,8 +85,8 @@ The updated `:Post` entity definition is,
 ```clojure
 (entity :Post
  {:Id :AutoId
-  :Title :Kernel/String
-  :Body :Kernel/String
+  :Title :String
+  :Body :String
   :CreatedAt :Now})
 ```
 
@@ -120,17 +120,17 @@ component to use. Here is our complete `:Blog.Core` component definition:
                       [fractl.lang.datetime])]})
 
 (entity :User
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
-  :Email {:type :Kernel/Email
+ {:FirstName :String
+  :LastName :String
+  :Email {:type :Email
           :identity true}})
 
 (attribute :Now
- {:type :Kernel/DateTime
+ {:type :DateTime
   :default now})
 
 (attribute :AutoId
- {:type :Kernel/UUID
+ {:type :UUID
   :default uuid-string
   :identity true})
 

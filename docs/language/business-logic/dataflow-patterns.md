@@ -67,7 +67,7 @@ event,
 If a relationship is created by the optional `:->` key, it must have the following syntax:
 
 ```clojure
-[relationship-create-pattern other-node]
+[[relationship-create-pattern other-node] ...]
 ```
 
 `relationship-create-pattern` is just an create-pattern that creates a new instance of the relationship.
@@ -81,12 +81,12 @@ If a relationship is created by the optional `:->` key, it must have the followi
 
 ```clojure
 {:Department
- {:No? "101"} :as :D}
+ {:No? "101"} :as [:D]}
 
 {:Employee
  {:EmpNo "001"
   :Name "KK"}
- :-> [{:WorksFor {}} :D]}
+:-> [[:WorksFor :D]]}
 ```
 
 ## Query
@@ -149,7 +149,7 @@ An example is shown below:
 ;; are in a `:WorksFor` relationship with the department 101.
 {:Employee
  {:Salary? [:> 1000]}
- :-> [WorksFor? {:Department {:No? 101}}]}
+ :-> [[WorksFor? {:Department {:No? 101}}]]}
 ```
 
 The shorthand-query `:EntityName?` will return all instances of an entity.

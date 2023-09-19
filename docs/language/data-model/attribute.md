@@ -11,7 +11,7 @@ The `attribute` declaration can help us here.
 (component :Acme.Inventory.Types)
 
 (attribute :PhoneNumber
- {:type :Kernel/String
+ {:type :String
   :format "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"})
 
 (defn valid-zip? [s]
@@ -19,7 +19,7 @@ The `attribute` declaration can help us here.
        (<= 501 (Integer/parseInt s) 99950)))
 
 (attribute :ZipCode
- {:type :Kernel/String
+ {:type :String
   :check valid-zip?})
 ```
 
@@ -27,14 +27,14 @@ With these new declarations, the `:Contact` record can be defined as:
 
 ```clojure
 (record :Acme.Inventory.CRM/Contact
- {:Street1 :Kernel/String
-  :Street2 {:type :Kernel/String
+ {:Street1 :String
+  :Street2 {:type :String
             :optional true}
-  :City :Kernel/String
+  :City :String
   :State {:oneof ["NY", "NJ", "MA"]}
   :Zip :Acme.Inventory.Types/ZipCode
   :Phone :Acme.Inventory.Types/PhoneNumber
-  :Email :Kernel/Email})
+  :Email :Email})
 ```
 
 ## Attribute Spec
@@ -43,27 +43,29 @@ The attribute-specification normally consists of a type-name which may be drawn 
 These built-in types are listed below:
 
 ```clojure
-:Kernel/String - a string, literals are enclosed in `"`
-:Kernel/Keyword - a keyword literal, may also be encoded as a string. (e.g `:abc` or `"abc"`)
-:Kernel/Path - a path to a model element, e.g :Acme.Inventory.CRM
-:Kernel/DateTime - a string that conforms to the ISO 8601 date-time format, e.g `"2023-01-31T15:57:14.428506"`
-:Kernel/Date - a string that conforms to the ISO 8601 date format
-:Kernel/Time - that conforms to the ISO 8601 time format
-:Kernel/UUID - a UUID string, e.g `"123e4567-e89b-12d3-a456-426614174000"`
-:Kernel/Int - a fixed precision integer, based on the architecture could be 32bit or 64bit
-:Kernel/Int64 - an integer with 64bit precision
-:Kernel/BigInteger - an arbitrary precision integer
-:Kernel/Float - a 32bit floating-point number
-:Kernel/Double - a 6bit floating-point number
-:Kernel/Decimal - an arbitrary-precision signed decimal number
-:Kernel/Boolean - `true` or `false`
-:Kernel/Record - an instance of a type defined by `record`
-:Kernel/Entity - an instance of a type defined by `entity`
-:Kernel/Event - an instance of a type defined by `event`
-:Kernel/Email - a valid email string
-:Kernel/Map - a map literal enclosed by { }
-:Kernel/Edn - an edn encoded object
-:Kernel/Any - any of the above, no strict type check
+:String - a string, literals are enclosed in `"`
+:Keyword - a keyword literal, may also be encoded as a string. (e.g `:abc` or `"abc"`)
+:Path - a path to a model element, e.g :Acme.Inventory.CRM
+:DateTime - a string that conforms to the ISO 8601 date-time format, e.g `"2023-01-31T15:57:14.428506"`
+:Date - a string that conforms to the ISO 8601 date format
+:Time - that conforms to the ISO 8601 time format
+:Now - :DateTime that defaults to the current date-time value
+:UUID - a UUID string, e.g `"123e4567-e89b-12d3-a456-426614174000"`
+:Identity - :UUID with a default value
+:Int - a fixed precision integer, based on the architecture could be 32bit or 64bit
+:Int64 - an integer with 64bit precision
+:BigInteger - an arbitrary precision integer
+:Float - a 32bit floating-point number
+:Double - a 6bit floating-point number
+:Decimal - an arbitrary-precision signed decimal number
+:Boolean - `true` or `false`
+:Record - an instance of a type defined by `record`
+:Entity - an instance of a type defined by `entity`
+:Event - an instance of a type defined by `event`
+:Email - a valid email string
+:Map - a map literal enclosed by { }
+:Edn - an edn encoded object
+:Any - any of the above, no strict type check
 ```
 
 An attribute specification can contain more information when expressed as a map. The syntax for this is:
@@ -112,17 +114,17 @@ The `:indexed` property should be set for attributes on which look-queries are p
 
 ```clojure
 (record :Acme.Inventory.CRM/Contact
- {:Street1 :Kernel/String
-  :Street2 {:type :Kernel/String
+ {:Street1 :String
+  :Street2 {:type :String
             :optional true}
-  :City :Kernel/String
+  :City :String
   :State {:oneof ["NY", "NJ", "MA"]}
-  :Zip {:type :Kernel/String
+  :Zip {:type :String
         :check valid-zip?}
-  :Phone {:type :Kernel/String
+  :Phone {:type :String
           ;; US phone number format, e.g (555)555-5555
           :format "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"}
-  :Email {:type :Kernel/Email :identity true}})
+  :Email {:type :Email :identity true}})
 
 (defn valid-zip? [s]
   (and (= 5 (count s))

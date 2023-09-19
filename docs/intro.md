@@ -35,4 +35,4 @@ Fractl introduces a declarative layer, enabling developers to express intent wit
 The syntax in Fractl adopts a pure data structure. This uniformity ensures predictability, facilitating easier validation and manipulation by new forms of innovative developer tools. It also paves the way for smoother integration with third-party tools and platforms.
 
 ## Fractl is open
-Fractl is only low-code platform that is truly open. Fractl is not just open source, Fractl programs are portable across platforms: they can be run anywhere you can deploy fractl runtime.
+Fractl is the only low-code platform that is truly open. Fractl is not just open source, Fractl programs are portable across platforms: they can be run anywhere you can deploy the fractl runtime.

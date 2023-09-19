@@ -35,19 +35,19 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
 
 (entity
  :User
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
-  :Email {:type :Kernel/Email
+ {:FirstName :String
+  :LastName :String
+  :Email {:type :Email
           :identity true}})
 
 (attribute
  :Now
- {:type :Kernel/DateTime
+ {:type :DateTime
   :default now})
 
 (attribute
  :AutoId
- {:type :Kernel/UUID
+ {:type :UUID
   :default uuid-string
   :identity true})
 
@@ -69,9 +69,9 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
 
 (event
  :CreatePost
- {:UserEmail :Kernel/Email
-  :PostTitle :Kernel/String
-  :PostBody :Kernel/String})
+ {:UserEmail :Email
+  :PostTitle :String
+  :PostBody :String})
 
 (dataflow
  :CreatePost
@@ -80,35 +80,32 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
  ;; else return not-found
  {:User
   {:Email? :CreatePost.UserEmail}
- :as :U}
+  :as [:U]}
 
  ;; Create a new blog-post with the user :U as author
  {:Post
   {:Title :CreatePost.PostTitle
    :Body :CreatePost.PostBody}
-  :-> [{:PostAuthorship {}} :U]})
+  :-> [[{:PostAuthorship {}} :U]]}
 
 (dataflow :UpdatePost
  {:Post
   {:Id? :UpdatePost.PostId
    :Title :UpdatePost.NewTitle
    :Body :UpdatePost.NewBody}
-  :-> [:PostAuthorship? {:User {:Email? :UpdatePost.UserEmail}}]})
+  :-> [[:PostAuthorship? {:User {:Email? :UpdatePost.UserEmail}}]]})
 
 (dataflow
  :DeletePost
- [:delete :PostAuthorship
-  [:->
-   {:User {:Email? :DeletePost.UserEmail}}
-   {:Post {:Id? :DeletePost.PostId}}]])
+ [:delete :PostAuthorship {:Id? :DeletePost.Post}])
 
 (dataflow :AddAuthor
  {:Post {:Id? :AddAuthor.PostId}
-  :-> [:PostAuthorship? {:User {:Email? :AddAuthor.OriginalAuthorEmail}}]
-  :as :P}
- {:User {:Email? :AddAuthor.NewAuthorEmail} :as :NewAuthor}
+  :-> [[:PostAuthorship? {:User {:Email? :AddAuthor.OriginalAuthorEmail}}]]
+  :as [:P]}
+ {:User {:Email? :AddAuthor.NewAuthorEmail} :as [:NewAuthor]}
  {:Post {:Id? :P.Id}
-  :-> [{:PostAuthorship {}} :NewAuthor]})
+  :-> [[:PostAuthorship :NewAuthor]]})
 
 (def blog-comment-title? blog-post-title?)
 (def blog-comment-body? (partial sr 3 100))
@@ -130,15 +127,15 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
 
 (dataflow
  :CreateComment
- {:Post {:Id? :CreateComment.PostId} :as :P}
- {:User {:Email? :CreateComment.UserEmail} :as :U}
+ {:Post {:Id? :CreateComment.PostId} :as [:P]}
+ {:User {:Email? :CreateComment.UserEmail} :as [:U]}
  {:Comment
   {:Title :CreateComment.Title
    :Body :CreateComment.Body}
-  :-> [[{:CommentOf {}} :P]
+  :-> [[:CommentOf :P]
        [{:CommentAuthorship {}} :U]]})
 
 (dataflow :FetchComments
  {:Comment {:CreatedAt? [:>= :FetchComments.CreatedAt]}
-  :-> [:CommentOf? {:Post {:Id? :FetchComments.PostId}}]})
+  :-> [[:CommentOf? {:Post {:Id? :FetchComments.PostId}}]]})
 ```

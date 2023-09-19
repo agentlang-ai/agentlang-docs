@@ -1,10 +1,6 @@
 # Relationship
 
-A `relationship` is a `record` used to create graph-like structures from entities. Relationships are derived from entities
-(which are, in turn derived from records). As they are extension of entities, instances of relationships are also
-persisted by fractl.
-
-There are two types of relationships that are possible in fractl - `contains` and `between`.
+A `relationship` is used to create graph-like structures from entities. There are two types of relationships that are possible in fractl - `contains` and `between`.
 
 ## contains
 
@@ -27,26 +23,24 @@ relationship between department and employees.
   })
 
 (relationship :Acme/WorksFor
- {:meta {:contains [:Acme/Department :Acme/Employee]}
-  :StartDate :Kernel/DateTime})
+ {:meta {:contains [:Acme/Department :Acme/Employee]}})
 ```
 
-Once an entity is declared to be "contained" by another entity, its instances can be created or queried only
+Once an entity is declared to be "contained" by another entity, its instances may be created or queried only
 in the context of the parent instance.
 
 **Example**
 
 ```clojure
 ;; Query a department by `:No`
-{:Acme/Department {:No? 123} :as :D}
+{:Acme/Department {:No? 123} :as [:D]}
 ;; Create a new employee in the department
 {:Acme/Employee
   {:Id "emp01"
    :FirstName "A"
    ; ....
    }
- :-> [{:Acme/WorksFor {:StartDate "2023-12-01T00:00:00.000000"}}
-      :D]}
+ :-> [[:Acme/WorksFor :D]]}
 ```
 
 The `:->` tag creates a link between the new employee and the department `:D` via a new instance of
@@ -57,11 +51,10 @@ the `:Acme/WorksFor` relationship. Now the employee could be loaded only in the 
 ```clojure
 ;; query the employee
 {:Acme/Employee {:Id? "emp01"}
- :-> [:Acme/WorksFor? {:Acme/Department {:No? 123}}]}
+ :-> [[:Acme/WorksFor? {:Acme/Department {:No? 123}}]]}
 ```
 
-The above query will succeed only of a `:WorksFor` relationship exists between
-the department `123` and the employee with `:Id` `"emp01"`.
+The above query will succeed only if a `:WorksFor` relationship exists between the department `123` and the employee with `:Id` `"emp01"`.
 
 ## between
 
@@ -85,7 +78,7 @@ a `between` relationship is that of friendship between people.
 The following pattern shows how to create a friendship relationship between two pre-existing persons:
 
 ```clojure
-{:Social/Person {:Email? "abc@social.org"} :P1}
+{:Social/Person {:Email? "abc@social.org"} [:P1]}
 {:Social/Person {:Email? "xyz@social.org"}
- :-> [{:Social/Friendship {}} :P1]}
+ :-> [[{:Social/Friendship {}} :P1]]}
 ```

@@ -8,20 +8,20 @@ A `dataflow` declaration has the following general syntax:
 
 The dataflow is said to be *triggered* when an instance of the event of type `event-name` is created.
 Triggering dataflow has the effect of *evaluating* each pattern in sequence, the result of this evaluation
-process will the value returned by the final pattern. If any of the pattern creates an instance of an event,
+process will be the value returned by the final pattern. If any of the pattern creates an instance of an event,
 the dataflow attached to that event will be triggered.
 
 **Example**
 
 ```clojure
 (event :Social/CreateFriendship
- {:Email1 :Kernel/Email
-  :Email2 :Kernel/Email})
+ {:Email1 :Email
+  :Email2 :Email})
 
 (dataflow :Social/CreateFriendship
- {:Social/Person {:Email? :Social/CreateFriendship.Email1} :P1}
+ {:Social/Person {:Email? :Social/CreateFriendship.Email1} [:P1]}
  {:Social/Person {:Email? :Social/CreateFriendship.Email2}
-  :-> [{:Social/Friendship {}} :P1]})
+  :-> [[{:Social/Friendship {}} :P1]]})
 ```
 
 The preceding code-snippet creates an event with two email attributes. Then a dataflow is defined on this event.

@@ -20,17 +20,17 @@ The syntax of record specification is shown below:
 
 ```clojure
 (record :Acme.Inventory.CRM/Contact
- {:Street1 :Kernel/String
-  :Street2 {:type :Kernel/String
+ {:Street1 :String
+  :Street2 {:type :String
             :optional true}
-  :City :Kernel/String
+  :City :String
   :State {:oneof ["NY", "NJ", "MA"]}
-  :Zip {:type :Kernel/String
+  :Zip {:type :String
         :check valid-zip?}
-  :Phone {:type :Kernel/String
+  :Phone {:type :String
           ;; US phone number format, e.g (555)555-5555
           :format "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"}
-  :Email {:type :Kernel/Email :identity true}})
+  :Email {:type :Email :identity true}})
 
 (defn valid-zip? [s]
   (and (= 5 (count s))

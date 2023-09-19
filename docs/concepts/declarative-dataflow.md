@@ -12,4 +12,4 @@ These references together form a graph of references within the dataflow. There 
 
 ## Destructuring
 
-Some dataflow patterns return a collection of entity instances as the result of evaluation (e.g., queries). However, only a subset of the result set (first, or first n, or second, or last, or last n, etc) might be relevant for future dataflow patterns. To enable this, Dataflow patterns support destructuring the results - with this capability, the subset of the result set that is of interest can be assigned an alias and future patterns reference the subset by simply using the alias.
+Some dataflow patterns return a collection of entity instances as the result of evaluation (e.g., queries). However, only a subset of the result set (first, or first n, or second, or last, or last n, etc) might be relevant for future dataflow patterns. To enable this, Dataflow patterns support destructuring on results - with this capability, the subset of the result set that is of interest can be assigned an alias and future patterns reference the subset by simply using the alias.

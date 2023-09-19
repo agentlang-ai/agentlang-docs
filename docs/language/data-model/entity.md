@@ -6,10 +6,10 @@ An `entity` is a `record` whose instances are automatically persisted by fractl.
 
 ```clojure
 (entity :Acme.Inventory.CRM/Customer
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
+ {:FirstName :String
+  :LastName :String
   :ContactInfo :Acme.Inventory.CRM/Contact
-  :CustomerSince :Kernel/DateTime})
+  :CustomerSince :DateTime})
 ```
 
 Note the type of the `:ContactInfo` attribute - when creating an instance of `:Customer`,
@@ -35,7 +35,7 @@ customer.
   :CustomerSince "2023-02-01T13:49:10.916982"}}
 ```
 
-In the above example, a `:Contact` instance is first created and assigned to the *alias* `:C`.
+In the above example, a `:Contact` instance is first created and assigned the *alias* `:C`.
 The second pattern creates a `:Customer` and assigns `:C` as its contact-info. (An *alias* is a
 placeholder for values created by patterns, similar to variables in other languages).
 
@@ -45,9 +45,9 @@ achieved by using the `:inherits` meta clause.
 ```clojure
 (entity :Acme.Inventory.CRM/Customer
   {:meta {:inherits :Acme.Inventory.CRM/Contact}
-   :FirstName :Kernel/String
-   :LastName :Kernel/String
-   :CustomerSince :Kernel/DateTime})
+   :FirstName :String
+   :LastName :String
+   :CustomerSince :DateTime})
 ```
 
 The `:Customer` entity no longer requires a `:ContactInfo` attribute as it inherits the relevant attributes from
@@ -57,7 +57,6 @@ The `:Customer` entity no longer requires a `:ContactInfo` attribute as it inher
 {Acme.Inventory.CRM/Customer
  {:FirstName "A"
   :LastName "Jay"
-  :ContactInfo :C
   :CustomerSince "2023-02-01T13:49:10.916982"
   :Street1 "432/78"
   :Street2 "Broadway"
@@ -68,4 +67,15 @@ The `:Customer` entity no longer requires a `:ContactInfo` attribute as it inher
   :Email "c432@abc.com"}}
 ```
 The customer can also be uniquely identified in the system by `:Email` because it inherits the `:identity` property,
-as declared in the parent-type, i.e `:Contact`.
+as declared in the parent-type, i.e `:Contact`,
+
+```clojure
+{:Acme.Inventory.CRM/Contact
+ {:Street1 :String
+  :Street2 :String
+  :City :String
+  :State :String
+  :Zip :String
+  :Phone :String
+  :Email {:type :Email :identity true}}}
+```

@@ -22,9 +22,9 @@ to an author.
 
 ```clojure
 (event :CreatePost
- {:UserEmail :Kernel/Email
-  :PostTitle :Kernel/String
-  :PostBody :Kernel/String})
+ {:UserEmail :Email
+  :PostTitle :String
+  :PostBody :String})
 
 (dataflow :CreatePost
  ;; Lookup the user by email,
@@ -38,7 +38,7 @@ to an author.
  {:Post
   {:Title :CreatePost.PostTitle
    :Body :CreatePost.PostBody}
-  :-> [{:PostAuthorship {}} :U]})
+  :-> [[:PostAuthorship :U]]})
 ```
 
 An `event` is defined just the same way an `entity` is defined - it has a name and a map of attributes.
@@ -75,7 +75,7 @@ who is in an "authorship" relation to the post. First let's look at the dataflow
   {:Id? :UpdatePost.PostId
    :Title :UpdatePost.NewTitle
    :Body :UpdatePost.NewBody}
-  :-> [:PostAuthorship? {:User {:Email? :UpdatePost.UserEmail}}]})
+  :-> [[:PostAuthorship? {:User {:Email? :UpdatePost.UserEmail}}]]})
 ```
 
 The `:UpdatePost` dataflow has only a single pattern - it queries the `Post` instance by `Id` and sets its `Title`
@@ -136,7 +136,7 @@ relation between the new user and the blog-post. The definition of this dataflow
  ;; Check if the user claiming to be the original author
  ;; has an existing authorship claim on the post
  {:Post {:Id? :AddAuthor.PostId}
-  :-> [:PostAuthorship? {:User {:Email? :AddAuthor.OriginalAuthorEmail}}]
+  :-> [[:PostAuthorship? {:User {:Email? :AddAuthor.OriginalAuthorEmail}}]]
   :as :P}
 
  ;; Load the new-author from store
@@ -144,7 +144,7 @@ relation between the new user and the blog-post. The definition of this dataflow
 
  ;; Create an authorship relation between the post and the new author
  {:Post {:Id? :P.Id}
-  :-> [{:PostAuthorship {}} :NewAuthor]})
+  :-> [[{:PostAuthorship {}} :NewAuthor]]})
 ```
 
 **Exercise 3**: For an existing blog-post, add a new author by calling `AddAuthor`. Verify that the
@@ -234,19 +234,19 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
 
 (entity
  :User
- {:FirstName :Kernel/String
-  :LastName :Kernel/String
-  :Email {:type :Kernel/Email
+ {:FirstName :String
+  :LastName :String
+  :Email {:type :Email
           :identity true}})
 
 (attribute
  :Now
- {:type :Kernel/DateTime
+ {:type :DateTime
   :default now})
 
 (attribute
  :AutoId
- {:type :Kernel/UUID
+ {:type :UUID
   :default uuid-string
   :identity true})
 
@@ -268,9 +268,9 @@ A complete coverage of the pattern-language is available in the [Dataflow sectio
 
 (event
  :CreatePost
- {:UserEmail :Kernel/Email
-  :PostTitle :Kernel/String
-  :PostBody :Kernel/String})
+ {:UserEmail :Email
+  :PostTitle :String
+  :PostBody :String})
 
 (dataflow
  :CreatePost
