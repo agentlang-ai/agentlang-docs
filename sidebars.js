@@ -72,7 +72,9 @@ const sidebars = {
       label: 'Blog Example',
       items: 
       [
-        'blog-example/intro'
+          'blog-example/intro',
+	  'blog-example/rbac',
+	  'blog-example/querying-data'
       ],
     },
   ],

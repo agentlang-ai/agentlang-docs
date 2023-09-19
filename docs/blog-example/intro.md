@@ -116,21 +116,47 @@ a `:contains` relationship.
 
 ## Grouping blog-posts
 
- -- TODO -- add description.
+A common feature required by bloggers is the ability to categorize blog posts. There could be a set of categories that
+come pre-defined - like "technology", "travel" etc. Users should be able to create their own categories as well. A category
+can be represented by the simple entity shown below:
 
 ```clojure
 (entity :Category
  {:Name {:type :String :identity true}})
+```
 
+A new category can be created as:
+
+```shell
+$ curl -X POST http://localhost:8080/_e/Blog.Core/Category \
+-H 'Content-Type: application/json' \
+-d '{"Blog.Core/Category": {"Name": "Programming"}}'
+```
+
+How can we add a blog-post to a category? This operation could be viewed as a `:between` relationship in fractl - this is a
+simple link that connects two instances forming a flat-graph (rather than a hierarchy as established by a `:contains` relationship).
+This relationship can be expressed as:
+
+```clojure
 (relationship :BelongsTo
  {:meta {:between [:BlogPost :Category]}})
 ```
 
-## RBAC
+A `:between` relationship is stored in the system just like an entity instance - so it may be created directly using a `POST`
+request.
 
- -- TODO -- update the model with rbac.
- -- TODO -- custom dataflows to check user on blog-post-creation
+```clojure
+$ curl -X POST http://localhost:8080/_e/Blog.Core/BelongsTo \
+-H 'Content-Type: application/json' \
+-d '{"Blog.Core/BelongsTo": {"BlogPost": "2da0f682-c0f3-456b-b177-c45c19fe74eb", "Category": "Programming"}}'
+```
 
-## Querying data
+Note that the `:BlogPost` attribute of `:BelongsTo` must be the globally-unique attribute of the `:BlogPost` entity. Here it will
+be the value of the `:BlogPost.__Id__` attribute.
 
- -- TODO -- queries with API endpoints and dataflows
+All blog-posts that belongs to a particular category maybe listed by a `GET` request:
+
+```shell
+$ curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
+```
+
