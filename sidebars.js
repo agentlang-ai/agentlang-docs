@@ -34,6 +34,7 @@ const sidebars = {
         'concepts/declarative-dataflow',
         'concepts/resolvers',
         'concepts/interceptors',
+        'concepts/schema-migration'
       ],
     },
     {
@@ -71,24 +72,7 @@ const sidebars = {
       label: 'Blog Example',
       items: 
       [
-        'blog-example/intro',
-        'blog-example/data-model',
-        'blog-example/build',
-        'blog-example/relationships',
-        {
-          type: 'category',
-          label: 'Business Logic',
-          items: 
-          [
-            'blog-example/business-logic/create-post',
-            'blog-example/business-logic/update-post',
-            'blog-example/business-logic/delete-post',
-            'blog-example/business-logic/add-authors',
-            'blog-example/business-logic/comments',
-          ],
-        },
-        'blog-example/next-steps',
-        'blog-example/source-code',
+        'blog-example/intro'
       ],
     },
   ],
