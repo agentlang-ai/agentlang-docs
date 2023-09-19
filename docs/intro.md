@@ -16,7 +16,7 @@ With **Fractl**, you can build applications in multiple ways:
 
 We recommend the following steps to get started with **Fractl**:
 
-1. Learn key concepts from the **[Concepts Guide](docs/concepts/intro.md)**
+1. Learn key concepts from the **[Concepts Guide](concepts/intro.md)**
 2. Pick your favorite way of building applications:
     1. **Traditional coding**: Follow the installation guide to install Fractl and start building in your favorite IDE. 
         1. Study an example application in Fractl: [Blog](/docs/blog-example/intro.md)
