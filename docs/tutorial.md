@@ -1,4 +1,4 @@
-# Introduction
+# Tutorial
 
 Let's continue our exploration of fractl by further developing the [blog-application](../quick-start.md). Currently, the
 `:Blog.Core` component looks like this:
