@@ -160,3 +160,42 @@ All blog-posts that belongs to a particular category maybe listed by a `GET` req
 $ curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
 ```
 
+## Querying data
+
+In this section lets looks at a few more examples of querying data.
+
+The following request will return all blog-posts by the user `jj@fractl.io` with the title `"hello, world"`.
+
+```shell
+curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
+```
+What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
+a user-defined query to the model. Custom queries and business logic is added to a fractl program by way of
+[**dataflows**](../concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
+similar to entities. When an instance of the event is created, the attached dataflow is executed. So for our requirement,
+we define the following event and dataflow:
+
+```clojure
+(event :LookupPosts
+ {:Title :String})
+
+(dataflow :LookupPosts
+ {:BlogPost
+  {:Title? [:like :LookupPosts.Title]}})
+```
+
+The dataflow contains a single pattern - a query on the `:Title` attribute of `:BlogPost`.
+All blog-posts whose title starts with the string specified in `:LookupPosts.Title` will be returned.
+To invoke a dataflow, we send an event instance to the service over an HTTP POST:
+
+```shell
+$ curl -X POST http://localhost:8080/_e/Blog.Core/LookupPosts \
+-H 'Content-Type: application/json' \
+-d '{"Blog.Core/LookupPosts": {"Title": "hello%"}}'
+```
+Note that the value passed to `:Title` ends with the wildcard character `%` - this is because
+we want to match all titles that starts with the characters "hello".
+
+We have reached the end of our whirlwind tour of fractl. There's a lot of ground left to cover - please
+continue your journey by reading about the core [concepts](concepts/intro.rd) of fractl and
+the [language reference](language/overview.md).

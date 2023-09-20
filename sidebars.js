@@ -22,6 +22,7 @@ const sidebars = {
     'intro',
     'installation',
     'quick-start',
+    'tutorial',
     {
       type: 'category',
       label: 'Concepts',
@@ -65,16 +66,6 @@ const sidebars = {
             'language/business-logic/dataflow-patterns',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Blog Example',
-      items: 
-      [
-          'blog-example/intro',
-	  'blog-example/rbac',
-	  'blog-example/querying-data'
       ],
     },
   ],
