@@ -70,11 +70,11 @@ If a relationship is created by the optional `:->` key, it must have the followi
 [[relationship-create-pattern other-node] ...]
 ```
 
-`relationship-create-pattern` is just an create-pattern that creates a new instance of the relationship.
+`relationship-create-pattern` is just a create-pattern that creates a new instance of the relationship.
 `other-node` must be one of,
 
  1. a query pattern
- 2. an create or update pattern
+ 2. a create or update pattern
  3. a path or alias to a local instance
 
 **Example**
@@ -110,7 +110,7 @@ The query value could be either a:
  3. logical or comparison expression of the form `[:operator arg1 arg2 ... argN]`
 
 The logical operators supported are `:and` and `:or`. A comparison operation must be one of
-`:=`, `:>`, `:<`, `:>=` and `:<=`. The comparison operators maybe applied to both numeric and string values.
+`:=`, `:>`, `:<`, `:>=`, `:<=` and `:like`. The comparison operators maybe applied to both numeric and string values.
 
 **Example**
 
@@ -124,6 +124,10 @@ The logical operators supported are `:and` and `:or`. A comparison operation mus
 {:Employee
  {:Department? 101
   :Salary? [:and [:> 2000] [:< 3500]]}}
+  
+;; Find all customer whose first-name starts with `"Sa"`:
+{:Customer
+ {:FirstName? [:like "Sa%"]}}
 ```
 
 It's possible to do query and update in a single pattern. For example, the following pattern
@@ -149,7 +153,7 @@ An example is shown below:
 ;; are in a `:WorksFor` relationship with the department 101.
 {:Employee
  {:Salary? [:> 1000]}
- :-> [[WorksFor? {:Department {:No? 101}}]]}
+ :-> [[:WorksFor? {:Department {:No? 101}}]]}
 ```
 
 The shorthand-query `:EntityName?` will return all instances of an entity.

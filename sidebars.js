@@ -50,10 +50,10 @@ const sidebars = {
           label: 'Data model',
           items: 
           [
+            'language/data-model/record',
             'language/data-model/entity',
             'language/data-model/relationship',
             'language/data-model/attribute',
-            'language/data-model/record',
           ],
         },
         {
@@ -68,6 +68,7 @@ const sidebars = {
         },
       ],
     },
+  "rbac",
   ],
 };
 

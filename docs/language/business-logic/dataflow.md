@@ -1,6 +1,7 @@
 # Dataflow
 
-A `dataflow` declaration has the following general syntax:
+Business and data-processing logic is expressed in fractl using *dataflows*. 
+A `dataflow` declaration will have the following general syntax:
 
 ```clojure
 (dataflow event-name patterns)
@@ -27,11 +28,10 @@ the dataflow attached to that event will be triggered.
 The preceding code-snippet creates an event with two email attributes. Then a dataflow is defined on this event.
 There are two patterns in this dataflow - the first pattern queries a `:Person` whose email is the value of
 `:CreateFriendship.Email1`. If such a person exists, evaluation proceeds to the next pattern, if the person could not be
-found the dataflow returns with a `data-not-found` error. The second pattern will query the person whose email
+found the dataflow returns a data `not-found` result. The second pattern will query the person whose email
 is `CreateFriendship.Email2` and links the two persons via a `:Friendship` relationship.
 
-So far we have seen patterns for creating and querying instances. The pattern language used by dataflows
-is very expressive and supports the following patterns:
+The pattern language used by dataflows is very expressive and may be categorized as,
 
 1. **[Create pattern](docs/language/business-logic/dataflow-patterns.md#create)**
 2. **[Query pattern](docs/language/business-logic/dataflow-patterns.md#query)**

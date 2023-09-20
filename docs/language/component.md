@@ -20,5 +20,5 @@ namespace import specifications for Clojure or Java.
 (component :Acme.Inventory.CRM
  {:clj-import '[(:require [fractl.lang.datetime :as dt]
                           [clojure.java.io :as io])
-	(:use [fractl.util])]})
+                (:use [fractl.util])]})
 ```

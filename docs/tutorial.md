@@ -1,6 +1,6 @@
 # Tutorial
 
-Let's continue our exploration of fractl by further developing the [blog-application](../quick-start.md). Currently, the
+Let's continue our exploration of fractl by further developing the [blog-application](quick-start.md). Currently, the
 `:Blog.Core` component looks like this:
 
 ```clojure
@@ -171,7 +171,7 @@ curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title
 ```
 What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
 a user-defined query to the model. Custom queries and business logic is added to a fractl program by way of
-[**dataflows**](../concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
+[**dataflows**](concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
 similar to entities. When an instance of the event is created, the attached dataflow is executed. So for our requirement,
 we define the following event and dataflow:
 
@@ -197,5 +197,5 @@ Note that the value passed to `:Title` ends with the wildcard character `%` - th
 we want to match all titles that starts with the characters "hello".
 
 We have reached the end of our whirlwind tour of fractl. There's a lot of ground left to cover - please
-continue your journey by reading about the core [concepts](concepts/intro.rd) of fractl and
+continue your journey by reading about the core [concepts](concepts/intro.md) of fractl and
 the [language reference](language/overview.md).
