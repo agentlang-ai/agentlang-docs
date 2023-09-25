@@ -23,3 +23,5 @@ In the example above, **any** user of the role "Manager" can perform Create, Rea
     * **Instance ownership**: A user who "owns" an instance of the entity "Company" automatically owns all instances of "Account" under "Company".
 
 ![Permissions Flow](img/entity-permissions-flow.png "Permissions Flow")
+
+Also see the documentation on [RBAC](../rbac).

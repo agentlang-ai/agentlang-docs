@@ -1,8 +1,0 @@
-{
-  "label": "Blog Example",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Quick guide to learn the important concepts of programming in fractl through the example of a Blogging app."
-  }
-}

@@ -43,7 +43,7 @@ The attribute-specification normally consists of a type-name which may be drawn 
 These built-in types are listed below:
 
 ```clojure
-:String - a string, literals are enclosed in `"`
+:String - a string literal enclosed in double-quotes
 :Keyword - a keyword literal, may also be encoded as a string. (e.g `:abc` or `"abc"`)
 :Path - a path to a model element, e.g :Acme.Inventory.CRM
 :DateTime - a string that conforms to the ISO 8601 date-time format, e.g `"2023-01-31T15:57:14.428506"`

@@ -1,6 +1,6 @@
 # Graph-based Data Model
 
-**Fractl** introduces an innovative **Graph-based Hierarchical** Data Model. This is a better fit over relational and, even, generic graph-based approaches for most applications in numerous ways:
+**Fractl** introduces an innovative **Graph-based Hierarchical** Data Model. This is a better fit over relational or, even, generic graph-based approaches for most applications in numerous ways:
 
 1. The business domain model - the structure and shape of information in applications - can be very precisely mapped to Fractl's data model.
 2. From a developer's perspective, the hierarchical and nested nature of this data model brings a lot of flexiblity to modeling data. It is possible to represent any combination of maps and lists with this data model. Map of list of map of map of list of maps? Bring it on!

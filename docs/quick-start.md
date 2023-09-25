@@ -75,7 +75,7 @@ If all goes well, the blog-service will start listening for incoming HTTP reques
 ```shell
 curl -X POST http://localhost:8080/_e/Blog.Core/BlogPost \
   -H 'Content-Type: application/json' \
-  -d '{"Blog.Core/BlogPost": {"Title": "Hello world", "Content": "This is my first post", "PostedBy": "vijay@fractl.io"}}'
+  -d '{"Blog.Core/BlogPost": {"Title": "Hello world", "Content": "This is my first post", "PostedBy": "mm@fractl.io"}}'
 ```
 
 The service will allow us to interact with the entities defined in the model over a RESTful API. As the preceding command
@@ -90,7 +90,7 @@ instance in the system. A success response to the `POST` request will look like,
 		"-*-type-*-": "Blog.Core/BlogPost",
 		"Title": "Hello world",
 		"Content": "This is my first post",
-		"PostedBy": "vijay@fractl.io",
+		"PostedBy": "mm@fractl.io",
 		"PostedOn": "2023-09-19T13:23:40.755039609",
 		"__Id__": "c2384118-c46d-4d05-8c41-00aad8d0cf99"
 	}]
