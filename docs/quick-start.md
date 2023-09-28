@@ -144,5 +144,5 @@ You may now launch this application using the Java virtual machine:
 $ java -jar out/blog/target/blog-0.0.1-standalone.jar -c config.edn
 ```
 
-You may now proceed to the more [advanced tutorial](blog-example/intro.md) where we will build a more
+You may now proceed to the more [advanced tutorial](tutorial.md) where we will build a more
 feature-rich blog-application and in that process, explore the fractl language in more depth.
