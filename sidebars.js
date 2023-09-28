@@ -66,6 +66,17 @@ const sidebars = {
             'language/business-logic/dataflow-patterns',
           ],
         },
+        {
+          type: 'category',
+          label: 'Kernel',
+          items:
+          [
+              'language/kernel/intro',
+              'language/kernel/lang',
+              'language/kernel/identity',
+              'language/kernel/rbac',
+	  ]
+	},
       ],
     },
   "rbac",
