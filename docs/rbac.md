@@ -1,4 +1,4 @@
-# RBAC
+# Security & Access Control
 
 Fractl allows role-based-access-control for an application to be expressed in a very declarative way. For instance,
 if only managers are allowed to create new companies and employees are only allowed to view company-data, 
