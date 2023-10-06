@@ -1,6 +1,6 @@
 # Installation
 
-Clone the fractl repo. From the repository folder, run the `install.sh` script to install fractl to a directory of your choice. Add it to the `PATH` environment variable so the `fractl` command is available system-wide.
+Clone the [fractl](https://github.com/fractl-io/fractl) repo. From the repository folder, run the `install.sh` script to install fractl to a directory of your choice. Add it to the `PATH` environment variable so the `fractl` command is available system-wide.
 
 **Note** In directory names, please replace `myhome` with the name of your home directory.
 
