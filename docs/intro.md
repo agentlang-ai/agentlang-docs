@@ -18,7 +18,7 @@ We recommend the following steps to get started with **Fractl**:
 
 1. Learn key concepts from the **[Concepts Guide](concepts/intro.md)**
 2. Pick your favorite way of building applications:
-    1. **Traditional coding**: Follow the installation guide to install Fractl and start building in your favorite IDE. 
+    1. **Traditional coding**: Follow the [installation guide](installation.md) to install Fractl and start building in your favorite IDE.
         1. Study an example application in Fractl: [Blog](tutorial.md)
         2. Use the [Language Reference](language/overview.md) to learn Fractl's simple, data-oriented syntax.
     2. **No-code and Gen AI**: Request access to **Fractl Design Studio** on fractl.io and start building in no time.
