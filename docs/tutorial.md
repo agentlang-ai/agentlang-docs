@@ -7,7 +7,8 @@ Let's continue our exploration of fractl by further developing the [blog-applica
 (component :Blog.Core)
 
 (entity :BlogPost
- {:Title :String
+ {:Name {:type :String :identity true}
+  :Title :String
   :Content :String
   :PostedBy :Email
   :PostedOn :Now})
@@ -24,7 +25,7 @@ of a "user" to the application:
   :MemberSince :Now})
 ```
 
-How can we express the idea that a blog-post is always created under a user? For this, we can make use of the
+To express the idea that a blog-post is always created under a user, we make use of the
 `:contains` [relationship](language/data-model/relationship.md):
 
 ```clojure
@@ -45,7 +46,7 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
   :MemberSince :Now})
 
 (entity :BlogPost
- {:Id :Identity
+ {:Name {:type :String :identity true}
   :Title :String
   :Content :String
   :PostedOn :Now})
@@ -54,11 +55,12 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
  {:meta {:contains [:User :BlogPost]}})
 
 ```
-Note that we have removed the `:PostedBy` attribute from `:BlogPost` and added an explicit identity attribute named `:Id`.
-Its type `:Identity` stands for an auto-generated uuid-string. An explicit identity attribute is required for entities that
-become child-nodes in a `:contains` relationship.
+Note that we have removed the `:PostedBy` attribute from `:BlogPost`. Also keep in mind that, when the `:contains` relationship
+is defined, the meaning of `:identity` in `:BlogPost.Name` also changes - it's no longer a global property but a property
+applied in the context of the parent `:User`. In other words, two users can both create a blog-post with
+the name `"post01"` under them, but only once.
 
-Let's test out our updated model. First delete the old data-file - `data/blog` - as the [schema](concepts/schema-migration.md)
+Let's test our updated model. First delete the old data-file - `data/blog` - as the [schema](concepts/schema-migration.md)
 for our model has changed. Then start the application by running the `fractl run` command and try the following requests.
 
 1. Create a couple of users
@@ -78,11 +80,12 @@ $ curl -X POST http://localhost:8080/_e/Blog.Core/User \
 ```shell
 $ curl -X POST http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost \
 -H 'Content-Type: application/json' \
--d '{"Blog.Core/BlogPost": {"Title": "hello, world", "Content": "My first post"}}'
+-d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "hello, world", "Content": "My first post"}}'
 ```
 
-Note the auto-generated `__path__` attribute in the blog-post instance - this uniquely encodes the hierarchy
-that the instance belongs to.
+In the response, note the auto-generated `__path__` attribute in the blog-post instance that encodes the route to the
+blog-post from the user. Also note the system generated globally-unique identifier for the blog-post, under the attribute
+named `:__Id__`.
 
 3. Fetch all blog posts made by a user
 
@@ -93,14 +96,14 @@ $ curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost
 4. Fetch an individual blog-post by path
 
 ```shell
-$ curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/e51406f6-d500-472c-98cd-9b46d6fcbebe
+$ curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
 ```
 
 5. Update a blog-post by path
 
 ```shell
 
-$ curl -X PUT http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/e51406f6-d500-472c-98cd-9b46d6fcbebe \
+$ curl -X PUT http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01 \
 -H 'Content-Type: application/json' \
 -d '{"Data": {"Title": "hello, there"}}'
 ```
@@ -108,7 +111,7 @@ $ curl -X PUT http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogP
 6. Delete a blog-post by path
 
 ```shell
-$ curl -X DELETE http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/e51406f6-d500-472c-98cd-9b46d6fcbebe
+$ curl -X DELETE http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
 ```
 
 **Exercise 1** Add a new entity `:BlogComment` to represent comments on blog-posts. Connect comments and blog-posts through
@@ -117,8 +120,8 @@ a `:contains` relationship.
 ## Grouping blog-posts
 
 A common feature required by bloggers is the ability to categorize blog posts. There could be a set of categories that
-come pre-defined - like "technology", "travel" etc. Users should be able to create their own categories as well. A category
-can be represented by the simple entity shown below:
+come predefined - like "technology", "travel" etc. Users should be able to create their own categories as well. A category
+can be represented by the entity shown below:
 
 ```clojure
 (entity :Category
@@ -135,7 +138,7 @@ $ curl -X POST http://localhost:8080/_e/Blog.Core/Category \
 
 How can we add a blog-post to a category? This operation could be viewed as a `:between` relationship in fractl - this is a
 simple link that connects two instances forming a flat-graph (rather than a hierarchy as established by a `:contains` relationship).
-This relationship can be expressed as:
+This relationship can be defined as:
 
 ```clojure
 (relationship :BelongsTo
@@ -162,7 +165,7 @@ $ curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPo
 
 ## Querying data
 
-In this section lets looks at a few more examples of querying data.
+In this section we'll look at a few more examples of querying data.
 
 The following request will return all blog-posts by the user `jj@fractl.io` with the title `"hello, world"`.
 

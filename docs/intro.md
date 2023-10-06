@@ -1,12 +1,12 @@
 # Introduction
 
-**Fractl** is a Generative AI-powered programming language. **Fractl** enables developers to focus on the core business requirements of their application, instead of dealing with the wiring logic and resulting accidental complexity.
+**Fractl** is a Generative AI-powered programming language. **Fractl** enable developers to focus on the core business requirements of their application, instead of dealing with the wiring logic and resulting accidental complexity.
 
 With **Fractl**, you can build applications in multiple ways:
 
 1. **Traditional coding**: Fractl Programming Language brings a business-level programming abstraction, numerous innovations and a modern, data-oriented syntax to power-charge development.
 2. **No-code building**: Fractl Design Studio, our no-code builder, makes software development incredibly simple and accessible.
-3. **Generative AI**: The business-level abstraction of Fractl is a phenomenal fit for LLM-driven code generation.
+3. **Generative AI**: The very-level, declarative nature of Fractl is a phenomenal fit for LLM-driven code generation.
 
 > **Note**: Currently, Fractl supports backend development - but has been designed to be a full-stack abstraction (frontend is on our roadmap).
 
