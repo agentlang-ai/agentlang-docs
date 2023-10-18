@@ -54,18 +54,18 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Fractl',
+        // title: 'Fractl',
         logo: {
           alt: 'Fractl Logo',
-          src: 'img/logo.svg',
+          src: 'img/fractl_logo.png',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Docs',
-          },
+          // {
+          //   type: 'doc',
+          //   docId: 'intro',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
           {
             href: 'https://github.com/fractl-io/fractl',
             label: 'GitHub',
