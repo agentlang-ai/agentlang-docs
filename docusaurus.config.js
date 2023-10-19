@@ -56,6 +56,7 @@ const config = {
       navbar: {
         // title: 'Fractl',
         logo: {
+          href: "https://fractljuno.webflow.io/",
           alt: 'Fractl Logo',
           src: 'img/fractl_logo.png',
         },
