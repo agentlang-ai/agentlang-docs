@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../../navigate-to-dataflow-page.md).
 
 ### **Step 2: Locate the Dataflow Container**
 
@@ -12,19 +12,19 @@ Identify the dataflow container that is connected to the event box with a purple
 
 Inside the identified dataflow container, find the "+" button. Clicking on this button will open a menu with options for adding a dataflow pattern. Click on the "+" button to open the menu.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled.png) -->
+![](../img/add-dataflow-1.png)
 
 ### **Step 4: Select a Dataflow Pattern**
 
 In the menu that opens, you'll see a list of available dataflow patterns. Choose the appropriate dataflow pattern you want to add in this case **Query - where**.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%201.png) -->
+![](../img/add-dataflow-2.png)
 
 ### **Step 5: Enter Edit Mode**
 
 By default, the dataflow pattern will be in preview mode. To make changes to the dataflow pattern, locate the "edit" icon, usually positioned at the header of the dataflow badge. Click on the "edit" icon to enter edit mode for the dataflow pattern.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%202.png) -->
+![](../img/query-1.png)
 
 ### **Step 6: Configure the Entity and Alias**
 
@@ -34,15 +34,14 @@ Inside the edit mode interface, you can now configure the dataflow pattern:
 
 **Assign Alias (Optional):** Optionally, assign an alias value to the dataflow pattern for easier reference.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%203.png) -->
+![](../img/query-2.png)
 
 ### **Step 7: Add Query Criteria**
 
 To assign query criteria, click on the "Add Query Criteria" button. This action will open a dialogue box. Inside the dialogue box, click on the "+" button to add query criteria.
-<!--
-![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%204.png)
 
-![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%205.png) -->
+![](../img/query-3.png)
+![](../img/query-4.png)
 
 ### **Step 8: Configure Query Criteria**
 
@@ -58,21 +57,21 @@ In the query criteria dialogue box, configure the criteria:
 
 To add more query criteria by clicking the "+" button again.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%206.png) -->
+![](../img/query-5.png)
 
 ### **Step 9: Save Query Criteria**
 
 Once you've added all necessary query criteria, click on the "Save" button within the dialogue box to save the query criteria.
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%207.png) -->
+![](../img/query-6.png)
 
-### **********Step 10: Add Aggregate (optional)**********
+### **Step 10: Add Aggregate (optional)**
 
 To add aggregate, Click on the “Add Aggregate” button, a dialogue box will open where you can assign the aggregates 
 
-<!-- ![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%208.png)
+![](../img/query-7.png)
 
-![Untitled](Query%20-%20where%206f433005f8ad4b50a18ee36cd2edc4e4/Untitled%209.png) -->
+![](../img/query-8.png)
 
 ### **Step 11: Click "Save"**
 

@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page, and follow these [steps](../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page, and follow these [steps](../navigate-to-dataflow-page.md).
 
 ### **Step 2: Identify the Dataflow Pattern to Delete**
 
@@ -12,13 +12,13 @@ Within the dataflow container, locate the specific dataflow pattern that you wan
 
 Next to or within the dataflow pattern you wish to delete, you should see a "trash" icon. Click on the "trash" icon to initiate the deletion process for the selected dataflow pattern.
 
-<!-- ![Untitled](Deleting%20Dataflow%20Pattern%2029e1cfa595d24b4ab0fcceaa945ec177/Untitled.png) -->
+![](img/delete-dataflow-1.png)
 
 ### **Step 4: Confirmation Prompt (if applicable)**
 
 A confirmation prompt might appear to ensure that you want to proceed with the deletion. If prompted, read the confirmation message carefully and confirm your decision to delete the dataflow pattern.
 
-<!-- ![Untitled](Deleting%20Dataflow%20Pattern%2029e1cfa595d24b4ab0fcceaa945ec177/Untitled%201.png) -->
+![Untitled](img/delete-dataflow-2.png)
 
 ### **Step 5: Confirm Deletion**
 

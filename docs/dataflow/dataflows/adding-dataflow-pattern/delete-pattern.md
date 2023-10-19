@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../../navigate-to-dataflow-page.md).
 
 ### **Step 2: Locate the Dataflow Container**
 
@@ -12,19 +12,19 @@ Identify the dataflow container that is connected to the event box with a purple
 
 Inside the identified dataflow container, find the "+" button. Clicking on this button will open a menu with options for adding a dataflow pattern. Click on the "+" button to open the menu.
 
-<!-- ![Untitled](Delete%202abd28bcebd84b7ba0dce036d14e9852/Untitled.png) -->
+![](../img/add-dataflow-1.png)
 
 ### **Step 4: Select a Dataflow Pattern**
 
 In the menu that opens, you'll see a list of available dataflow patterns. Choose the appropriate dataflow pattern you want to add in this case **Delete**.
 
-<!-- ![Untitled](Delete%202abd28bcebd84b7ba0dce036d14e9852/Untitled%201.png) -->
+![](../img/add-dataflow-2.png)
 
 ### **Step 5: Enter Edit Mode**
 
 By default, the dataflow pattern will be in preview mode. To make changes to the dataflow pattern, locate the "edit" icon, usually positioned at the header of the dataflow badge. Click on the "edit" icon to enter edit mode for the dataflow pattern.
 
-<!-- ![Untitled](Delete%202abd28bcebd84b7ba0dce036d14e9852/Untitled%202.png) -->
+![](../img/delete-pattern-1.png)
 
 ### **Step 6: Configure the Dataflow Pattern**
 
@@ -34,7 +34,7 @@ Once in edit mode, you can configure the dataflow pattern according to your requ
 
 **Assign Alias (Optional):** If needed, you can assign an optional alias value to the dataflow pattern. This alias helps you refer to the pattern more conveniently.
 
-<!-- ![Untitled](Delete%202abd28bcebd84b7ba0dce036d14e9852/Untitled%203.png) -->
+![](../img/delete-pattern-2.png)
 
 ### **Step 7: Review and Verify**
 

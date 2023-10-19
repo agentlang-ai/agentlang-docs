@@ -2,19 +2,19 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../navigate-to-dataflow-page.md).
 
 ### **Step 2: Add an Event**
 
 On the dataflow page, locate and click on the "Add Event" button. Upon clicking the "Add Event" button, a dialogue box will appear, allowing you to input information about the event you intend to create.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(49).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(49).png)
+![](img/event-1.png)
 
 ### **Step 3: Enter the Event Name**
 
 Within the dialogue box, you will see a field labeled "Name". Enter a descriptive name for the event you wish to create within the dataflow.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(52).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(52).png)
+![](img/event-2.png)
 
 ### **Step 4: Review and Verify**
 
@@ -34,7 +34,7 @@ The creation process might take a few moments.
 
 Upon successful event creation, you will likely a box with a purple border representing the event. Additionally, you might notice an edge connecting the event to the dataflow.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(53).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(53).png)
+![](img/event-3.png)
 
 ### **Step 8: Continue Working with Dataflows and Events**
 

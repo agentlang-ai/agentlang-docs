@@ -8,7 +8,7 @@ Locate the model card that you want to add a component to. Click on the card rep
 
 If the model already contains components, they will likely be pre-selected when you access the model's Data model page.
 
-If the model is empty, you must create a component following the instructions provided in the link: [How to Create a Component.](https://www.notion.so/v1/docs/how-to-create-a-component)
+If the model is empty, you must create a component following the instructions provided in the link: [How to Create a Component.](../components/create-component.md)
 
 ### **Step 3: Navigate Between Components (If Applicable)**
 

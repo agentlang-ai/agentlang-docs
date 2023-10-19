@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../../navigate-to-dataflow-page.md).
 
 ### **Step 2: Locate the Dataflow Container**
 
@@ -12,25 +12,25 @@ Identify the dataflow container that is connected to the event box with a purple
 
 Inside the identified dataflow container, find the "+" button. Clicking on this button will open a menu with options for adding a dataflow pattern. Click on the "+" button to open the menu.
 
-<!-- ![Untitled](Reference%20ce3545eb3f4741a29e1594f106ba5b43/Untitled.png) -->
+![](../img/add-dataflow-1.png)
 
 ### **Step 4: Select a Dataflow Pattern**
 
 In the menu that opens, you'll see a list of available dataflow patterns. Choose the appropriate dataflow pattern you want to add in this case **Reference**.
 
-<!-- ![Untitled](Reference%20ce3545eb3f4741a29e1594f106ba5b43/Untitled%201.png) -->
+![](../img/add-dataflow-2.png)
 
 ### **Step 5: Enter Edit Mode**
 
 By default, the dataflow pattern will be in preview mode. To make changes to the dataflow pattern, locate the "edit" icon, usually positioned at the header of the dataflow badge. Click on the "edit" icon to enter edit mode for the dataflow pattern.
 
-<!-- ![Untitled](Reference%20ce3545eb3f4741a29e1594f106ba5b43/Untitled%202.png) -->
+![](../img/reference-1.png)
 
 ### **Step 6: Configure the Dataflow Pattern**
 
 Within the edit mode interface, find the input field designated for the reference value. This input field is where you'll define the reference associated with the dataflow pattern. Enter the desired value of reference into the input field. This value could be a unique identifier, a keyword, or any other reference you want to associate with the dataflow pattern.
 
-<!-- ![Untitled](Reference%20ce3545eb3f4741a29e1594f106ba5b43/Untitled%203.png) -->
+![](../img/reference-2.png)
 
 **Step 7: Review and Verify**
 

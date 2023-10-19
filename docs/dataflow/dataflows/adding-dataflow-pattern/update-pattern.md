@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../../navigate-to-dataflow-page.md).
 
 ### **Step 2: Locate the Dataflow Container**
 
@@ -12,19 +12,19 @@ Identify the dataflow container that is connected to the event box with a purple
 
 Inside the identified dataflow container, find the "+" button. Clicking on this button will open a menu with options for adding a dataflow pattern. Click on the "+" button to open the menu.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled.png) -->
+![](../img/add-dataflow-1.png)
 
 ### **Step 4: Select a Dataflow Pattern**
 
 In the menu that opens, you'll see a list of available dataflow patterns. Choose the appropriate dataflow pattern you want to add in this case **Update**.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%201.png) -->
+![](../img/add-dataflow-2.png)
 
 ### **Step 5: Enter Edit Mode**
 
 By default, the dataflow pattern will be in preview mode. To make changes to the dataflow pattern, locate the "edit" icon, usually positioned at the header of the dataflow badge. Click on the "edit" icon to enter edit mode for the dataflow pattern.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%202.png) -->
+![](../img/update-pattern%202.png)
 
 ### **Step 6: Configure the Entity and Alias**
 
@@ -34,15 +34,15 @@ Inside the edit mode interface, you can now configure the dataflow pattern:
 
 **Assign Alias (Optional):** Optionally, assign an alias value to the dataflow pattern for easier reference.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%203.png) -->
+![](../img/update-pattern%203.png)
 
 ### **Step 7: Add Query Criteria**
 
 To assign query criteria, click on the "Add Query Criteria" button. This action will open a dialogue box. Inside the dialogue box, click on the "+" button to add query criteria.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%204.png)
+![](../img/update-pattern%204.png)
 
-![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%205.png) -->
+![](../img/update-pattern%205.png)
 
 ### **Step 8: Configure Query Criteria**
 
@@ -56,21 +56,19 @@ In the query criteria dialogue box, configure the criteria:
 
 To add more query criteria by clicking the "+" button again.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%206.png) -->
+![](../img/update-pattern%206.png)
 
 ### **Step 9: Save Query Criteria**
 
 Once you've added all necessary query criteria, click on the "Save" button within the dialogue box to save the query criteria.
 
-<!-- ![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%207.png) -->
+![](../img/update-pattern%207.png)
 
 ### **Step 10: Add Upsert Criteria**
 
 To add upsert criteria, click on the "Add Upsert Criteria" button. This action will open a new dialogue box. Inside the upsert criteria dialogue box, click on the "+" button to add upsert criteria.
-<!--
-![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%208.png)
 
-![Untitled](Update%201006325e34a04ed2998a2034c9d555fc/Untitled%209.png) -->
+![](../img/update-pattern%208.png)
 
 ### **Step 11: Configure Upsert Criteria**
 

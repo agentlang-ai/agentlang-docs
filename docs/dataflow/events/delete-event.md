@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page, and follow these [steps](../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page, and follow these [steps](../navigate-to-dataflow-page.md).
 
 ### **Step 2: Select the Event**
 
@@ -19,13 +19,13 @@ Upon selecting the record, a panel will open on the right-hand side of the page.
 
 Within the opened event panel, locate and click on the "trash" icon. This icon is used to initiate the process of deleting the selected event.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(55).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(55).png)
+![](img/event-4.png)
 
 ### **Step 5: Confirmation Prompt**
 
 After clicking the "trash" icon, you may receive a confirmation prompt to ensure you want to proceed with the deletion. This prompt is designed to prevent accidental deletion.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(56).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(56).png)
+![](img/event-5.png)
 
 ### **Step 6: Confirm Deletion**
 

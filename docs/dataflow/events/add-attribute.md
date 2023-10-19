@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page, and follow these [steps](../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page, and follow these [steps](../navigate-to-dataflow-page.md).
 
 ### **Step 5: Add an Attribute**
 
@@ -10,7 +10,7 @@ Inside the event box, look for the "Add Attribute" button. This button is used t
 
 Click on the "Add Attribute" button to open a dialogue box.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(57).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(57).png)
+![](img/event-6.png)
 
 ### **Step 6: Enter Attribute Details**
 
@@ -19,7 +19,7 @@ In the dialogue box, you'll be prompted to provide the following information:
 - **Attribute Name:** Enter a descriptive name for the attribute you want to add to the event.
 - **Attribute Type:** Select the appropriate type for the attribute from a list of available data types (e.g., text, number, date, etc.).
     
-    ![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(58).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(58).png)
+![](img/event-7.png)
     
 
 ### **Step 7: Assign Identifier and Default Value (Optional)**
@@ -47,7 +47,7 @@ Depending on the complexity of the event and the platform's performance, the att
 
 Upon successful attribute addition, you will likely receive a confirmation message indicating that the attribute has been added to the event.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(59).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(59).png)
+![](img/event-8.png)
 
 ### **Step 12: Review and Continue**
 

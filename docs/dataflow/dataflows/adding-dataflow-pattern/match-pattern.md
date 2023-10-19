@@ -2,7 +2,7 @@
 
 ### Step 1: Navigate to the Dataflow Page
 
-Navigate to the Dataflow Page by following these [steps](../../Naviage%20to%20Dataflow%20Page%2039d9ed3529a94178bf063c9f7ef0bc96.md).
+Navigate to the Dataflow Page by following these [steps](../../navigate-to-dataflow-page.md).
 
 ### **Step 2: Locate the Dataflow Container**
 
@@ -12,19 +12,19 @@ Identify the dataflow container that is connected to the event box with a purple
 
 Inside the identified dataflow container, find the "+" button. Clicking on this button will open a menu with options for adding a dataflow pattern. Click on the "+" button to open the menu.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled.png) -->
+![](../img/add-dataflow-1.png)
 
 ### **Step 4: Select a Dataflow Pattern**
 
 In the menu that opens, you'll see a list of available dataflow patterns. Choose the appropriate dataflow pattern you want to add in this case **Loop**.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled%201.png) -->
+![](../img/add-dataflow-2.png)
 
 ### **Step 5: Enter Edit Mode**
 
 By default, the dataflow pattern will be in preview mode. To make changes to the dataflow pattern, locate the "edit" icon, usually positioned at the header of the dataflow badge. Click on the "edit" icon to enter edit mode for the dataflow pattern.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled%202.png) -->
+![](../img/match-pattern-1.png)
 
 ### **Step 6: Configure Path and Alias**
 
@@ -34,13 +34,13 @@ Inside the edit mode interface, configure the dataflow pattern:
 
 **Assign Alias (Optional):** Optionally, assign an alias value to the dataflow pattern for easier reference.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled%203.png) -->
+![](../img/match-pattern-2.png)
 
 ### **Step 7: Add Conditions and Cases**
 
 To add a condition and cases to the dataflow pattern, click on the "+" button within the edit mode interface. This action will open a menu. Click on "Add Case" in the menu to create a new condition and case.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled%204.png) -->
+![](../img/match-pattern-3.png)
 
 ### **Step 8: Write Condition**
 
@@ -50,7 +50,7 @@ Inside the new case, write a condition within the provided input field. This con
 
 After writing the condition, click on the "+" button within the case to add the associated dataflow pattern.
 
-<!-- ![Untitled](Match%20ca6dab7891d44037ab435cbe86fcc1bf/Untitled%205.png) -->
+![](../img/match-pattern-4.png)
 
 ### **Step 10: Add Default Case**
 

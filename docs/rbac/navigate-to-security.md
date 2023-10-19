@@ -8,7 +8,7 @@ Locate the model card to which you want to add a component. Click on the card re
 
 If the model already contains components, they will likely be pre-selected when you access the model's Data model page.
 
-If the model is empty, you must create a component following the instructions provided in the link: [How to Create a Component.](https://www.notion.so/v1/docs/how-to-create-a-component)
+If the model is empty, you must create a component following the instructions provided in the link: [How to Create a Component.](../data-model/components/create-component.md)
 
 ### **Step 3: Navigate Between Components (If Applicable)**
 
@@ -18,4 +18,4 @@ If the model contains more than one component, you can navigate between these co
 
 From the Data model page, locate and click on a Security button to navigate to the Security page.
 
-<!-- ![Untitled](Navigate%20to%20Security%20Page%206998653cada74a4c8c838e3795eb5fd7/Untitled.png) -->
+!["Navigate to Security Page](img/navigate-to-security.png "Navigate to Security Page")
