@@ -81,92 +81,97 @@ const sidebars = {
         ],
     },
     {
-      type: 'category',
-      label: 'Dashboard',
-      items:
-        [
-          'dashboard/intro',
-          'dashboard/creating-a-model',
-          'dashboard/importing-a-model'
-        ],
-    },
-    {
-      type: 'category',
-      label: 'Data Model',
-      items:
-        [
-          // 'data-model/intro',
-          {
-            type: 'category',
-            label: "Components",
-            items: ['data-model/components/create-component', 'data-model/components/delete-component']
-          },
-          {
-            type: 'category',
-            label: "Entities",
-            items: ['data-model/entities/create-entity', 'data-model/entities/delete-entity', 'data-model/entities/add-attribute', 'data-model/entities/delete-attribute']
-          },
-          {
-            type: 'category',
-            label: "Records",
-            items: ['data-model/records/create-record', 'data-model/records/delete-record', 'data-model/records/add-attribute', 'data-model/records/delete-attribute']
-          },
-          {
-            type: 'category',
-            label: "Relationships",
-            items: ['data-model/relationships/create-relationship', 'data-model/relationships/delete-relationship', 'data-model/relationships/add-attribute', 'data-model/relationships/delete-attribute']
-          }
-
-        ],
-    },
-    {
       type: "category",
-      label: "Dataflow",
-      items: [
-        "dataflow/navigate-to-dataflow-page",
-        {
-          type: "category",
-          label: "Events",
-          items: [
-            "dataflow/events/create-event",
-            "dataflow/events/delete-event",
-            "dataflow/events/add-attribute",
-            "dataflow/events/delete-attribute"
-          ]
-        },
-        {
-          type: "category",
-          label: "Dataflows",
-          items: [
+      label: "Design Studio",
+      items: [{
+        type: 'category',
+        label: 'Dashboard',
+        items:
+          [
+            'dashboard/intro',
+            'dashboard/creating-a-model',
+            'dashboard/importing-a-model'
+          ],
+      },
+      {
+        type: 'category',
+        label: 'Data Model',
+        items:
+          [
+            // 'data-model/intro',
             {
-              type: "category",
-              label: "Adding Dataflow Pattern",
-              items: [
-                "dataflow/dataflows/adding-dataflow-pattern/create-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/update-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/query-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/delete-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/loop-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/match-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/event-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/reference-pattern",
-                "dataflow/dataflows/adding-dataflow-pattern/eval-pattern"
-              ]
+              type: 'category',
+              label: "Components",
+              items: ['data-model/components/create-component', 'data-model/components/delete-component']
             },
-            "dataflow/dataflows/delete-dataflow-pattern"
-          ]
-        }
-      ]
-    },
-    {
-      type: "category",
-      label: "RBAC",
-      items: [
-        "rbac/navigate-to-security",
-        "rbac/component-rbac",
-        "rbac/entity-rbac",
-      ]
+            {
+              type: 'category',
+              label: "Entities",
+              items: ['data-model/entities/create-entity', 'data-model/entities/delete-entity', 'data-model/entities/add-attribute', 'data-model/entities/delete-attribute']
+            },
+            {
+              type: 'category',
+              label: "Records",
+              items: ['data-model/records/create-record', 'data-model/records/delete-record', 'data-model/records/add-attribute', 'data-model/records/delete-attribute']
+            },
+            {
+              type: 'category',
+              label: "Relationships",
+              items: ['data-model/relationships/create-relationship', 'data-model/relationships/delete-relationship', 'data-model/relationships/add-attribute', 'data-model/relationships/delete-attribute']
+            }
+
+          ],
+      },
+      {
+        type: "category",
+        label: "Dataflow",
+        items: [
+          "dataflow/navigate-to-dataflow-page",
+          {
+            type: "category",
+            label: "Events",
+            items: [
+              "dataflow/events/create-event",
+              "dataflow/events/delete-event",
+              "dataflow/events/add-attribute",
+              "dataflow/events/delete-attribute"
+            ]
+          },
+          {
+            type: "category",
+            label: "Dataflows",
+            items: [
+              {
+                type: "category",
+                label: "Adding Dataflow Pattern",
+                items: [
+                  "dataflow/dataflows/adding-dataflow-pattern/create-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/update-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/query-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/delete-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/loop-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/match-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/event-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/reference-pattern",
+                  "dataflow/dataflows/adding-dataflow-pattern/eval-pattern"
+                ]
+              },
+              "dataflow/dataflows/delete-dataflow-pattern"
+            ]
+          }
+        ]
+      },
+      {
+        type: "category",
+        label: "RBAC",
+        items: [
+          "rbac/navigate-to-security",
+          "rbac/component-rbac",
+          "rbac/entity-rbac",
+        ]
+      }]
     }
+
   ],
 };
 
