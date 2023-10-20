@@ -93,6 +93,12 @@ You should see the following response:
 ]
 ```
 
+> **Note** To redirect application logs to a file, you should set the `JDK_JAVA_OPTIONS` environment variable as,
+>
+>  ```shell
+>  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=/home/me/fractl/logback.xml
+>  ```
+
 You can now proceed to build a standalone Java application from the `:Hello` model.
 For this, run the fractl build command:
 
