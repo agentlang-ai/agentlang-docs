@@ -78,6 +78,7 @@ const sidebars = {
                 'language/kernel/rbac',
               ]
           },
+        'language/config',
         ],
     },
     {
