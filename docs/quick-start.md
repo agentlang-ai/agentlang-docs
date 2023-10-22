@@ -1,14 +1,14 @@
 # Quick Start
 
-**Fractl** allows you to generate a production ready application from a very high-level declarative "model".
-In this section, we will design the model for a basic blogging-service. To start, create a directory to store the model files:
+In this section, we will develop a more involved application in Fractl. We'll be designing the model for a blogging-service.
+To start, create a directory to store the model files:
 
 ```shell
-$ mkdir blog
+mkdir blog
 ```
 
 We need a "project" file in the `blog` directory to capture some meta information about the model
-we are developing. In fractl this project file in called `model.fractl`. Create this file as `blog/model.fractl`
+we are developing. This project file in called `model.fractl`. Create this file as `blog/model.fractl`
 with the following content:
 
 ```clojure
@@ -42,7 +42,7 @@ its name - so we create the file `blog/blog/core.fractl` with the following cont
 
 In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its definition is self-explanatory - a blog-post is made up
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
-explanation - it's `:String` that must be unique for a blog-post - because it's used to uniquely identity a blog-post in the system.
+explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identity a blog-post in the system.
 
 Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by fractl
 for running this application. Create the file `blog/config.edn` with the following settings:
@@ -68,7 +68,7 @@ At this stage, our project folder should look like:
 To test our application, run the following command from the root `blog` directory:
 
 ```shell
-$ fractl run
+fractl run
 ```
 
 If all goes well, the blog-service will start listening for incoming HTTP request on post `8080`. Let's try to create a blog entry:
@@ -133,7 +133,7 @@ Now that we've tested the model, we are ready to make a build for release. For t
 
 
 ```shell
-$ fractl build
+fractl build
 ```
 
 This will create a standalone jar file of the blog-application in the `out` directory.
@@ -141,8 +141,8 @@ You may now launch this application using the Java virtual machine:
 
 
 ```shell
-$ java -jar out/blog/target/blog-0.0.1-standalone.jar -c config.edn
+java -jar out/blog/target/blog-0.0.1-standalone.jar -c config.edn
 ```
 
-You may now proceed to the more [advanced tutorial](tutorial.md) where we will build a more
-feature-rich blog-application, and in that process, explore the fractl language in more depth.
+In the [next step](tutorial.md) of this tutorial, we will add more features to the blog-application, and in that process,
+explore Fractl in more depth.
