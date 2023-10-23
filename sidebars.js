@@ -19,165 +19,187 @@ const sidebars = {
   // But you can create a sidebar manually
 
   Sidebar: [
-    'intro',
-    'installation',
-    'quick-start',
-    'tutorial',
+    "intro",
+    "installation",
+    "quick-start",
+    "tutorial",
     "rbac",
     {
-      type: 'category',
-      label: 'Concepts',
-      items:
-        [
-          'concepts/intro',
-          'concepts/data-model',
-          'concepts/entity-db-mapping',
-          'concepts/zero-trust-programming',
-          'concepts/declarative-dataflow',
-          'concepts/resolvers',
-          'concepts/interceptors',
-          'concepts/schema-migration'
-        ],
+      type: "category",
+      label: "Concepts",
+      items: [
+        "concepts/intro",
+        "concepts/data-model",
+        "concepts/entity-db-mapping",
+        "concepts/zero-trust-programming",
+        "concepts/declarative-dataflow",
+        "concepts/resolvers",
+        "concepts/interceptors",
+        "concepts/schema-migration",
+      ],
     },
     {
-      type: 'category',
-      label: 'Language Reference',
-      items:
-        [
-          'language/overview',
-          'language/component',
-          {
-            type: 'category',
-            label: 'Data model',
-            items:
-              [
-                'language/data-model/record',
-                'language/data-model/entity',
-                'language/data-model/relationship',
-                'language/data-model/attribute',
-              ],
-          },
-          {
-            type: 'category',
-            label: 'Business Logic',
-            items:
-              [
-                'language/business-logic/event',
-                'language/business-logic/dataflow',
-                'language/business-logic/dataflow-patterns',
-              ],
-          },
-          {
-            type: 'category',
-            label: 'Kernel',
-            items:
-              [
-                'language/kernel/intro',
-                'language/kernel/lang',
-                'language/kernel/identity',
-                'language/kernel/rbac',
-              ]
-          },
-        ],
+      type: "category",
+      label: "Language Reference",
+      items: [
+        "language/overview",
+        "language/component",
+        {
+          type: "category",
+          label: "Data model",
+          items: [
+            "language/data-model/record",
+            "language/data-model/entity",
+            "language/data-model/relationship",
+            "language/data-model/attribute",
+          ],
+        },
+        {
+          type: "category",
+          label: "Business Logic",
+          items: [
+            "language/business-logic/event",
+            "language/business-logic/dataflow",
+            "language/business-logic/dataflow-patterns",
+          ],
+        },
+        {
+          type: "category",
+          label: "Kernel",
+          items: [
+            "language/kernel/intro",
+            "language/kernel/lang",
+            "language/kernel/identity",
+            "language/kernel/rbac",
+          ],
+        },
+      ],
     },
     {
       type: "category",
       label: "Design Studio",
       items: [
+        "design-studio/intro",
         {
-          type: 'category',
+          type: "category",
           label: "Reference",
-          items: [{
-            type: 'category',
-            label: 'Dashboard',
-            items:
-              [
-                'dashboard/intro',
-                'dashboard/creating-a-model',
-                'dashboard/importing-a-model'
+          items: [
+            {
+              type: "category",
+              label: "Models",
+              items: [
+                "design-studio/models/creating-a-model",
+                "design-studio/models/importing-a-model",
               ],
-          },
-          {
-            type: 'category',
-            label: 'Data Model',
-            items:
-              [
+            },
+            {
+              type: "category",
+              label: "Data Model",
+              items: [
                 // 'data-model/intro',
                 {
-                  type: 'category',
+                  type: "category",
                   label: "Components",
-                  items: ['data-model/components/create-component', 'data-model/components/delete-component']
+                  items: [
+                    "design-studio/data-model/components/create-component",
+                    "design-studio/data-model/components/delete-component",
+                  ],
                 },
                 {
-                  type: 'category',
+                  type: "category",
                   label: "Entities",
-                  items: ['data-model/entities/create-entity', 'data-model/entities/delete-entity', 'data-model/entities/add-attribute', 'data-model/entities/delete-attribute']
+                  items: [
+                    "design-studio/data-model/entities/create-entity",
+                    "design-studio/data-model/entities/delete-entity",
+                    "design-studio/data-model/entities/add-attribute",
+                    "design-studio/data-model/entities/delete-attribute",
+                  ],
                 },
                 {
-                  type: 'category',
+                  type: "category",
                   label: "Records",
-                  items: ['data-model/records/create-record', 'data-model/records/delete-record', 'data-model/records/add-attribute', 'data-model/records/delete-attribute']
+                  items: [
+                    "design-studio/data-model/records/create-record",
+                    "design-studio/data-model/records/delete-record",
+                    "design-studio/data-model/records/add-attribute",
+                    "design-studio/data-model/records/delete-attribute",
+                  ],
                 },
                 {
-                  type: 'category',
+                  type: "category",
                   label: "Relationships",
-                  items: ['data-model/relationships/create-relationship', 'data-model/relationships/delete-relationship', 'data-model/relationships/add-attribute', 'data-model/relationships/delete-attribute']
-                }
-
+                  items: [
+                    "design-studio/data-model/relationships/create-relationship",
+                    "design-studio/data-model/relationships/delete-relationship",
+                    "design-studio/data-model/relationships/add-attribute",
+                    "design-studio/data-model/relationships/delete-attribute",
+                  ],
+                },
               ],
-          },
-          {
-            type: "category",
-            label: "Dataflow",
-            items: [
-              "dataflow/navigate-to-dataflow-page",
-              {
-                type: "category",
-                label: "Events",
-                items: [
-                  "dataflow/events/create-event",
-                  "dataflow/events/delete-event",
-                  "dataflow/events/add-attribute",
-                  "dataflow/events/delete-attribute"
-                ]
-              },
-              {
-                type: "category",
-                label: "Dataflows",
-                items: [
-                  {
-                    type: "category",
-                    label: "Adding Dataflow Pattern",
-                    items: [
-                      "dataflow/dataflows/adding-dataflow-pattern/create-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/update-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/query-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/delete-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/loop-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/match-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/event-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/reference-pattern",
-                      "dataflow/dataflows/adding-dataflow-pattern/eval-pattern"
-                    ]
-                  },
-                  "dataflow/dataflows/delete-dataflow-pattern"
-                ]
-              }
-            ]
-          },
-          {
-            type: "category",
-            label: "RBAC",
-            items: [
-              "rbac/navigate-to-security",
-              "rbac/component-rbac",
-              "rbac/entity-rbac",
-            ]
-          }]
+            },
+            {
+              type: "category",
+              label: "Dataflow",
+              items: [
+                "design-studio/dataflow/navigate-to-dataflow-page",
+                {
+                  type: "category",
+                  label: "Events",
+                  items: [
+                    "design-studio/dataflow/events/create-event",
+                    "design-studio/dataflow/events/delete-event",
+                    "design-studio/dataflow/events/add-attribute",
+                    "design-studio/dataflow/events/delete-attribute",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Dataflows",
+                  items: [
+                    {
+                      type: "category",
+                      label: "Adding Dataflow Pattern",
+                      items: [
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/create-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/update-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/query-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/delete-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/loop-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/match-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/event-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/reference-pattern",
+                        "design-studio/dataflow/dataflows/adding-dataflow-pattern/eval-pattern",
+                      ],
+                    },
+                    "design-studio/dataflow/dataflows/delete-dataflow-pattern",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Entity Dataflows",
+                  items: [
+                    "design-studio/dataflow/entity-dataflows/create-entity-dataflow",
+                    "design-studio/dataflow/entity-dataflows/delete-entity-dataflow",
+                  ],
+                }
+              ],
+            },
+            {
+              type: "category",
+              label: "Role Based Access Control",
+              items: [
+                "design-studio/rbac/navigate-to-security",
+                "design-studio/rbac/create-role",
+                "design-studio/rbac/delete-role",
+                "design-studio/rbac/component-rbac",
+                "design-studio/rbac/entity-rbac",
+                "design-studio/rbac/relationship-rbac"
+              ],
+            },
+          ],
         },
-      ]
-    }
-
+      ],
+    },
   ],
 };
 
