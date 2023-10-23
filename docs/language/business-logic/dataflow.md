@@ -1,6 +1,6 @@
 # Dataflow
 
-Business and data-processing logic is expressed in fractl using *dataflows*. 
+Business and data-processing logic is expressed in Fractl as *dataflows*. 
 A `dataflow` declaration will have the following general syntax:
 
 ```clojure
@@ -43,7 +43,7 @@ The pattern language used by dataflows is very expressive and may be categorized
 
 ## Result format
 
-Evaluating a dataflow produce a result-map of the form,
+Evaluating a dataflow produces a result-map of the form,
 
 ```clojure
 {:status s :result r :message m}

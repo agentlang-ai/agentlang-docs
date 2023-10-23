@@ -1,9 +1,9 @@
 # Attribute
 
 You may find that some attribute specifications repeat themselves in different records.
-For instance, the specifications for phone numbers and zip codes could repeat for customers, suppliers and
-probably other records. So having a reusable specification for these attributes is useful.
-The `attribute` declaration can help us here.
+For instance, the specifications for phone number and zip code could repeat for customers,
+suppliers and other records. So having a reusable specification for these attributes 
+can become handy. The `attribute` declaration can help us here.
 
 **Example**
 
@@ -39,8 +39,8 @@ With these new declarations, the `:Contact` record can be defined as:
 
 ## Attribute Spec
 
-The attribute-specification normally consists of a type-name which may be drawn from a pool of basic type built-into fractl in its `:Kernel` component.
-These built-in types are listed below:
+The attribute-specification normally consists of a type-name which may be drawn from a pool of basic types 
+built-into Fractl. These built-in types are listed below:
 
 ```clojure
 :String - a string literal enclosed in double-quotes
@@ -77,7 +77,7 @@ An attribute specification can contain more information when expressed as a map.
 ```
 
 The keys *property-1*, etc are specific keywords. The meaning of the property-specifications depends on
-the keyword. Valid property names are their settings are described below:
+the keyword. Valid property names and their settings are described below:
 
 ```
 :check - a single-arg Clojure predicate for validating values assigned to the attribute
@@ -101,14 +101,14 @@ the keyword. Valid property names are their settings are described below:
 ```
 
 The `:default` option could be a literal (string, number etc) or a no-arg function. If it's a function,
-fractl will call the function and use the return value as the default. (The `:default` value is used when
+Fractl will call the function and use the return value as the default. (The `:default` value is used when
 no value is specified for the attribute while creating an instance).
 
 Note that for `:ref` the value provided must exist at the other end of the path, otherwise fractl runtime will
 throw an exception. This is similar to a foreign-key relationship in an RDBMS.
 
-The `:indexed` property should be set for attributes on which look-queries are performed. Note that
-`:identity` and `:unique` attributes are always indexed.
+The `:indexed` property should be set for attributes on which queries are performed. Note that
+`:identity` and `:unique` attributes are indexed by default.
 
 **Example**
 
@@ -130,5 +130,3 @@ The `:indexed` property should be set for attributes on which look-queries are p
   (and (= 5 (count s))
        (<= 501 (Integer/parseInt s) 99950)))
 ```
-
-The above example shows a simple record for keeping track of customer contact details.
