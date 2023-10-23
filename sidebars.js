@@ -39,41 +39,46 @@ const sidebars = {
       ],
     },
     {
-      type: "category",
-      label: "Language Reference",
-      items: [
-        "language/overview",
-        "language/component",
-        {
-          type: "category",
-          label: "Data model",
-          items: [
-            "language/data-model/record",
-            "language/data-model/entity",
-            "language/data-model/relationship",
-            "language/data-model/attribute",
-          ],
-        },
-        {
-          type: "category",
-          label: "Business Logic",
-          items: [
-            "language/business-logic/event",
-            "language/business-logic/dataflow",
-            "language/business-logic/dataflow-patterns",
-          ],
-        },
-        {
-          type: "category",
-          label: "Kernel",
-          items: [
-            "language/kernel/intro",
-            "language/kernel/lang",
-            "language/kernel/identity",
-            "language/kernel/rbac",
-          ],
-        },
-      ],
+      type: 'category',
+      label: 'Language Reference',
+      items:
+        [
+          'language/overview',
+          'language/component',
+          {
+            type: 'category',
+            label: 'Data model',
+            items:
+              [
+                'language/data-model/record',
+                'language/data-model/entity',
+                'language/data-model/relationship',
+                'language/data-model/attribute',
+              ],
+          },
+          {
+            type: 'category',
+            label: 'Business Logic',
+            items:
+              [
+                'language/business-logic/event',
+                'language/business-logic/dataflow',
+                'language/business-logic/dataflow-patterns',
+              ],
+          },
+          {
+            type: 'category',
+            label: 'Kernel',
+            items:
+              [
+                'language/kernel/intro',
+                'language/kernel/lang',
+                'language/kernel/identity',
+                'language/kernel/rbac',
+              ]
+          },
+        'language/config',
+        ],
     },
     {
       type: "category",
