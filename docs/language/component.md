@@ -1,6 +1,6 @@
 # Component
 
-A fractl model consist of multiple components. A component captures the entities and business logic
+A Fractl model consist of multiple components. A component captures the entities and business logic
 relevant to a significant concept in the model. For example, the model for an inventory application
 may have different components for warehouses, suppliers and customers.
 
