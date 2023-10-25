@@ -13,13 +13,13 @@ relationship between department and employees.
 
 ```clojure
 (entity :Acme/Department
- {:No {:type :Int :identity true}
+ {:No {:type :Int :guid true}
   :Name {:type :String :unique true}})
 
 (entity :Acme/Employee
  {:Id :Identity
   :Name {:type :String 
-         :path-identity true}
+         :id true}
   :FirstName :String
   :LastName :String
   ;; other attributes ...
@@ -32,7 +32,7 @@ relationship between department and employees.
 Once an entity is declared to be *contained* by another entity, its instances may be created or queried only
 in the context of the parent instance. In the above example, an `:Employee` belongs to a `:Department` and is
 uniquely identified within the department by its `:Name` attribute. This means, employees with the same name 
-may belong to different departments. The `:path-identity` setting of `:Name` builds a unique path for each
+may belong to different departments. The `:id` setting of `:Name` builds a unique path for each
 `:Employee` in the format `"path://Acme/Department/<dept-no>/WorksFor/Employee/<employee-name>"`. The `:Id`
 attribute is declared as `:Identity` for the `:Employee`. It will be an auto-generated `UUID` that acts as the 
 globally-unique identifier for an employee.
@@ -74,7 +74,7 @@ a `between` relationship is that of friendship between people.
 
 ```clojure
 (entity :Social/Person
- {:Email {:type :Email :identity true}
+ {:Email {:type :Email :guid true}
   :FirstName :String
   ; ...
   })

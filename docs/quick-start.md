@@ -33,7 +33,7 @@ its name - so we create the file `blog/blog/core.fractl` with the following cont
 
 (entity :BlogPost
  {:Name {:type :String
-         :identity true}
+         :guid true}
   :Title :String
   :Content :String
   :PostedBy :Email
@@ -42,7 +42,7 @@ its name - so we create the file `blog/blog/core.fractl` with the following cont
 
 In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its definition is self-explanatory - a blog-post is made up
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
-explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identity a blog-post in the system.
+explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system.
 
 Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by fractl
 for running this application. Create the file `blog/config.edn` with the following settings:
@@ -99,23 +99,23 @@ instance in the system. A success response to the `POST` request will be,
 ```
 
 Note that fractl has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
-supposed to do. We can use the value of the `:identity` attribute - `:Name` - to lookup, update or delete the blog-post instance.
+supposed to do. We can use the value of the `:guid` attribute - `:Name` - to lookup, update or delete the blog-post instance.
 
 Some REST API calls you may try on your own are listed below:
 
-1. Lookup an instance by its unique-identifier
+1. Lookup an instance by its globally-unique-identifier or `:guid`.
 
 ```shell
 curl http://localhost:8080/_e/Blog.Core/BlogPost/pos01
 ```
 
-2. Lookup all instances of an entity
+2. Lookup all instances of an entity.
 
 ```shell
 curl http://localhost:8080/_e/Blog.Core/BlogPost
 ```
 
-3. Update an instance by its unique-identifier
+3. Update an instance by its `:guid`.
 
 ```shell
 curl -X PUT http://localhost:8080/_e/Blog.Core/BlogPost/post01 \
@@ -123,7 +123,7 @@ curl -X PUT http://localhost:8080/_e/Blog.Core/BlogPost/post01 \
   -d '{"Data": {"Title": "Hello, World", "PostedBy": "jj@fractl.io"}}'
 ```
 
-4. Delete an instance by its unique-identifier
+4. Delete an instance by its `:guid`.
 
 ```shell
 curl -X DELETE http://localhost:8080/_e/Blog.Core/BlogPost/post01

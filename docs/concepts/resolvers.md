@@ -13,7 +13,7 @@ completely off-loaded to the external service. In the sample code that follows, 
 (component :Acme)
 
 (entity :Acme/ExternalUser
- {:Email {:type :Email :identity true}
+ {:Email {:type :Email :guid true}
   :DateCreated :Now})
 
 ;; Represents the external user-storage.

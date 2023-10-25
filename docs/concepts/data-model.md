@@ -41,7 +41,7 @@ contact information:
 
 (entity :Person
  {:Name {:type :String
-         :identity true}
+         :guid true}
   :Personal :PersonalInformation
   :Contact :ContactInformation})
 ```

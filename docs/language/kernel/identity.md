@@ -8,7 +8,7 @@ The `:Fractl.Kernel.Identity` component contain definitions for managing "user-i
   :Password {:type :Password :optional true}
   :FirstName {:type :String :optional true}
   :LastName {:type :String :optional true}
-  :Email {:type :Email :identity true}
+  :Email {:type :Email :guid true}
   :UserData {:type :Map :optional true}})
 ```
 

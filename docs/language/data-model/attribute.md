@@ -86,7 +86,7 @@ the keyword. Valid property names and their settings are described below:
 :optional - if `true`, attribute value is optional
 :default - the default value of the attribute
 :type - name of the attribute's type
-:identity - if `true`, the attribute will be used by fractl to uniquely identify each instance of an entity
+:guid - if `true`, the attribute will be used by fractl to uniquely identify each instance of an entity
 :expr - a Clojure expression that will be evaluated to compute the attribute's value
 :format - a regex pattern for validating an attribute of type :Kernel/String
 :listof - only a list (a Clojure vector) of the specified type can be assigned to the attribute
@@ -108,7 +108,7 @@ Note that for `:ref` the value provided must exist at the other end of the path,
 throw an exception. This is similar to a foreign-key relationship in an RDBMS.
 
 The `:indexed` property should be set for attributes on which queries are performed. Note that
-`:identity` and `:unique` attributes are indexed by default.
+`:guid` and `:unique` attributes are indexed by default.
 
 **Example**
 
@@ -124,7 +124,7 @@ The `:indexed` property should be set for attributes on which queries are perfor
   :Phone {:type :String
           ;; US phone number format, e.g (555)555-5555
           :format "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"}
-  :Email {:type :Email :identity true}})
+  :Email {:type :Email :guid true}})
 
 (defn valid-zip? [s]
   (and (= 5 (count s))
