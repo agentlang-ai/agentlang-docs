@@ -7,7 +7,7 @@ Let's continue our exploration of Fractl by further developing the [blog-applica
 (component :Blog.Core)
 
 (entity :BlogPost
- {:Name {:type :String :identity true}
+ {:Name {:type :String :guid true}
   :Title :String
   :Content :String
   :PostedBy :Email
@@ -19,7 +19,7 @@ of a "user" to the application:
 
 ```clojure
 (entity :User
- {:Email {:type :Email :identity true}
+ {:Email {:type :Email :guid true}
   :FirstName :String
   :LastName :String
   :MemberSince :Now})
@@ -40,13 +40,13 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
 (component :Blog.Core)
 
 (entity :User
- {:Email {:type :Email :identity true}
+ {:Email {:type :Email :guid true}
   :FirstName :String
   :LastName :String
   :MemberSince :Now})
 
 (entity :BlogPost
- {:Name {:type :String :path-identity true}
+ {:Name {:type :String :id true}
   :Id :Identity
   :Title :String
   :Content :String
@@ -57,11 +57,14 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
 
 ```
 
-Note that we have removed the `:PostedBy` attribute from `:BlogPost`. Also keep in mind that, when the `:contains` relationship
-is defined, the meaning of `:identity` in `:BlogPost.Name` also changes - it's no longer a global property but a property
-applied in the context of the parent `:User`. In other words, two users can both create a blog-post with the name `"post01"` under them, but only once. To capture this change, we have marked `:BlogPost.Name` as the `:path-identity` attribute of a blog-post.
-This means, the `:Name` will uniquely identiy a blog-post under a `:User`. We've also added a new `:Id` attribute to act as the
-blog-post's system-wide (or `global`) identity. The value for an attribute of type `:Identity` will be an auto-generated UUID.
+Note that we have removed the `:PostedBy` attribute from `:BlogPost`. Instead, each blog-post will be contained under the
+`:User` that creates it. This is achieved by the `:PostsBy` "contains" relationship which declares the `:User` entity to be
+the "parent" of the `:BlogPost` entity. You might've noticed that the `:BlogPost.Name` attribute is now marked as `:id` - this
+was earlier marked as `:guid`. A `:guid` is globally-unique - only a single instance of `:BlogPost` with a particular name
+can exist in the whole system. An attribute marked as `:id` is also a unique-identifier - but its uniqueness is scoped under a
+parent entity-instance. In other works, more than one `:User` can create a `:BlogPost` with the same name, but only once. We also
+need an attribute to act as a globally-unique identifier for a blog-post - now this role is played by the `:Id` attribute whose type
+is `:Identifier`. The type `:Identifier` expands to `{:type :UUID :guid true :default <an-auto-generated-uuid>}`.
 
 Let's test our updated model. First delete the old data-file - `data/blog` - as the [schema](concepts/schema-migration.md)
 for our model has changed. Then start the application by running the `fractl run` command and try the following requests.
@@ -128,7 +131,7 @@ can be represented by the entity shown below:
 
 ```clojure
 (entity :Category
- {:Name {:type :String :identity true}})
+ {:Name {:type :String :guid true}})
 ```
 
 A new category is created as:

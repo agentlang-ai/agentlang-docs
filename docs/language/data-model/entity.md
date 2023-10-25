@@ -66,7 +66,7 @@ The `:Customer` entity no longer requires a `:ContactInfo` attribute as it inher
   :Phone "(212)555-7788"
   :Email "c432@abc.com"}}
 ```
-The customer can also be uniquely identified in the system by `:Email` because it inherits the `:identity` property,
+The customer can also be uniquely identified in the system by `:Email` because it inherits the `:guid` property,
 as declared in the parent-type, i.e `:Contact`,
 
 ```clojure
@@ -77,5 +77,5 @@ as declared in the parent-type, i.e `:Contact`,
   :State :String
   :Zip :String
   :Phone :String
-  :Email {:type :Email :identity true}}}
+  :Email {:type :Email :guid true}}}
 ```

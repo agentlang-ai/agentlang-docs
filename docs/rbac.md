@@ -6,7 +6,7 @@ an appropriate `:rbac` spec could be added to the `:Company` entity definition:
 
 ```clojure
 (entity :Acme.Core/Company
- {:Name {:type :String :identity true}
+ {:Name {:type :String :guid true}
   :rbac [{:roles ["manager"] :allow [:create]}
          {:roles ["employee"] :allow [:read]}]})
 ```

@@ -32,7 +32,7 @@ The general syntax of record specification is shown below:
   :Phone {:type :String
           ;; US phone number format, e.g (555)555-5555
           :format "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"}
-  :Email {:type :Email :identity true}})
+  :Email {:type :Email :guid true}})
 
 (defn valid-zip? [s]
   (and (= 5 (count s))
