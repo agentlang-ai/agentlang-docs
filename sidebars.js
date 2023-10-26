@@ -65,6 +65,7 @@ const sidebars = {
               ],
           },
 	    'language/computation-model',
+	    'language/rest-api',
           {
             type: 'category',
             label: 'Kernel',
