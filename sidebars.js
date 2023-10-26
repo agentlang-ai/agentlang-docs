@@ -64,6 +64,7 @@ const sidebars = {
                 'language/business-logic/dataflow-patterns',
               ],
           },
+	    'language/computation-model',
           {
             type: 'category',
             label: 'Kernel',

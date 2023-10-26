@@ -10,14 +10,16 @@ an appropriate `:rbac` spec could be added to the `:Company` entity definition:
   :rbac [{:roles ["manager"] :allow [:create]}
          {:roles ["employee"] :allow [:read]}]})
 ```
-When a user belonging to the "manager" role creates a company, that user also becomes the *owner* of that
-company. A user may *read*, *update* or *delete* an entity-instance that it owns. The user may also assign new owners
-or grant permissions to that instance to other users.
+When a user belonging to the "manager" role creates an instance of `:Company`, that user also becomes the *owner* of that
+instance. A user may *read*, *update* or *delete* an entity-instance that it owns. The user may also assign new owners
+or grant permissions on that instance to other users.
+
+**Note** The role named `admin` is special - users belonging to that role can execute CRUD operations on all entities in the system. (In a sense, they become "superusers" of the system).
 
 ## Identity management
 
-Users are represented by instances of the `:Fractl.Kernel.Identity/User` entity. A common way, new users are added to the application
-is via the `/_signup` API:
+Users are represented by instances of the `:Fractl.Kernel.Identity/User` entity. New users are usually added to the application
+through the `/_signup` API:
 
 ```shell
 $ curl -X POST http://localhost:8080/_signup/ \
@@ -35,6 +37,7 @@ $ curl -X POST http://localhost:8080/_signup/ \
         }
     }
 }'
+
 ```
 Once a user has signed-up, he/she may login to the application as,
 
@@ -76,7 +79,7 @@ by default:
  :U)
 ```
 
-A *super-user* may evaluate a custom dataflow to add a user to the "manager" role. Super-users and configuration related to
+A *superuser* may evaluate a custom dataflow to add a user to the "manager" role. Super-users and configuration related to
 rbac is discussed in the section on [rbac-settings](#rbac-settings).
 
 ## RBAC on relationships
@@ -94,8 +97,8 @@ For `:between` relationships some additional options are available. This is illu
          :assign {:ownership [:To :-> :From]}}})
 ```
 
-The `:owner` setting means - the owner of the `:From` node can create the relationship - he/she need not be the owner
-or `:To`. The `:assign` setting controls dynamic-assignment of ownership. Here, when an instance of the relationship
+The `:owner` setting means - the owner of the `:From` node can create the relationship - she need not be the owner
+of `:To`. The `:assign` setting controls dynamic-assignment of ownership. Here, when an instance of the relationship
 is created the owner of `:To` is added to the owners list of `:From`. This allows the owner of `:To` to perform additional
 operations of `:From`, that was not possible when the relationship did not exist. This ownership assignment will be revoked when
 the relationship instance is deleted from the system.
@@ -111,7 +114,8 @@ A few environment variables need to be set so that the Fractl runtime can intera
 Amazon Cognito. These environment variables are:
 
 ```
-* FRACTL_SUPERUSER_EMAIL - the email address of the admin or super user
+* FRACTL_SUPERUSER_EMAIL - the email address of the superuser
+* FRACTL_SUPERUSER_PASSWORD - the password of the superuser
 * AWS_REGION - the aws region where cognito is configured, e.g us-west-2
 * AWS_ACCESS_KEY - an access key obtained from AWS
 * AWS_SECRET_KEY - a secret key obtained from AWS
@@ -119,5 +123,5 @@ Amazon Cognito. These environment variables are:
 * AWS_COGNITO_USER_POOL_ID - cognito pool id
 ```
 
-The super-user maybe manually configured in Cognito and setup with an appropriate password there.
+The superuser maybe manually configured in Cognito and setup with an appropriate password there.
 

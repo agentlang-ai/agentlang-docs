@@ -178,6 +178,8 @@ Here's another query that will return the number of employees in the department:
 The aggregate operators supported by this form of query are `:count`, `:sum`, `:avg` (average),
 `:min`, and `:max`.
 
+**Also see** the documentation on [Destructuring](../../concepts/declarative-dataflow#destructuring).
+
 ## Delete
 
 The `delete` expression deletes one or more entity-instances based on a simple lookup criteria.

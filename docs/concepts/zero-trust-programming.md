@@ -19,7 +19,7 @@ In the example above, **any** user of the role "Manager" can perform Create, Rea
 ![Create-only permission](img/create-only-entity-permissions.png "Ownership with Create-only Permission")
 
 * **Permissions flow**: The **Graph-based Hierarchical Data Model** introduced by **Fractl** enables a zero-trust programming paradigm with minimal configuration. Permissions flow down the data model tree via the `:contains` relationship links. This permission flow applies both to Role-based permissions and instance ownership-based permissions:
-    * **RBAC**: In the example below, any user of the role manager can perform Create, Read, Update operations on entity "Company". As a result, the user can also perform the same exact set of operations on "Account" under "Company".
+    * **RBAC**: In the example below, any user that belongs to the `manager` role can perform Create, Read, Update operations on entity "Company". As a result, the user can also perform the same exact set of operations on "Account" under "Company".
     * **Instance ownership**: A user who "owns" an instance of the entity "Company" automatically owns all instances of "Account" under "Company".
 
 ![Permissions Flow](img/entity-permissions-flow.png "Permissions Flow")
