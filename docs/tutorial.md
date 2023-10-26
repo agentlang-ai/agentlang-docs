@@ -179,7 +179,7 @@ The following request will return all blog-posts by the user `jj@fractl.io` with
 curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
 ```
 What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
-a user-defined query to the model. Custom queries and business logic is added to a fractl program by way of
+a user-defined query to the model. Custom queries and business logic is added to a Fractl program by way of
 [**dataflows**](concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
 similar to entities. When an instance of the event is created, the attached dataflow is executed. So for our requirement,
 we define the following event and dataflow:

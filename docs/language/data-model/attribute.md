@@ -81,12 +81,12 @@ the keyword. Valid property names and their settings are described below:
 
 ```
 :check - a single-arg Clojure predicate for validating values assigned to the attribute
-:unique - if `true`, fractl will ensure each instance of an entity will have a different value for this attribute
+:unique - if `true`, Fractl will ensure each instance of an entity will have a different value for this attribute
 :immutable - if `true`, once assigned, the attribute's value will remain read-only
 :optional - if `true`, attribute value is optional
 :default - the default value of the attribute
 :type - name of the attribute's type
-:guid - if `true`, the attribute will be used by fractl to uniquely identify each instance of an entity
+:guid - if `true`, the attribute will be used by Fractl to uniquely identify each instance of an entity
 :expr - a Clojure expression that will be evaluated to compute the attribute's value
 :format - a regex pattern for validating an attribute of type :Kernel/String
 :listof - only a list (a Clojure vector) of the specified type can be assigned to the attribute
@@ -104,7 +104,7 @@ The `:default` option could be a literal (string, number etc) or a no-arg functi
 Fractl will call the function and use the return value as the default. (The `:default` value is used when
 no value is specified for the attribute while creating an instance).
 
-Note that for `:ref` the value provided must exist at the other end of the path, otherwise fractl runtime will
+Note that for `:ref` the value provided must exist at the other end of the path, otherwise Fractl runtime will
 throw an exception. This is similar to a foreign-key relationship in an RDBMS.
 
 The `:indexed` property should be set for attributes on which queries are performed. Note that

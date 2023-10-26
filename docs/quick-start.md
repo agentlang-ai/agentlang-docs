@@ -21,7 +21,7 @@ with the following content:
 The meta-data about the model is expressed as an edn-map of key-value pairs. There are three keys in the map -
    1. `:name` - the unique name of the model
    2. `:version` - the version of the model
-   3. `:fractl-version` - the version of the fractl runtime required to run the model
+   3. `:fractl-version` - the version of the Fractl runtime required to run the model
    4. `:components` - a list or vector of the components where the business objects of the model are defined
 
 The blog model has just one component - `:Blog.Core`. Now we need to define this component.
@@ -44,7 +44,7 @@ In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its de
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
 explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system.
 
-Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by fractl
+Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by Fractl
 for running this application. Create the file `blog/config.edn` with the following settings:
 
 ```clojure
@@ -52,7 +52,7 @@ for running this application. Create the file `blog/config.edn` with the followi
  :store {:type :h2 :dbname "./data/blog"}}
 ```
 
-This configuration will direct fractl to start the blog-service on port `8080` and store its data
+This configuration will direct Fractl to start the blog-service on port `8080` and store its data
 in the [H2](https://www.h2database.com/html/main.html) database file - `data/blog`.
 
 At this stage, our project folder should look like:
@@ -98,7 +98,7 @@ instance in the system. A success response to the `POST` request will be,
 }]
 ```
 
-Note that fractl has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
+Note that Fractl has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
 supposed to do. We can use the value of the `:guid` attribute - `:Name` - to lookup, update or delete the blog-post instance.
 
 Some REST API calls you may try on your own are listed below:

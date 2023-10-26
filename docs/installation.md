@@ -1,36 +1,22 @@
 # Installation
 
-Clone the [fractl](https://github.com/fractl-io/fractl) repository. From the checkout directory, run the `install.sh` script to install fractl to a directory of your choice. Add it to the `PATH` environment variable so the `fractl` command is available system-wide.
-
-```shell
-git clone git@github.com:fractl-io/fractl.git
-cd fractl
-./install.sh
-```
-
-The `install.sh` script will install Fractl in your `HOME` directory - e.g `/home/me/fractl-0.4.6`. You can also specifiy a target directory for the installation, as in `./install.sh /home/me/programs`. The Fractl will be available under `/home/me/programs/fractl-0.4.6`.
-
-After installing Fractl, add the installation directory to the system search-path:
-
-```shell
-export PATH=$PATH:/home/me/fractl-0.4.6
-```
+Download the [Fractl CLI tool](https://raw.githubusercontent.com/fractl-io/fractl-releases/87fe3632fca9cf1e9bdd4b2655ed89fed345d6ae/fractl) and copy it to a location known to your system search-path, for e.g `/usr/local/bin` or `/usr/bin`.
 
 ## hello, world
 
-To make sure everything works fine, let's create a very simple fractl program. Fractl programs are known as models,
+To make sure everything works fine, let's create a very simple Fractl program. Fractl programs are known as models,
 because they are very high-level descriptions of the problem being solved. First let's create a place to keep our models:
 
 
 ```shell
-mkdir /home/me/fractl-models
+mkdir ~/fractl-models
 ```
 
 Our first Fractl model going to be very simple - it returns the message "hello, world". It's overkill to use a
 modelling language like Fractl to write a hello-world app, but that's good enough to test our installation and to
 familiarize ourselves with the basic developer workflow.
 
-Create the directory `/home/me/fractl-models/hello` and add a file named `model.fractl` there.
+Create the directory `~/fractl-models/hello` and add a file named `model.fractl` there.
 The contents of this file is shown below:
 
 ```clojure
@@ -39,14 +25,14 @@ The contents of this file is shown below:
  :fractl-version "current"}
 ```
 
-All fractl models must contain a `model.fractl` file to capture some basic information about the project.
-Two entries that must be provided here are the name of the model and the version of fractl required to build and run it.
-The fractl-version could be very specific like `"0.4.6"` or the string `"current"` - which basically tries to run the model
-using the active fractl runtime.
+All Fractl models must contain a `model.fractl` file to capture some basic information about the project.
+Two entries that must be provided here are the name of the model and the version of Fractl required to build and run it.
+The Fractl-version could be very specific like `"0.4.6"` or the string `"current"` - which basically tries to run the model
+using the active Fractl runtime.
 
 A model is made up of components. The model's data structures and business logic are defined in its components.
 The `:Hello` model contains a single component named `:Hello.Core`. To define it, first create
-the directory `/home/me/fractl-models/hello/hello` and add the following `core.fractl` file there:
+the directory `~/fractl-models/hello/hello` and add the following `core.fractl` file there:
 
 ```clojure
 (component :Hello.Core)
@@ -58,7 +44,7 @@ the directory `/home/me/fractl-models/hello/hello` and add the following `core.f
  {:Message {:Value "hello, world"}})
 ```
 
-Now we can run and test the model. From the `/home/me/fractl-models/hello` directory, execute the following command:
+Now we can run and test the model. From `~/fractl-models/hello` execute the following command:
 
 ```shell
 fractl run
@@ -96,7 +82,7 @@ You should see the following response:
 > **Note** To redirect application logs to a file, you should set the `JDK_JAVA_OPTIONS` environment variable as,
 >
 >  ```shell
->  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=/home/me/fractl/logback.xml
+>  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=~/fractl/logback.xml
 >  ```
 
 You can now proceed to build a standalone Java application from the `:Hello` model.
@@ -116,4 +102,4 @@ java -jar target/hello-0.0.1-standalone.jar -c config.edn
 
 You can use the previous HTTP POST request to make sure the application is working fine.
 
-With fractl setup and working properly, you can now explore it further by proceeding to the [Quick start](quick-start) guide.
+With Fractl setup and working properly, you can now explore it further by proceeding to the [Quick start](quick-start) guide.

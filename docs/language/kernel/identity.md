@@ -1,6 +1,6 @@
 # Identity
 
-The `:Fractl.Kernel.Identity` component contain definitions for managing "user-identities" in a fractl application.
+The `:Fractl.Kernel.Identity` component contain definitions for managing "user-identities" in a Fractl application.
 
 ```clojure
 (entity :User
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 ```
 
-The fractl runtime may be asked to run some business-logic (like assigning some special permission to the new user),
+The Fractl runtime may be asked to run some business-logic (like assigning some special permission to the new user),
 after each successful signup-request. The application can provide this logic in a dataflow attached to the `:PostSignUp` event.
 
 ```clojure
@@ -80,7 +80,7 @@ The user may also complete the confirmation process by directly calling the `POS
 
 The `:ConfirmationCode` attribute must be set to the confirmation-code received in the email.
 
-To login to the fractl application, the user can call the `POST /_login` endpoint with an object of the `:UserLogin` event in the
+To login to the Fractl application, the user can call the `POST /_login` endpoint with an object of the `:UserLogin` event in the
 request body.
 
 ```clojure

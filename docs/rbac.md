@@ -107,7 +107,7 @@ RBAC is enabled by the following simple setting in `config.edn`:
 ```clojure
 {:rbac-enbled true}
 ```
-A few environment variables need to be set so that the fractl runtime can interact with the identity-backend, which defaults to
+A few environment variables need to be set so that the Fractl runtime can interact with the identity-backend, which defaults to
 Amazon Cognito. These environment variables are:
 
 ```
