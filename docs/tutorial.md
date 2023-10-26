@@ -26,7 +26,7 @@ of a "user" to the application:
 ```
 
 To express the idea that a blog-post is always created under a user, we make use of the
-`:contains` [relationship](language/data-model/relationship.md):
+`:contains` [relationship](language/reference/data-model/relationship.md):
 
 ```clojure
 (relationship :PostsBy
@@ -207,4 +207,4 @@ we want to match all titles that starts with the characters "hello".
 
 We have reached the end of our whirlwind tour of Fractl. There's a lot of ground left to cover - please
 continue your journey by reading about the core [concepts](concepts/intro.md) of Fractl and
-the [language reference](language/overview.md).
+the [language reference](language/reference/overview.md).

@@ -59,4 +59,4 @@ A user may also be assigned only specific permissions on an instance:
   :Assignee "mary@acme.com"}}
 ```
 
-For more information on RBAC, please see the [Security & Access Control](../../rbac) documentation.
+For more information on RBAC, please see the [Security & Access Control](/docs/language/reference/rbac) documentation.

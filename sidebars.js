@@ -23,7 +23,6 @@ const sidebars = {
     "installation",
     "quick-start",
     "tutorial",
-    "rbac",
     {
       type: "category",
       label: "Concepts",
@@ -38,47 +37,53 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Language Reference',
-      items:
-        [
-          'language/overview',
-          'language/component',
-          {
-            type: 'category',
-            label: 'Data model',
-            items:
-              [
-                'language/data-model/record',
-                'language/data-model/entity',
-                'language/data-model/relationship',
-                'language/data-model/attribute',
-              ],
-          },
-          {
-            type: 'category',
-            label: 'Business Logic',
-            items:
-              [
-                'language/business-logic/event',
-                'language/business-logic/dataflow',
-                'language/business-logic/dataflow-patterns',
-              ],
-          },
-	    'language/computation-model',
-	    'language/rest-api',
-          {
-            type: 'category',
-            label: 'Kernel',
-            items:
-              [
-                'language/kernel/intro',
-                'language/kernel/lang',
-                'language/kernel/identity',
-                'language/kernel/rbac',
-              ]
-          },
-        'language/config',
-        ],
+      label: 'Language',
+      items: [
+        {
+          type: "category",
+          label: "Reference",
+          items: [
+            'language/reference/overview',
+            'language/reference/component',
+            {
+              type: 'category',
+              label: 'Data model',
+              items:
+                [
+                  'language/reference/data-model/record',
+                  'language/reference/data-model/entity',
+                  'language/reference/data-model/relationship',
+                  'language/reference/data-model/attribute',
+                ],
+            },
+            {
+              type: 'category',
+              label: 'Business Logic',
+              items:
+                [
+                  'language/reference/business-logic/event',
+                  'language/reference/business-logic/dataflow',
+                  'language/reference/business-logic/dataflow-patterns',
+                ],
+            },
+            {
+              type: 'category',
+              label: 'Kernel',
+              items:
+                [
+                  'language/reference/kernel/intro',
+                  'language/reference/kernel/lang',
+                  'language/reference/kernel/identity',
+                  'language/reference/kernel/rbac',
+                ]
+            },
+            'language/reference/rbac',
+            'language/reference/config',
+          ]
+        },
+        'language/computation-model',
+        'language/rest-api'
+      ],
     },
     {
       type: "category",

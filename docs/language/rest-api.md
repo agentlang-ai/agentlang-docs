@@ -25,7 +25,7 @@ sample model given below.
 
 The `Content-Type` header must be set to either `application/json` or `application/transit+json`.
 If authentication is enabled for the model, set the `Authorization` header as `Bearer <auth-token>`.
-(Please see the [Identity](../kernel/identity) documentation for more details).
+(Please see the [Identity](/docs/language/reference/kernel/identity) documentation for more details).
 
 ## Create
 

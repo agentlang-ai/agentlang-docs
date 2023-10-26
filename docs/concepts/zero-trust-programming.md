@@ -24,4 +24,4 @@ In the example above, **any** user of the role "Manager" can perform Create, Rea
 
 ![Permissions Flow](img/entity-permissions-flow.png "Permissions Flow")
 
-Also see the documentation on [RBAC](../rbac).
+Also see the documentation on [RBAC](/docs/language/reference/rbac).

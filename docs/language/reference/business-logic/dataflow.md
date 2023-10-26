@@ -33,13 +33,13 @@ is `CreateFriendship.Email2` and links the two persons via a `:Friendship` relat
 
 The pattern language used by dataflows is very expressive and may be categorized as,
 
-1. **[Create pattern](docs/language/business-logic/dataflow-patterns.md#create)**
-2. **[Query pattern](docs/language/business-logic/dataflow-patterns.md#query)**
-3. **[Delete pattern](docs/language/business-logic/dataflow-patterns.md#delete)**
-4. **[Match pattern](docs/language/business-logic/dataflow-patterns.md#match)**
-5. **[For-each pattern](docs/language/business-logic/dataflow-patterns.md#for-each)**
-6. **[try pattern](docs/language/business-logic/dataflow-patterns.md#try)**
-7. **[eval pattern](docs/language/business-logic/dataflow-patterns.md#eval)**
+1. **[Create pattern](docs/language/reference/business-logic/dataflow-patterns.md#create)**
+2. **[Query pattern](docs/language/reference/business-logic/dataflow-patterns.md#query)**
+3. **[Delete pattern](docs/language/reference/business-logic/dataflow-patterns.md#delete)**
+4. **[Match pattern](docs/language/reference/business-logic/dataflow-patterns.md#match)**
+5. **[For-each pattern](docs/language/reference/business-logic/dataflow-patterns.md#for-each)**
+6. **[try pattern](docs/language/reference/business-logic/dataflow-patterns.md#try)**
+7. **[eval pattern](docs/language/reference/business-logic/dataflow-patterns.md#eval)**
 
 ## Result format
 
