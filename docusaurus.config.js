@@ -51,6 +51,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: 'KNBHGTDOCZ',
+        apiKey: '9ce423690259c8c5bd16aafae1bd0038',
+        indexName: "fractl",
+        contextualSearch: true,
+      },
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
@@ -72,23 +78,21 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            href: "https://fractljuno.webflow.io/",
+            label: 'Home',
+            position: 'right',
+          },
+          {
+            type: 'search',
+            position: 'right',
+          },
         ],
       },
-      // footer: {
-      //   style: 'dark',
-      //   links: [
-      //     {
-      //       title: 'Fractl',
-      //       items: [
-      //         {
-      //           label: 'Docs',
-      //           to: '/docs/intro',
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   copyright: `Copyright © ${new Date().getFullYear()} Fractl Inc.`,
-      // },
+      footer: {
+        style: 'light',
+        copyright: `Copyright © ${new Date().getFullYear()} Fractl Inc.`,
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
