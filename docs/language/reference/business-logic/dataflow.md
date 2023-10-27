@@ -31,6 +31,29 @@ There are two patterns in this dataflow - the first pattern queries a `:Person` 
 found the dataflow returns a data `not-found` result. The second pattern will query the person whose email
 is `CreateFriendship.Email2` and links the two persons via a `:Friendship` relationship.
 
+### CRUD Events
+
+Dataflows can also be setup to be evaluated `before` and `after` a CRUD operation is performed on an entity.
+As an example, consider a school-management application which needs to send an email to a student after he is
+successfully enrolled for a course. This requirement can be satisfied by the following dataflow specification:
+
+```clojure
+(dataflow
+ [:after :create :School.Admin/CourseEnrollment]
+ {:School.Core/SendEmail {:Email :_Instance.StudentEmail
+                          :Message '(str "You are enrolled for " :_Instance.CourseName)}})
+```
+
+The first entry in the dataflow header-vector must be either `:before` or `:after` indicating whether the dataflow
+will be executed before or after the CRUD operation. The second entry should identify the operation itself and
+must be one of `:create`, `:update` or `:delete`. The third entry must be the name of an entity.
+
+In pre/post CRUD-dataflows like this, the special name `:_Instance` refers to the entity instance
+on which the CRUD is performed. Another special variable called `:_EventContext` will refer to
+the [:EventContext](event#event-context) of the original event that triggered the CRUD operation.
+
+## Dataflow Patterns
+
 The pattern language used by dataflows is very expressive and may be categorized as,
 
 1. **[Create pattern](docs/language/reference/business-logic/dataflow-patterns.md#create)**
