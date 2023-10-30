@@ -2,8 +2,8 @@
 
 **Fractl** supports a **Graph-based Hierarchical** Data Model. This is a better fit over relational or, even, generic graph-based approaches for most applications in numerous ways:
 
-1. The business domain model - the structure and shape of information in applications - can be very precisely mapped to Fractl's data model.
-2. From a developer's perspective, the hierarchical and nested nature of this data model brings a lot of flexibility to modeling data. It is possible to represent any combination of maps and lists with this data model. Map of list of map of map of list of maps? Bring it on!
+1. The business domain model - the structure and shape of information in applications - can be precisely mapped to Fractl's data model.
+2. From a developer's perspective the hierarchical and nested nature of this data model brings a lot of flexibility to modeling data. It is possible to represent any combination of maps and lists with this data model. Map of list of map of map of list of maps? Bring it on!
 3. The data model provides an elegant way for implementing ownership and access-control policies. More on this in the [Zero Trust Programming](zero-trust-programming.md) section.
 
 The following are some salient features of the data model:
@@ -18,9 +18,9 @@ The following are some salient features of the data model:
 
 * **Paths**:
 
-Since the Entity records of an application are organized as a graph, it is important to be able to address and access a given record from the graph easily. Fractl has the concept of a **path** that uniquely pinpoints to a record in the graph as a node in one of the interconnected trees. This path is available both as a serializable data representation (string) and also as a binding in the context of a computation in a dataflow.
+Since the Entity records of an application are organized as a graph, it is important to be able to address and access a given record from the graph easily. Fractl has the concept of a **path** that uniquely pinpoints to a record in the graph as a node in one of the interconnected trees. This path is available both as a serializable data representation (encoded as a string) and also as a binding in the context of a computation in a dataflow.
 
-* **Type Composition & Inheritance**:
+* **Type Composition and Inheritance**:
 
 Fractl also supports a more traditional way to design the schema, as compositions of data structures.
 For example, a `:Person` entity may be seen as a composition of various simpler structures like personal and

@@ -18,7 +18,8 @@ with the following content:
  :components [:Blog.Core]}
 ```
 
-The meta-data about the model is expressed as an edn-map of key-value pairs. There are three keys in the map -
+The meta-data about the model is expressed as an [edn](https://github.com/edn-format/edn)-map of key-value pairs.
+The following keys are required in this map:
    1. `:name` - the unique name of the model
    2. `:version` - the version of the model
    3. `:fractl-version` - the version of the Fractl runtime required to run the model
@@ -42,7 +43,7 @@ its name - so we create the file `blog/blog/core.fractl` with the following cont
 
 In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its definition is self-explanatory - a blog-post is made up
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
-explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system.
+explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system. (`:guid` means *globally-unique-identifier*).
 
 Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by Fractl
 for running this application. Create the file `blog/config.edn` with the following settings:
@@ -71,7 +72,7 @@ To test our application, run the following command from the root `blog` director
 fractl run
 ```
 
-If all goes well, the blog-service will start listening for incoming HTTP request on post `8080`. Let's try to create a blog entry:
+The blog-service should start listening for incoming HTTP request on post `8080`. Let's try to create a blog entry:
 
 ```shell
 curl -X POST http://localhost:8080/_e/Blog.Core/BlogPost \

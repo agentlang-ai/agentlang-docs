@@ -1,6 +1,6 @@
 # Zero-trust Programming
 
-By default, Fractl programs do not permit any operations - read or write - on entities and relationship. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, Fractl incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on needs.
+By default, a Fractl application in production will not allow any operation - read or write - on entities and relationships without explicit *permits*. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, Fractl incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on needs.
 
 > **Note**: An "entity" is different from an "instance of an entity" - the former is a type, whereas the latter is a value of that type.
 

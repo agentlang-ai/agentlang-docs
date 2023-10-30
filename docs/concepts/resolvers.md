@@ -1,10 +1,10 @@
 # Resolvers
 
-Most Fractl applications interact with external systems. Resolvers provide a uniform abstraction for such interactions. Each resolver is just another Fractl model that is imported into the application like a library. A resolver exposes entities associated with the external system. Fractl applications interact with the external system by performing (CRUD) operations on these entities - such operations are converted into API calls to the external system by the resolver implementation.
+Most Fractl applications interact with external systems. Resolvers provide a uniform abstraction for managing such interactions. Each resolver is just another Fractl model that is imported into the application like a library. A resolver exposes entities associated with the external system. Fractl applications interact with the external system by performing (CRUD) operations on these entities - such operations are converted into API calls to the external system by the resolver implementation.
 
 **Note** To understand and implement resolvers, you'll need a basic working knowledge of the [Clojure](https://clojure.org) programming language.
 
-To understand resolvers better, let's look at a simple example. We have an entity, which we would like to be stored in an external
+Let's look at the implementation of a simple resolver. We have an entity, which we would like to be stored in an external
 service. We would like to bypass Fractl's local storage-layer completely - create, update, delete and queries on the entity is
 completely off-loaded to the external service. In the sample code that follows, the external service is represented by a Clojure
 `atom` and the external-service's API is represented by `assoc`/`dissoc` operations on the atom.

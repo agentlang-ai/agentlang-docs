@@ -2,7 +2,7 @@
 
 A `record` is the basic composite data-structure that can be defined in a component.
 A record consists of smaller data-elements known as attributes. The specification of a record
-will be a map chiefly concerned with defining the types and constraints applicable to each attribute.
+will be a map mainly concerned with defining the types and constraints applicable to each attribute.
 The record definition may also contain a `:meta` section that capture some meta-data about the record.
 
 The general syntax of record specification is shown below:

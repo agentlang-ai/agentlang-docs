@@ -12,7 +12,7 @@ because they are very high-level descriptions of the problem being solved. First
 mkdir ~/fractl-models
 ```
 
-Our first Fractl model going to be very simple - it returns the message "hello, world". It's overkill to use a
+Our first Fractl model is going to be very simple - it returns the message "hello, world". It's overkill to use a
 modelling language like Fractl to write a hello-world app, but that's good enough to test our installation and to
 familiarize ourselves with the basic developer workflow.
 
@@ -30,7 +30,7 @@ Two entries that must be provided here are the name of the model and the version
 The Fractl-version could be very specific like `"0.4.6"` or the string `"current"` - which basically tries to run the model
 using the active Fractl runtime.
 
-A model is made up of components. The model's data structures and business logic are defined in its components.
+A model is made up of components where all the data structures and business logic of the application is defined.
 The `:Hello` model contains a single component named `:Hello.Core`. To define it, first create
 the directory `~/fractl-models/hello/hello` and add the following `core.fractl` file there:
 
@@ -50,7 +50,7 @@ Now we can run and test the model. From `~/fractl-models/hello` execute the foll
 fractl run
 ```
 
-You may now test the application using as HTTP post request,
+You may now test the application using an HTTP post request like,
 
 ```shell
 curl --location --request POST 'http://localhost:8080/_e/Hello.Core/SayHello' \
@@ -82,8 +82,9 @@ You should see the following response:
 > **Note** To redirect application logs to a file, you should set the `JDK_JAVA_OPTIONS` environment variable as,
 >
 >  ```shell
->  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=~/fractl/logback.xml
+>  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=~/fractl-models/logback.xml
 >  ```
+> You may want to [download](https://github.com/fractl-io/fractl/blob/main/logback.xml) and reuse the logback.xml file that comes in the Fractl repository.
 
 You can now proceed to build a standalone Java application from the `:Hello` model.
 For this, run the fractl build command:
@@ -93,7 +94,7 @@ fractl build
 ```
 
 Once the build is over, you'll find a standalone jar file under `./out/hello/target`.
-The file name will be `hello-0.0.1-standalone.jar`. You can run this using the Java runtime.
+The file name will be `hello-0.0.1-standalone.jar`. This can now be executed using the Java Virtual Machine,
 
 ```shell
 cd ./out/hello
@@ -102,4 +103,4 @@ java -jar target/hello-0.0.1-standalone.jar -c config.edn
 
 You can use the previous HTTP POST request to make sure the application is working fine.
 
-With Fractl setup and working properly, you can now explore it further by proceeding to the [Quick start](quick-start) guide.
+With Fractl setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start) guide.

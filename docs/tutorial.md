@@ -58,11 +58,11 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
 ```
 
 Note that we have removed the `:PostedBy` attribute from `:BlogPost`. Instead, each blog-post will be contained under the
-`:User` that creates it. This is achieved by the `:PostsBy` "contains" relationship which declares the `:User` entity to be
+`:User` that create it. This is achieved by the `:PostsBy` "contains" relationship which declares the `:User` entity to be
 the "parent" of the `:BlogPost` entity. You might've noticed that the `:BlogPost.Name` attribute is now marked as `:id` - this
 was earlier marked as `:guid`. A `:guid` is globally-unique - only a single instance of `:BlogPost` with a particular name
 can exist in the whole system. An attribute marked as `:id` is also a unique-identifier - but its uniqueness is scoped under a
-parent entity-instance. In other works, more than one `:User` can create a `:BlogPost` with the same name, but only once. We also
+parent entity-instance. In other words, more than one `:User` can create a `:BlogPost` with the same name, but only once. We also
 need an attribute to act as a globally-unique identifier for a blog-post - now this role is played by the `:Id` attribute whose type
 is `:Identifier`. The type `:Identifier` expands to `{:type :UUID :guid true :default <an-auto-generated-uuid>}`.
 
@@ -127,7 +127,7 @@ a `:contains` relationship.
 
 A common feature required by bloggers is the ability to categorize blog posts. There might be a set of categories that
 come predefined - like "technology", "travel" etc. Users should be able to create their own categories as well. A category
-can be represented by the entity shown below:
+may be represented by the entity shown below:
 
 ```clojure
 (entity :Category
@@ -144,7 +144,7 @@ curl -X POST http://localhost:8080/_e/Blog.Core/Category \
 
 How can we add a blog-post to a category? This operation could be viewed as a `:between` relationship - a simple link that
 connects two instances forming a flat-graph (rather than a hierarchy as established by a `:contains` relationship).
-This relationship can be defined as:
+This relationship is defined as:
 
 ```clojure
 (relationship :BelongsTo
@@ -163,7 +163,7 @@ curl -X POST http://localhost:8080/_e/Blog.Core/BelongsTo \
 Note that the `:BlogPost` attribute of `:BelongsTo` must be the globally-unique attribute of the `:BlogPost` entity. Here it will
 be the value of the `:BlogPost.Id` attribute.
 
-All blog-posts that belongs to a particular category maybe listed by a `GET` request:
+All blog-posts that belong to a particular category is listed by the `GET` request:
 
 ```shell
 curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
