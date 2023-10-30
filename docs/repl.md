@@ -84,20 +84,22 @@ Let's create `relationship` between `User` and `Comment` so, that we can define 
 Okay, till now we used to do simple declarations now, let's use fun part of evaluator directly from REPL and create instances of entities and later evaluate `dataflow`.
 
 ```clojure
-(fractl.evaluator/safe-eval-pattern {:Blog.Core/User {:Name "John Doe" :Password "Thisispassword12$" :FirstName "John" :LastName "Doe" :Email "john@email.com"}})
+{:Blog.Core/Create_User {:Instance {:Blog.Core/User {:Email "john@email.com"}}}}
 ```
+
+To create a entity instance we use the above structure while for dataflow/event, we can directly invoke as we will see below.
 
 If you received, something similar to following output, congratulations, you have directly `eval`ed from REPL.
 
 ```clojure
-({:type-*-tag-*- :entity,
-  :-*-type-*- [:Blog.Core :User],
-  :Name "John Doe",
-  :Password
-  "_fractlbsh__:JDJhJDEwJEFhVy85aUl3MjdXTVc5QzMzbjBhYS5KRU5QY0V3TTRXM2h1YlZ6THhXWlUzc0h5LjNsQm5X",
-  :FirstName "John",
-  :LastName "Doe",
-  :Email "john@email.com"})
+[{:status :ok,
+  :result
+  ({:type-*-tag-*- :entity,
+    :-*-type-*- :Blog.Core/User,
+    :Email "john@email.com",
+    :Password
+    "_fractlbsh__:JDJhJDEwJEFhVy85aUl3MjdXTVc5QzMzbjBhYS5NTXJZLjgueTdLc2pSQzZNUFR4dWQ2dWU3dWtHUmxL"}),
+  :message nil}]
 ```
 
 The above output mentions, you have created an instance of `Blog.Core/User` entity along with data provided.
@@ -105,20 +107,23 @@ The above output mentions, you have created an instance of `Blog.Core/User` enti
 Similarly, we can create instance of `Blog.Core/Comment`. We don't need to provide `Id` and `CreatedAt` attributes as, these are set by default from Fractl.
 
 ```clojure
-(fractl.evaluator/safe-eval-pattern {:Blog.Core/Comment {:Title "Hey!" :Body "This is a comment message."}})
+{:Blog.Core/Create_Comment {:Instance {:Blog.Core/Comment {:Title "Hey!" :Body "This is a comment message."}}
 ```
 
 This will return us following output from Fractl.
 
 ```clojure
-({:type-*-tag-*- :entity,
-  :-*-type-*- [:Blog.Core :Comment],
-  :Title "Hey!",
-  :Body "This is a comment message.",
-  :Id "9887d8f3-7e53-4e93-a92d-88678a5903ae",
-  :CreatedAt "2023-10-30T17:26:34.69044",
-  :__path__ "path://___/dd44afaf-fb16-4789-bc62-81dcdcd16251",
-  :__Id__ "369f52e5-4394-4254-b6ff-9813343eba16"})
+[{:status :ok,
+  :result
+  ({:type-*-tag-*- :entity,
+    :-*-type-*- :Blog.Core/Comment,
+    :Title "Hey!",
+    :Body "This is a comment message.",
+    :Id "98cca94b-f6f2-4d22-b153-3b2ea4af8e84",
+    :CreatedAt "2023-10-30T20:57:57.546581",
+    :__path__ "path://___/5198dc11-de65-4a65-baa5-cdbc31c0937a",
+    :__Id__ "0a179463-5a8b-437c-b39f-6d7bf3af43d3"}),
+  :message nil}]
 ```
 
 Now, let's create `Post` entity so, we can move towards creating `event` and `dataflow`.
@@ -158,7 +163,7 @@ Also, create dataflow `CreatePost` for the event.
 ```clojure
 (dataflow
  :Blog.Core/CreatePost
- {:Blog.Core/User {:Email? :Blog.Core/CreatePost.UserEmail}, :as :U}
+ {:Blog.Core/User {:Email? :Blog.Core/CreatePost.UserEmail}, :as [:U]}
  {:Blog.Core/Post {:Title :Blog.Core/CreatePost.Title,
                    :Body :Blog.Core/CreatePost.Body},
   :-> [[{:Blog.Core/PostAuthorship {}} :U]]})
@@ -167,5 +172,19 @@ Also, create dataflow `CreatePost` for the event.
 Now, let's evaluate the dataflow `CreatePost` with instance data directly from REPL:
 
 ```clojure
-(fractl.evaluator/safe-eval-pattern {:Blog.Core/CreatePost {:UserEmail "john@email.com" :Title "A new post" :Body "This is a post"}})
+[{:status :ok,
+  :result
+  {:type-*-tag-*- :entity,
+   :-*-type-*- [:Blog.Core :Post],
+   :Title "A new post",
+   :Body "This is a post",
+   :Id "db50f545-de12-47ea-a0fd-0b1547b0b04b",
+   :CreatedAt "2023-10-30T20:58:16.049228"},
+  :message nil}]
 ```
+
+Awesome! Now you are able to do these kinds of operations directly from REPL which will help you experiment and visualize
+the language more.
+
+Have fun with journey and keep on experiment and when you're done, you can close the REPL with "process quit" command on shell
+which is "Ctrl-C".
