@@ -36,53 +36,50 @@ const sidebars = {
       ],
     },
     {
-      type: 'category',
-      label: 'Language',
+      type: "category",
+      label: "Language",
       items: [
         {
           type: "category",
           label: "Reference",
           items: [
-            'language/reference/overview',
-            'language/reference/component',
+            "language/reference/overview",
+            "language/reference/component",
             {
-              type: 'category',
-              label: 'Data model',
-              items:
-                [
-                  'language/reference/data-model/record',
-                  'language/reference/data-model/entity',
-                  'language/reference/data-model/relationship',
-                  'language/reference/data-model/attribute',
-                ],
+              type: "category",
+              label: "Data model",
+              items: [
+                "language/reference/data-model/record",
+                "language/reference/data-model/entity",
+                "language/reference/data-model/relationship",
+                "language/reference/data-model/attribute",
+              ],
             },
             {
-              type: 'category',
-              label: 'Business Logic',
-              items:
-                [
-                  'language/reference/business-logic/event',
-                  'language/reference/business-logic/dataflow',
-                  'language/reference/business-logic/dataflow-patterns',
-                ],
+              type: "category",
+              label: "Business Logic",
+              items: [
+                "language/reference/business-logic/event",
+                "language/reference/business-logic/dataflow",
+                "language/reference/business-logic/dataflow-patterns",
+              ],
             },
             {
-              type: 'category',
-              label: 'Kernel',
-              items:
-                [
-                  'language/reference/kernel/intro',
-                  'language/reference/kernel/lang',
-                  'language/reference/kernel/identity',
-                  'language/reference/kernel/rbac',
-                ]
+              type: "category",
+              label: "Kernel",
+              items: [
+                "language/reference/kernel/intro",
+                "language/reference/kernel/lang",
+                "language/reference/kernel/identity",
+                "language/reference/kernel/rbac",
+              ],
             },
-            'language/reference/rbac',
-            'language/reference/config',
-          ]
+            "language/reference/rbac",
+            "language/reference/config",
+          ],
         },
-        'language/computation-model',
-        'language/rest-api'
+        "language/computation-model",
+        "language/rest-api",
       ],
     },
     {
@@ -191,7 +188,7 @@ const sidebars = {
                     "design-studio/dataflow/entity-dataflows/create-entity-dataflow",
                     "design-studio/dataflow/entity-dataflows/delete-entity-dataflow",
                   ],
-                }
+                },
               ],
             },
             {
@@ -203,13 +200,14 @@ const sidebars = {
                 "design-studio/rbac/delete-role",
                 "design-studio/rbac/component-rbac",
                 "design-studio/rbac/entity-rbac",
-                "design-studio/rbac/relationship-rbac"
+                "design-studio/rbac/relationship-rbac",
               ],
             },
           ],
         },
       ],
     },
+    "repl",
   ],
 };
 
