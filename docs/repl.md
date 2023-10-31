@@ -24,25 +24,18 @@ fractl repl <project>
 fractl repl blog
 ```
 
+This is will start fractl repl for `Blog` app. By default, this will start without any logs.
+If you want to have logs support for the REPL, you have to enable with `:with-logs` option.
+
+```shell
+fractl repl :with-logs blog
+```
+
 Now let us begin, we know when you created a project, you would already have created a component but, even if you didn't let's start by creating a Blog component.
 
 ```clojure
-(component :Blog.Core {})
+(component :Blog.Core)
 ```
-
-This creates a component with no clj-imports i.e. clojure library imports, if you want to require some imports, you can add it via:
-
-```clojure
-(component
- :Blog.Core
- {:clj-import (quote
-               [(:require
-                 [fractl.util :as u]
-                 [fractl.lang.string :as fs]
-                 [fractl.lang.datetime :as dt])])})
-```
-
-In the above snippet, we have imported fractl's excellent datetime and string library to assist on our development(useful when we are writing it into file and compiling from fractl.).
 
 Creating a new entity for `Blog` called `User` with attributes: `Name`,`Password`, `FirstName`, `LastName` and `Email`:
 
@@ -58,18 +51,15 @@ Creating a new entity for `Blog` called `User` with attributes: `Name`,`Password
 
 This should return `:Blog.Core/User` after entity has been interned.
 
-Creating another entity Comment with `Id`, `Title`, `Body` and `CreatedAt` attributes. For `Id` let's use fractl's `uuid-string` generating internal function and also, use the `datetime` function.
+Creating another entity Comment with `Id`, `Title`, `Body` and `CreatedAt` attributes. For `Id` let's use `Identity` type from Fractl and for `CreatedAt` use, `Now` which gives the current date-time.
 
 ```clojure
 (entity
  :Blog.Core/Comment
- {:Id {:type :UUID
-       :default fractl.util/uuid-string
-       :id true
-       :indexed true}
-  :Title {:type :String}
-  :Body {:type :String}
-  :CreatedAt {:type :DateTime :default fractl.lang.datetime/now}})
+ {:Id :Identity
+  :Title :String
+  :Body :String
+  :CreatedAt :Now})
 ```
 
 Let's create `relationship` between `User` and `Comment` so, that we can define logic later that only `User` can create comments.
@@ -84,7 +74,7 @@ Let's create `relationship` between `User` and `Comment` so, that we can define 
 Okay, till now we used to do simple declarations now, let's use fun part of evaluator directly from REPL and create instances of entities and later evaluate `dataflow`.
 
 ```clojure
-{:Blog.Core/Create_User {:Instance {:Blog.Core/User {:Email "john@email.com"}}}}
+{:Blog.Core/User {:Email "john@email.com"}}
 ```
 
 To create a entity instance we use the above structure while for dataflow/event, we can directly invoke as we will see below.
@@ -92,14 +82,11 @@ To create a entity instance we use the above structure while for dataflow/event,
 If you received, something similar to following output, congratulations, you have directly `eval`ed from REPL.
 
 ```clojure
-[{:status :ok,
-  :result
-  ({:type-*-tag-*- :entity,
-    :-*-type-*- :Blog.Core/User,
-    :Email "john@email.com",
-    :Password
-    "_fractlbsh__:JDJhJDEwJEFhVy85aUl3MjdXTVc5QzMzbjBhYS5NTXJZLjgueTdLc2pSQzZNUFR4dWQ2dWU3dWtHUmxL"}),
-  :message nil}]
+({:type-*-tag-*- :entity,
+  :-*-type-*- [:Blog.Core :User],
+  :Email "john@email.com",
+  :Password
+  "_fractlbsh__:JDJhJDEwJEFhVy85aUl3MjdXTVc5QzMzbjBhYS5NTXJZLjgueTdLc2pSQzZNUFR4dWQ2dWU3dWtHUmxL"})
 ```
 
 The above output mentions, you have created an instance of `Blog.Core/User` entity along with data provided.
@@ -107,23 +94,18 @@ The above output mentions, you have created an instance of `Blog.Core/User` enti
 Similarly, we can create instance of `Blog.Core/Comment`. We don't need to provide `Id` and `CreatedAt` attributes as, these are set by default from Fractl.
 
 ```clojure
-{:Blog.Core/Create_Comment {:Instance {:Blog.Core/Comment {:Title "Hey!" :Body "This is a comment message."}}
+{:Blog.Core/Comment {:Title "Hey!" :Body "This is a comment message."}}
 ```
 
 This will return us following output from Fractl.
 
 ```clojure
-[{:status :ok,
-  :result
-  ({:type-*-tag-*- :entity,
-    :-*-type-*- :Blog.Core/Comment,
-    :Title "Hey!",
-    :Body "This is a comment message.",
-    :Id "98cca94b-f6f2-4d22-b153-3b2ea4af8e84",
-    :CreatedAt "2023-10-30T20:57:57.546581",
-    :__path__ "path://___/5198dc11-de65-4a65-baa5-cdbc31c0937a",
-    :__Id__ "0a179463-5a8b-437c-b39f-6d7bf3af43d3"}),
-  :message nil}]
+({:type-*-tag-*- :entity,
+  :-*-type-*- [:Blog.Core :Comment],
+  :Title "Hey!",
+  :Body "This is a comment message.",
+  :Id "022c9304-69bf-44aa-a157-24427ed574ca",
+  :CreatedAt "2023-10-31T13:06:42.73771"})
 ```
 
 Now, let's create `Post` entity so, we can move towards creating `event` and `dataflow`.
@@ -131,12 +113,10 @@ Now, let's create `Post` entity so, we can move towards creating `event` and `da
 ```clojure
 (entity
  :Blog.Core/Post
- {:Id {:type :UUID :default fractl.util/uuid-string, :guid true}
-  :Title {:type :String}
-  :Body {:type :String}
-  :CreatedAt {:type :DateTime :default fractl.lang.datetime/now}
-  :meta {:Order nil}
-  :rbac ()})
+ {:Id :Identity
+  :Title :String
+  :Body :String
+  :CreatedAt :Now})
 ```
 
 Let's make sure, Post can only be created by User. Let's create relationship called `PostAuthorship`.
