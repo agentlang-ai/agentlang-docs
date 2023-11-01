@@ -1,27 +1,26 @@
 # REPL
 
-After a quick tour of language, you've realized, Fractl has language structure like Clojure and it is also built on Clojure.
-So, a question might have arose, "If we have leveraged Clojure, shouldn't we also get LISP's awesome REPL?"
-And Yes! Fractl has REPL features so you can use the REPL to do all language operations and also, use external library
-and experiment with that on REPL.
+Fractl supports a REPL environment. REPL is the language shell in which users can evaluate language definitions and dataflow patterns. Using a REPL accelerates development by allowing users to explored and fine-tune small snippets of code, instead of wrangling with the entire stack.
 
 ## Assumptions
 
 This makes an assumption that you have already setup a fractl project and now want to start REPL to connect to it.
-Also, we will be using `H2 database` which is by default used by Fractl for db store.
-Additionally, this tutorial assumes you have set, `FRACTL_MODEL_PATHS` properly on the shell, e.g:
-
-```shell
-export FRACTL_MODEL_PATHS=<path-containing-fractl-models>
-```
+Also, we will be using `H2 database` which is used by Fractl REPL the default db store.
 
 ## Quickstart
 
-Start a project's REPL by using Fractl CLI(For this example, we are being consistent and using `Blog` app from [quick-start](quick-start.md)):
+Start a project's REPL by using Fractl CLI (For this example, we are being consistent and using `Blog` app from [quick-start](quick-start.md)):
+
+It is recommended that the REPL be started from the root of the model folder (where `model.fractl` file resides)
 
 ```shell
 fractl repl <project>
-fractl repl blog
+```
+
+An alternative is to start the REPL from any directory with a model name as the argument. The CLI will search for the model in `FRACTL_MODEL_PATHS` directories and use it.
+```shell
+export FRACTL_MODEL_PATHS=<path-containing-fractl-models>
+fractl repl <project>
 ```
 
 This is will start fractl repl for `Blog` app. By default, this will start without any logs.
