@@ -40,16 +40,16 @@ successfully enrolled for a course. This requirement can be satisfied by the fol
 ```clojure
 (dataflow
  [:after :create :School.Admin/CourseEnrollment]
- {:School.Core/SendEmail {:Email :_Instance.StudentEmail
-                          :Message '(str "You are enrolled for " :_Instance.CourseName)}})
+ {:School.Core/SendEmail {:Email :Instance.StudentEmail
+                          :Message '(str "You are enrolled for " :Instance.CourseName)}})
 ```
 
 The first entry in the dataflow header-vector must be either `:before` or `:after` indicating whether the dataflow
 will be executed before or after the CRUD operation. The second entry should identify the operation itself and
 must be one of `:create`, `:update` or `:delete`. The third entry must be the name of an entity.
 
-In pre/post CRUD-dataflows like this, the special name `:_Instance` refers to the entity instance
-on which the CRUD is performed. Another special variable called `:_EventContext` will refer to
+In pre/post CRUD-dataflows like this, the special name `:Instance` refers to the entity instance
+on which the CRUD is performed. Another special variable called `:EventContext` refers to
 the [:EventContext](event#event-context) of the original event that triggered the CRUD operation.
 
 ## Dataflow Patterns
