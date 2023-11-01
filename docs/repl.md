@@ -152,15 +152,19 @@ Also, create dataflow `CreatePost` for the event.
 Now, let's evaluate the dataflow `CreatePost` with instance data directly from REPL:
 
 ```clojure
-[{:status :ok,
-  :result
-  {:type-*-tag-*- :entity,
-   :-*-type-*- [:Blog.Core :Post],
-   :Title "A new post",
-   :Body "This is a post",
-   :Id "db50f545-de12-47ea-a0fd-0b1547b0b04b",
-   :CreatedAt "2023-10-30T20:58:16.049228"},
-  :message nil}]
+{:Blog.Core/CreatePost {:UserEmail "john@email.com" :Title "A new post" :Body "This is a post"}}
+```
+
+We should see output like this:
+
+```clojure
+[{:type-*-tag-*- :entity,
+  :-*-type-*- [:Blog.Core :Post],
+  :Title "A new post",
+  :Body "This is a post",
+  :Id "e9284489-ec06-41a9-ae37-32f0f1a02179",
+  :CreatedAt "2023-11-01T14:06:30.838564"}
+ nil]
 ```
 
 Awesome! Now you are able to do these kinds of operations directly from REPL which will help you experiment and visualize
