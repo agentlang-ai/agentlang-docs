@@ -1,6 +1,6 @@
 # REPL
 
-Fractl supports a REPL environment. REPL is the language shell in which users can evaluate language definitions and dataflow patterns. Using a REPL accelerates development by allowing users to explored and fine-tune small snippets of code, instead of wrangling with the entire stack.
+Fractl supports a REPL environment. REPL is the language shell in which users can evaluate language definitions and dataflow patterns. Using a REPL accelerates development by allowing users to explore and fine-tune small snippets of code, instead of wrangling with the entire stack.
 
 ## Assumptions
 
