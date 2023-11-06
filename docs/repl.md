@@ -1,10 +1,11 @@
 # REPL
 
-Fractl supports a REPL environment. REPL is the language shell in which users can evaluate language definitions and dataflow patterns. Using the REPL accelerates development by allowing users to explore and fine-tune small snippets of code, instead of wrangling with the entire stack.
+Fractl supports a REPL environment. REPL is the language shell in which users can evaluate Fractl definitions and dataflow patterns.
+The REPL can accelerate development by allowing users to explore and fine-tune small snippets of code, instead of wrangling with the entire stack.
 
 ## Getting Started
 
-For this tutorial, we will use the `Blog` application from the [Quick Start](quick-start.md)) guide.
+For this tutorial, we will use the `Blog` application from the [Quick Start](quick-start.md) guide.
 Use the following commands to launch the REPL from the `blog` model directory:
 
 ```shell
@@ -23,7 +24,7 @@ shows how to create a user and add a new blog-post under that user. (The respons
 some responses are left-out):
 
 ```clojure
-blog> {:Blog.Core/User
+blog> {:User
        {:Email "mat@blog.com"
 	    :FirstName "Mat"
 		:LastName "K"}}
@@ -35,16 +36,16 @@ blog> {:Blog.Core/User
 ;   :LastName "K",
 ;   :MemberSince "2023-11-03T14:39:38.667403411"})
 
-blog> {:Blog.Core/User
+blog> {:User
        {:Email? "mat@blog.com"}
 	   :as [:U]}
 ; response will be same as above
 
-blog> {:Blog.Core/BlogPost
+blog> {:BlogPost
        {:Name "post01"
 	    :Title "My first post"
 		:Content "hello, world"}
-	   :-> [[:Blog.Core/PostsBy :U]]}
+	   :-> [[:PostsBy :U]]}
 
 ; {:type-*-tag-*- :entity,
 ;  :-*-type-*- [:Blog.Core :BlogPost],
@@ -100,7 +101,7 @@ todo>
 Notice how the prompt has changed to the newly defined model-name. Now let's create an entity to represent the todo-entry:
 
 ```clojure
-todo> (entity :Todo.Core/Task
+todo> (entity :Task
        {:Id {:type :Int :guid true}
 	    :Title :String
 	    :Created :Now
@@ -111,47 +112,47 @@ todo> (entity :Todo.Core/Task
 Create a couple of tasks:
 
 ```clojure
-todo> {:Todo.Core/Task {:Id 1 :Title "buy groceries"}}
-todo> {:Todo.Core/Task {:Id 2 :Title "prepare sales presentation"}}
+todo> {:Task {:Id 1 :Title "buy groceries"}}
+todo> {:Task {:Id 2 :Title "prepare sales presentation"}}
 ```
 
 List pending tasks:
 
 ```clojure
-todo> {:Todo.Core/Task {:Status? "in-progress"}}
+todo> {:Task {:Status? "in-progress"}}
 ```
 
 It'll be usefull to have dataflows to list pending tasks and also to mark tasks as done:
 
 ```clojure
-todo> (dataflow :Todo.Core/ListPending
-        {:Todo.Core/Task {:Status? "in-progress"}})
-todo> (dataflow :Todo.Core/MarkDone
-        {:Todo.Core/Task {:Id? :Todo.Core/MarkDone.Task :Status "done"}})
+todo> (dataflow :ListPending
+        {:Task {:Status? "in-progress"}})
+todo> (dataflow :MarkDone
+        {:Task {:Id? :MarkDone.Task :Status "done"}})
 ```
 
 Mark the first task as done:
 
 ```clojure
-todo> {:Todo.Core/MarkDone {:Task 1}}
+todo> {:MarkDone {:Task 1}}
 ```
 
 A facility to manage notes under each task:
 
 ```clojure
-todo> (entity :Todo.Core/Note
+todo> (entity :Note
        {:No {:type :Int :id true}
 	    :Content :String})
-todo> (relationship :Todo.Core/Notes
-       {:meta {:contains [:Todo.Core/Task :Todo.Core/Note]}})
+todo> (relationship :Notes
+       {:meta {:contains [:Task :Note]}})
 ```
 
 Add a note to the second task:
 
 ```clojure
-todo> {:Todo.Core/Task {:Id? 2} :as [:T]}
-todo> {:Todo.Core/Note {:No 1 :Content "to be completed this week"}
-       :-> [[:Todo.Core/Notes :T]]}
+todo> {:Task {:Id? 2} :as [:T]}
+todo> {:Note {:No 1 :Content "to be completed this week"}
+       :-> [[:Notes :T]]}
 ```
 
 Now the model is complete and tested - you can generate a model that you can build an deploy using the `dump` command:
