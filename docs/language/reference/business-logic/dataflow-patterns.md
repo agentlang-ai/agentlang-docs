@@ -92,6 +92,32 @@ this will a complete pattern of the new relationship instance.
 :-> [[:WorksFor :D]]}
 ```
 
+#### Quote and Unquote
+
+The `quote` pattern - `[:q# ...]` - can be used to turn-off evaluation on certain patterns and treat them as pure data.
+The `unquote` pattern - `[:uq# ...]` - turns-off quoting temporarily within a quoted-pattern.
+
+For example, consider the following pattern that assigns an instance of `:SomeEvent` to the attribute `:ARecord.A` -
+
+```clojure
+(dataflow :ThisEvent
+ {:ARecord
+  {:A {:SomeEvent {:X :ThisEvent.X}}}})
+```
+
+When the instance of `:SomeEvent` is created, any dataflow attached to this event will be triggered. You want to prevent
+this from happening and likes to treat the `{:SomeEvent {:X ....}}` pattern as a pure map. This can be achieved by quoting the
+pattern as shown below:
+
+```clojure
+(dataflow :ThisEvent
+ {:ARecord
+  {:A [:q# {:SomeEvent {:X [:uq# :ThisEvent.X]}}]}})
+```
+
+Note that if `:ThisEvent.X` is not unquoted, the resulting map will contain the keyword literal `:ThisEvent.X` instead of the
+value bound to the `:X` attribute of  `:ThisEvent`.
+
 ## Query
 
 A `query` pattern is also expressed as a map, but is used to lookup existing instances of entities from
