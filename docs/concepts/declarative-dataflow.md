@@ -1,12 +1,12 @@
 # Declarative Dataflow
 
-Custom business logic is written in Fractl using **dataflows**. Each dataflow is a collection of patterns. Each pattern is a declarative assertion on the domain that performs a (sometimes, conditional) CRUD operation on entity instance(s), evaluates a function or triggers other events.
+Custom business logic is written in Fractl using **dataflows**. Each dataflow is a collection of patterns. Each pattern is a declarative assertion on the domain that performs a (sometimes, conditional) CRUD operation on entity instance(s), evaluates a function or trigger other events.
 
 Dataflow patterns are written in a data-oriented syntax in Fractl language and are represented by dataflow pattern blocks in the design studio.
 
 ## References
 
-Most Dataflow patterns, when evaluated, generate a result - which is either an instance or a sequence of instances. The result, or a subset of it, might be used in one or more of the dataflow pattern(s) that follow. Dataflow patterns can simply reference the result of a prior dataflow pattern using the name of the entity in the pattern or an alias assigned to the result set.
+Most Dataflow patterns, when evaluated, generate a result - which is either an instance or a sequence of instances. The result, or a subset of it, might be used in one or more of the dataflow pattern(s) that follow. Dataflow patterns can simply reference the result of a prior pattern using the name of the entity or an alias assigned to the result set.
 
 #### Example
 

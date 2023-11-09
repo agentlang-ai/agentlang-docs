@@ -10,7 +10,7 @@ The `create` pattern creates a new instance of a record or an entity. The syntax
   :Attr2 value2
   ...
   :AttrN valueN}
- :-> [relationship]
+ :-> [relationships]
  :as alias}
 ```
 
@@ -70,7 +70,10 @@ If a relationship is created by the optional `:->` key, it must have the followi
 [[relationship-create-pattern other-node] ...]
 ```
 
-`relationship-create-pattern` is just a create-pattern that creates a new instance of the relationship.
+`relationship-create-pattern` is pattern that creates a new instance of the relationship.
+For a `:contains` relationship this will simply be the name of the relationship. For a `:between`,
+this will a complete pattern of the new relationship instance.
+
 `other-node` must be one of,
 
  1. a query pattern
@@ -100,17 +103,18 @@ the persistent storage. The basic syntax of the query pattern is:
   :Attr2? query2
   ...
   :Attr3? query3}
- :-> [relationship-query]
+ :-> [relationship-queries]
  :as alias}
 ```
-The query value could be either a:
+The query value (*query1*, *query2* etc) could be either a:
 
  1. literal
  2. function call expression
  3. logical or comparison expression of the form `[:operator arg1 arg2 ... argN]`
 
 The logical operators supported are `:and` and `:or`. A comparison operation must be one of
-`:=`, `:>`, `:<`, `:>=`, `:<=` and `:like`. The comparison operators maybe applied to both numeric and string values.
+`:=`, `:>`, `:<`, `:>=`, `:<=` and `:like`. The comparison operators (except `:like`) maybe applied
+to both numeric and string values, `:like` works with only strings.
 
 **Example**
 
@@ -142,7 +146,7 @@ gives a salary-raise to all employees in department 101:
 If the query has to happen in the context of a relationship, a relationship-query must be provided via the `:->` keyword.
 This query must have the form:
 
-```clojure
+	```clojure
 [relationship-query-pattern other-node-query-pattern]
 ```
 
@@ -187,10 +191,21 @@ The `delete` expression deletes one or more entity-instances based on a simple l
 **Example**
 
 ```clojure
-[:delete :Employee {:Salary 1500} :as :DeletedEmployees]
+[:delete :Department {No: "101"} :as :DeletedDepts]
 ```
 
 The above expression will delete all employees whose salary is 1500. The deleted instances are returned by the command.
+Any child-instances that falls under the deleted entity-instance via a `:contains` relationship will also be deleted.
+This behavior can be prevented by turning-off the `:cascade-on-delete` flag in the relationship.
+
+**Example**
+
+```clojure
+(relationship :WorksFor
+ {:meta {:contains [:Department :Employee] :cascade-on-delete false}})
+```
+
+If `:cascade-on-delete` is `false`, the `:Department` can only be deleted after all contained `:Employee`s are deleted.
 
 ## Match
 
@@ -298,7 +313,7 @@ The result of the `:for-each` will be the value returned by the last pattern eva
 
 The `:try` expression allows the evaluation of the dataflow to continue even after an error condition.
 By default, if any pattern returns a non-success result will terminate the dataflow. `:try` provides a way to
-handle non-success result and allow the dataflow to take corrective action.
+handle non-success results and allow the dataflow to take corrective action.
 
 The syntax of `:try` is,
 
@@ -364,3 +379,5 @@ dataflow, by returning an error.
 
 [:eval '(update-employee-salary :Employee) :check :Employee :as :UpdatedEmp]
 ```
+
+Note that both `:check` and `:as` are optional and the function may be invoked just for its side-effects.

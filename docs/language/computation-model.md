@@ -10,7 +10,7 @@ directly with dataflow patterns. So before evaluating a dataflow, the interprete
 to translate the patterns to opcode. This compilation process happens only once for a dataflow, as the generated 
 opcode is cached for future executions.
 
-Each dataflow evaluation happens in the context of a datastructure known as the **environment** and an active
+Each dataflow evaluation happens in the context of an **environment** and an active
 **transaction** on the underlying persistent store. The **environment** is a simple map of key-value pairs and it
 stores some internal values relevant for the interpreter and also *bindings* of values created by the evaluation of
 patterns. The **transaction** is used for updating and querying the data-store. If any of the patterns result in an error,
@@ -30,8 +30,8 @@ is terminated and the error is returned.
 If `:Name` refers to an entity, the new instance is added to the persistent store. If there's a conflict in the
 store over the unique-attributes of the instance, this will be a no-op.
 
-If `:Name` refers to an event, the dataflow attached to the event is executed, and the value is interned in the environment.
-(This value is also bound to `:Alias`, if an alias is provided).
+If `:Name` refers to an event, the dataflow attached to the event is executed, and the result is interned in the environment.
+(This result is also bound to `:Alias`, if an alias is provided).
 
 ## Query Patterns
 

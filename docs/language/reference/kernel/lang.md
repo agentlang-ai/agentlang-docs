@@ -1,6 +1,6 @@
 # Lang
 
-The `:Fractl.Kernel.Lang` component mainly defines the core-attribute types that can be used in Fractl. These types are listed below:
+The `:Fractl.Kernel.Lang` component defines the core-attribute types that can be used in Fractl. These types are listed below:
 
 	* `:String` - texts of arbitrary length, enclosed in double-quotes
     * `:Keyword` - symbolic constants prefixed by a `:`. E.g - :left, :blue. Keywords may not contain spaces.

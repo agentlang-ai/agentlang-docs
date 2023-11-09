@@ -1,7 +1,7 @@
 # RBAC
 
 The `:Fractl.Kernel.Rbac` component defines entities and events required for managing role-based-access-control in
-fractl applications. The main entities in the component are - `:Privilege`, `:PrivilegeAssignment`, `:Role` and `:RoleAssignment`.
+Fractl applications. The main entities in this component are - `:Privilege`, `:PrivilegeAssignment`, `:Role` and `:RoleAssignment`.
 
 An instance of `:Privilege` defines a set of operations permissible on a resource and a `:Role` may be assigned those privileges.
 For example, the following patterns create a role called "manager" and gives it read-write permissions on the `:Employee` entity:

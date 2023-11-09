@@ -14,7 +14,7 @@ When a user belonging to the "manager" role creates an instance of `:Company`, t
 instance. A user may *read*, *update* or *delete* an entity-instance that it owns. The user may also assign new owners
 or grant permissions on that instance to other users.
 
-**Note** The role named `admin` is special - users belonging to that role can execute CRUD operations on all entities in the system. (In a sense, they become "superusers" of the system).
+**Note** The role named `admin` is special - users belonging to the `admin` role can execute CRUD operations on all entities in the system. (In other words, they become **superusers** of the system).
 
 ## Identity management
 
@@ -79,7 +79,7 @@ by default:
  :U)
 ```
 
-A *superuser* may evaluate a custom dataflow to add a user to the "manager" role. Super-users and configuration related to
+A *superuser* may evaluate a custom dataflow to add a user to the "manager" role. Superusers and configuration related to
 rbac is discussed in the section on [rbac-settings](#rbac-settings).
 
 ## RBAC on relationships

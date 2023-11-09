@@ -28,14 +28,14 @@ the dataflow attached to that event will be triggered.
 The preceding code-snippet creates an event with two email attributes. Then a dataflow is defined on this event.
 There are two patterns in this dataflow - the first pattern queries a `:Person` whose email is the value of
 `:CreateFriendship.Email1`. If such a person exists, evaluation proceeds to the next pattern, if the person could not be
-found the dataflow returns a data `not-found` result. The second pattern will query the person whose email
+found the dataflow will return a `not-found` status. The second pattern will query the person whose email
 is `CreateFriendship.Email2` and links the two persons via a `:Friendship` relationship.
 
 ### CRUD Events
 
 Dataflows can also be setup to be evaluated `before` and `after` a CRUD operation is performed on an entity.
 As an example, consider a school-management application which needs to send an email to a student after he is
-successfully enrolled for a course. This requirement can be satisfied by the following dataflow specification:
+successfully enrolled in a course. This requirement can be satisfied by the following dataflow specification:
 
 ```clojure
 (dataflow

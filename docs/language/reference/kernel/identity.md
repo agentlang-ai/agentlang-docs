@@ -12,8 +12,7 @@ The `:Fractl.Kernel.Identity` component contain definitions for managing "user-i
   :UserData {:type :Map :optional true}})
 ```
 
-The `:User` entity represents a user that login to an application. The `:Email` attribute uniquely identifies the user
-in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
+The `:User` entity represents a user that can be authenticated by a Fractl application and may be authorised to perform various actions on the business entities. The `:Email` attribute uniquely identifies the user in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
 
 A new user signs-up with the application by calling the `POST /_signup` API. The argument to this POST request will be an instance of
 the `:SignUp` event.
@@ -24,7 +23,7 @@ the `:SignUp` event.
  {:User :User})
 ```
 
-As sample invocation is shown below:
+A sample invocation is shown below:
 
 
 ```
@@ -47,7 +46,7 @@ Content-Type: application/json
 }
 ```
 
-The Fractl runtime may be asked to run some business-logic (like assigning some special permission to the new user),
+The Fractl runtime may be setup to execute some business-logic (like assigning permissions to the new user),
 after each successful signup-request. The application can provide this logic in a dataflow attached to the `:PostSignUp` event.
 
 ```clojure
@@ -69,7 +68,7 @@ executed after signup to assign an [rbac](rbac) role to the new user:
 ```
 
 After signing-up, the user may receive a confirmation email. The user can use the embedded-link in the email and confirm his account.
-The user may also complete the confirmation process by directly calling the `POST _confirm-sign-up` endpoint with an instance of the
+The user may also complete the confirmation process by directly calling the `POST /_confirm-sign-up` API with an instance of the
 `:ConfirmSignUp` event in the body.
 
 ```clojure
@@ -80,7 +79,7 @@ The user may also complete the confirmation process by directly calling the `POS
 
 The `:ConfirmationCode` attribute must be set to the confirmation-code received in the email.
 
-To login to the Fractl application, the user can call the `POST /_login` endpoint with an object of the `:UserLogin` event in the
+To login to the Fractl application, the user can call the `POST /_login` API with an object of the `:UserLogin` event in the
 request body.
 
 ```clojure
@@ -99,9 +98,9 @@ Content-Type: application/json
  {"Username": "joe@acme.com", "Password": "Abc@acme123"}}
 ```
 
-The response will be a map with three important entries - `access-token`, `expires-in` and `refresh-token`. The user has to 
-send the `access-token` to authenticate requests on any application related api-endpoints. The token has to be passed as 
-the `Authorization: Bearer <token>` HTTP header. The access-token's  `expiry` will be specified as seconds. Before it expires, 
+The response will be a map with three important entries - `id-token`, `expires-in` and `refresh-token`. The user has to
+send the `id-token` to authenticate requests on any application related api-endpoints. The token has to be passed as
+the `Authorization: Bearer <token>` HTTP header. The id-token's  `expiry` will be specified as seconds. Before it expires,
 the token maybe refreshed by calling the `POST /_refresh-token` API with the following event object as argument:
 
 ```clojure
@@ -124,7 +123,7 @@ Other endpoints related to user-account management and their request-events are 
 ```
 
 A confirmation-code will be send to the email. The user has to send this confirmation-code along with the new password
-to the `POST /_confirm-forgot-password` endpoint. The request object is:
+to the `POST /_confirm-forgot-password` API. The request object is:
 
 ```clojure
 (event :ConfirmForgotPassword
@@ -133,7 +132,7 @@ to the `POST /_confirm-forgot-password` endpoint. The request object is:
   :Password :String})
 ```
 
-To resend the confirmation-code, use the `POST /_resend-confirmation-code` endpoint with the `:ResendConfirmationCode` event
+To resend the confirmation-code, use the `POST /_resend-confirmation-code` API with the `:ResendConfirmationCode` event
 as the request object.
 
 ```clojure
