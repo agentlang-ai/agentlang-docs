@@ -43,9 +43,9 @@ its name - so we create the file `blog/blog/core.fractl` with the following cont
 
 In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its definition is self-explanatory - a blog-post is made up
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
-explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system. (`:guid` means *globally-unique-identifier*).
+explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system. (`:guid` means *globally-unique-identifier* - this could be any string or numeric value that uniquely identifies an instance of a `:BlogPost` in the system).
 
-Our basic blog-application is almost ready. Now we need to create a configuration file that will be used by Fractl
+The basic blog-application is almost ready. Now we need to create a configuration file that will be used by Fractl
 for running this application. Create the file `blog/config.edn` with the following settings:
 
 ```clojure
@@ -56,7 +56,7 @@ for running this application. Create the file `blog/config.edn` with the followi
 This configuration will direct Fractl to start the blog-service on port `8080` and store its data
 in the [H2](https://www.h2database.com/html/main.html) database file - `data/blog`.
 
-At this stage, our project folder should look like:
+At this stage, the project folder should look like:
 
 ```shell
 /blog
@@ -66,13 +66,13 @@ At this stage, our project folder should look like:
       - core.fractl
 ```
 
-To test our application, run the following command from the root `blog` directory:
+To test the model, run the following command from the root `blog` directory:
 
 ```shell
 fractl run
 ```
 
-The blog-service should start listening for incoming HTTP request on post `8080`. Let's try to create a blog entry:
+The blog-service should start listening for incoming HTTP request on port `8080`. Let's try to create a blog entry:
 
 ```shell
 curl -X POST http://localhost:8080/_e/Blog.Core/BlogPost \
@@ -102,15 +102,15 @@ instance in the system. A success response to the `POST` request will be,
 Note that Fractl has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
 supposed to do. We can use the value of the `:guid` attribute - `:Name` - to lookup, update or delete the blog-post instance.
 
-Some REST API calls you may try on your own are listed below:
+Some REST API calls you may try on your own are shown below:
 
-1. Lookup an instance by its globally-unique-identifier or `:guid`.
+1. Lookup a blog-post by its globally-unique-identifier or `:guid`.
 
 ```shell
 curl http://localhost:8080/_e/Blog.Core/BlogPost/pos01
 ```
 
-2. Lookup all instances of an entity.
+2. Lookup all instances of the `:BlogPost` entity.
 
 ```shell
 curl http://localhost:8080/_e/Blog.Core/BlogPost
@@ -130,7 +130,7 @@ curl -X PUT http://localhost:8080/_e/Blog.Core/BlogPost/post01 \
 curl -X DELETE http://localhost:8080/_e/Blog.Core/BlogPost/post01
 ```
 
-Now that we've tested the model, we are ready to make a build for release. For this, run the following command:
+Now that we've tested the model, we are ready to make a build for release:
 
 
 ```shell

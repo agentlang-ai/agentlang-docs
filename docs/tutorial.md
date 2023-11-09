@@ -57,9 +57,11 @@ the `:PostedBy` attribute of `:BlogPost` has now become superfluous and can be r
 
 ```
 
-Note that we have removed the `:PostedBy` attribute from `:BlogPost`. Instead, each blog-post will be contained under the
-`:User` that create it. This is achieved by the `:PostsBy` "contains" relationship which declares the `:User` entity to be
-the "parent" of the `:BlogPost` entity. You might've noticed that the `:BlogPost.Name` attribute is now marked as `:id` - this
+Note that the `:PostedBy` attribute from `:BlogPost` has been removed. Instead, each blog-post will be contained under the
+`:User` that create it. This is achieved by the `:PostsBy` *contains* relationship which declares the `:User` entity to be
+the *parent* of the `:BlogPost` entity.
+
+You might've noticed that the `:BlogPost.Name` attribute is now marked as `:id` - this
 was earlier marked as `:guid`. A `:guid` is globally-unique - only a single instance of `:BlogPost` with a particular name
 can exist in the whole system. An attribute marked as `:id` is also a unique-identifier - but its uniqueness is scoped under a
 parent entity-instance. In other words, more than one `:User` can create a `:BlogPost` with the same name, but only once. We also
@@ -89,7 +91,7 @@ curl -X POST http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPo
 -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "hello, world", "Content": "My first post"}}'
 ```
 
-In the response, note the auto-generated `__path__` attribute in the blog-post instance that encodes the route to the
+In the response that you receive, note the auto-generated `__path__` attribute in the blog-post instance that encodes the route to the
 blog-post from the user. Also note the system generated globally-unique identifier for the blog-post, under the attribute
 `:Id`.
 
@@ -163,7 +165,7 @@ curl -X POST http://localhost:8080/_e/Blog.Core/BelongsTo \
 Note that the `:BlogPost` attribute of `:BelongsTo` must be the globally-unique attribute of the `:BlogPost` entity. Here it will
 be the value of the `:BlogPost.Id` attribute.
 
-All blog-posts that belong to a particular category is listed by the `GET` request:
+All blog-posts that belong to a particular category is listed by the following `GET` request:
 
 ```shell
 curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
@@ -179,7 +181,7 @@ The following request will return all blog-posts by the user `jj@fractl.io` with
 curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
 ```
 What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
-a user-defined query to the model. Custom queries and business logic is added to a Fractl program by way of
+a user-defined query to the model. Custom queries and business logic is added to a Fractl model by way of
 [**dataflows**](concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
 similar to entities. When an instance of the event is created, the attached dataflow is executed. So for our requirement,
 we define the following event and dataflow:

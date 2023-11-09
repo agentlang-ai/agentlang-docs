@@ -44,13 +44,13 @@ the directory `~/fractl-models/hello/hello` and add the following `core.fractl` 
  {:Message {:Value "hello, world"}})
 ```
 
-Now we can run and test the model. From `~/fractl-models/hello` execute the following command:
+You can now run the model. From `~/fractl-models/hello` execute the following command:
 
 ```shell
 fractl run
 ```
 
-You may now test the application using an HTTP post request like,
+Test the application using an HTTP post request like,
 
 ```shell
 curl --location --request POST 'http://localhost:8080/_e/Hello.Core/SayHello' \
@@ -79,15 +79,15 @@ You should see the following response:
 ]
 ```
 
-> **Note** To redirect application logs to a file, you should set the `JDK_JAVA_OPTIONS` environment variable as,
+> **Note** To redirect application logs to a file, set the `JDK_JAVA_OPTIONS` environment variable as,
 >
 >  ```shell
 >  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=~/fractl-models/logback.xml
 >  ```
-> You may want to [download](https://github.com/fractl-io/fractl/blob/main/logback.xml) and reuse the logback.xml file that comes in the Fractl repository.
+> You may want to [download](https://github.com/fractl-io/fractl/blob/main/resources/logback.xml) and reuse the logback.xml
+> file that's available in the Fractl repository.
 
-You can now proceed to build a standalone Java application from the `:Hello` model.
-For this, run the fractl build command:
+The `:Hello` model can be converted to a standalone Java application with the following build command:
 
 ```shell
 fractl build
@@ -101,6 +101,6 @@ cd ./out/hello
 java -jar target/hello-0.0.1-standalone.jar -c config.edn
 ```
 
-You can use the previous HTTP POST request to make sure the application is working fine.
+Use the previous HTTP POST request to make sure the application is working fine.
 
 With Fractl setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start) guide.
