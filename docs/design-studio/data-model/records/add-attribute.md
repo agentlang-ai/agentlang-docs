@@ -20,7 +20,7 @@ Inside the record box, look for the "Add Attribute" button. This button is used 
 
 Click on the "Add Attribute" button to open a dialogue box.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(37).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(37).png)
+![](./img/add-attribute-1.png)
 
 ### **Step 5: Enter Attribute Details**
 
@@ -29,7 +29,7 @@ In the dialogue box, you'll be prompted to provide the following information:
 - **Attribute Name:** Enter a descriptive name for the attribute you want to add to the record.
 - **Attribute Type:** Select the appropriate type for the attribute from a list of available data types (e.g., text, number, date, etc.).
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(38).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(38).png)
+![](./img//add-attribute-2.png)
 
 ### **Step 6: Assign Identifier and Default Value (Optional)**
 
@@ -56,6 +56,6 @@ Depending on the complexity of the record and the platform's performance, the at
 
 Review the model to ensure that the new attribute has been successfully added to the record. You can now proceed with other actions, such as adding more attributes or working on other parts of the model.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(39).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(39).png)
+![](./img/add-attribute-3.png)
 
 Congratulations! You've successfully learned how to add an attribute to a record using the steps outlined in this tutorial.
