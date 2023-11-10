@@ -2,7 +2,7 @@
 
 ### **Step 1: Click on the Model Card**
 
-Locate the model card that you want to add a component to. Click on the card representing the desired model. This will take you to the data model page for that particular model.
+In the Design Studio dashboard, click on the card representing the model you wish to edit. This will take you to the data model page for that particular model.
 
 ### **Step 2: Check for Existing Components**
 
@@ -33,7 +33,7 @@ In the dialogue box, you'll be prompted to provide the following information:
 
 ### **Step 6: Assign Identifier and Default Value (Optional)**
 
-Depending on your needs and the platform's capabilities, you might have additional options to consider:
+The add-attribute dialogue may have some additional options to consider:
 
 - **Identifier:** You can assign an identifier to the attribute to indicate uniqueness or other characteristics. This could include options like "unique," "optional," etc.
 - **Default Value:** You can also assign an optional default value to the attribute, which is used when no specific value is provided.
@@ -48,9 +48,7 @@ Once you are satisfied with the attribute details, locate the "Create" button wi
 
 ### **Step 9: Attribute Addition Process**
 
-After clicking "Create," the platform will process your request and add the new attribute to the selected entity.
-
-Depending on the complexity of the entity and the platform's performance, the attribute addition process might take a few moments.
+After clicking "Create," Design Studio will process your request and add the new attribute to the selected entity.
 
 ### **Step 10: Review and Continue**
 
@@ -58,4 +56,4 @@ Review the model to ensure that the new attribute has been successfully added to
 
 ![](img/add-attribute-3.png)
 
-Congratulations! You've successfully learned how to add an attribute to an entity using the steps outlined in this tutorial.
+Congratulations! You've successfully learned how to add an attribute to an entity.
