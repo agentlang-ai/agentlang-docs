@@ -22,7 +22,7 @@ In the dialogue box, you will see a field labeled "Name". Enter the name of the 
 
 ### **Step 5: Click "Create"**
 
-Verify the component name and click the the "Create" button.
+Verify the component name and click the "Create" button.
 Design Studio will process your request and generate the new component within the selected model, this process may take a few seconds.
 
 ### **Step 6: Confirmation and Completion**
