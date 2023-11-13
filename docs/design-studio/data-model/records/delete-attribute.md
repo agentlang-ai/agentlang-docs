@@ -12,19 +12,19 @@ If the model contains more than one component, you can navigate between these co
 
 Inside the record box, locate the attribute’s badge you want to delete. Click on the attribute’s badge to open the attribute panel on the right-hand side of the page. This panel contains information related to the selected attribute.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(40).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(40).png)
-
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(41).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(41).png)
+![](./img/delete-attribute-1.png)
 
 ### **Step 4: Delete the Attribute**
 
 Within the opened attribute panel, locate and click on the "trash" icon. This icon is used to initiate the process of deleting the selected attribute.
 
+![](./img/delete-attribute-2.png)
+
 ### **Step 5: Confirmation Prompt**
 
 After clicking the "trash" icon, you will receive a confirmation prompt to ensure you want to proceed with the deletion. This prompt is designed to prevent accidental deletion.
 
-![https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(42).png](https://cdn.document360.io/5dcaa2b7-f344-4865-9cf0-1d4973cb6466/Images/Documentation/image(42).png)
+![](./img/delete-attribute-3.png)
 
 ### **Step 6: Confirm Deletion**
 
