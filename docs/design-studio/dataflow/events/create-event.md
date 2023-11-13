@@ -22,17 +22,15 @@ Take a moment to review the event name you've entered to ensure it accurately re
 
 ### **Step 5: Click "Create"**
 
-When you're confident with the entered event name, locate the "Create" button within the dialogue box and click on it.
+After the review, locate the "Create" button within the dialogue box and click it.
 
 ### **Step 6: Event and Dataflow Creation Process**
 
-After clicking "Create," the platform will process your request and generate the new event within the selected component's dataflow.
-
-The creation process might take a few moments.
+After clicking "Create," Design Studio will process your request and generate the new event within the selected component's dataflow.
 
 ### **Step 7: Confirmation and Completion**
 
-Upon successful event creation, you will likely a box with a purple border representing the event. Additionally, you might notice an edge connecting the event to the dataflow.
+Upon successful event creation, you will see a box with a purple border representing the event. Additionally, you might notice an edge connecting the event to the dataflow.
 
 ![](img/event-3.png)
 
@@ -40,4 +38,4 @@ Upon successful event creation, you will likely a box with a purple border repre
 
 You can continue adding more events or explore other features and options provided by the platform for data modeling and design.
 
-Congratulations! You've successfully learned how to work with components, dataflows, and events in a model using the steps outlined in this tutorial
+Congratulations! You've successfully learned how to work with components, dataflows, and events in a model.
