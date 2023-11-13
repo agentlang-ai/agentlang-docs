@@ -6,14 +6,14 @@ Navigate to the Dataflow Page, and follow these [steps](../navigate-to-dataflow-
 
 ### **Step 2: Select the Event**
 
-On the data model's detailed page, choose the event you want to delete:
+On the data model's detailed page, choose the event you want to delete using one of the methods below:
 
-- **Option 1:** Find the event's name in the left panel and click on it.
-- **Option 2:** Click on the event itself (identified by a purple border box) within the canvas.
+- **Method 1:** Find the event's name in the left panel and click on it.
+- **Method 2:** Click on the event itself (identified by a purple border box) within the canvas.
 
 ### **Step 3: Open the Event’s Panel**
 
-Upon selecting the event, a panel will open on the right-hand side of the page. This panel typically contains information related to the chosen event.
+Upon selecting the event, a panel will open on the right-hand side of the page. This panel will contain information related to the chosen event.
 
 ### **Step 4: Delete the Event**
 
@@ -29,12 +29,12 @@ After clicking the "trash" icon, you may receive a confirmation prompt to ensure
 
 ### **Step 6: Confirm Deletion**
 
-If a confirmation prompt appears, review the message to ensure you indeed want to delete the event. If you are certain about the deletion, proceed by clicking the "Delete" button, as indicated in the prompt.
+In the confirmation prompt, review the message to ensure you indeed want to delete the event. If you are certain about the deletion, proceed by clicking the "Delete" button, as indicated in the prompt. To cancel the delete operation, click the `X` button on the top-right corner of the prompt.
 
-### **Step 7: Event Deletion Process**
+If you confirm the deletion, Design Studio will begin the process of removing the selected event from the data model.
 
-After confirming the deletion, the platform will begin the process of removing the selected event from the data model. Depending on the platform and the complexity of the record, the deletion process might take a few seconds.
-
-### **Step 8: Review and Continue**
+### **Step 7: Review and Continue**
 
 Review the data model page to ensure that the deleted event is no longer present. You can now proceed with other actions, such as editing other entities or adding new ones.
+
+Congratulations! You've successfully learned how to delete an event.

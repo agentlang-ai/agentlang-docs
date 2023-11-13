@@ -12,7 +12,7 @@ If the model is empty, you must create a component following the instructions pr
 
 ### **Step 3: Navigate Between Components (If Applicable)**
 
-If the model contains more than one component, you can navigate between these components by clicking on the corresponding component tabs, which are usually displayed at the top and side of the page.
+If the model contains more than one component, you can navigate between these components by clicking on the corresponding component tabs, which are displayed at the top and side of the page.
 
 ### **Step 4: Add an Entity**
 
@@ -34,13 +34,8 @@ Take a moment to review the entity name you've entered to ensure accuracy.
 
 ### **Step 7: Click "Create"**
 
-Once you're confident with the entered entity name, find the "Create" button within the dialogue box and click on it.
-
-### **Step 8: Entity Creation Process**
-
-After clicking "Create," the platform will process your request and generate the new entity within the selected component of the model.
-
-The creation process might take a few seconds.
+After verification, click the "Create" button.
+Now Design Studio will process your request and generate the new entity within the selected component of the model.
 
 ### **Step 9: Confirmation and Completion**
 
@@ -50,6 +45,7 @@ Upon successful entity creation, you will see the box with the green border on t
 
 ### **Step 10: Continue Working with Components and Entities**
 
-You can continue adding more entities to the same component or explore other features and options provided by the platform for data modeling and design.
+You can continue adding more entities to the same component or explore other features and options provided by
+Design Studio for data modeling and design.
 
-Congratulations! You've successfully learned how to work with components and entities in a model following the steps outlined in this tutorial.
+Congratulations! You've successfully learned how to work with components and entities in a model.

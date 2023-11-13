@@ -18,21 +18,21 @@ Within the opened attribute panel, locate and click on the "trash" icon. This ic
 
 ### **Step 4: Confirmation Prompt**
 
-After clicking the "trash" icon, you may receive a confirmation prompt to ensure you want to proceed with the deletion. This prompt is designed to prevent accidental deletion.
+After clicking the "trash" icon, you will receive a confirmation prompt to ensure you want to proceed with the deletion. This prompt is designed to prevent accidental deletion.
 
 ![](img/event-11.png)
 
 
 ### **Step 5: Confirm Deletion**
 
-If a confirmation prompt appears, review the message to ensure you indeed want to delete the attribute. If you are certain about the deletion, proceed by clicking the "Delete" button, as indicated in the prompt.
+In the confirmation prompt, review the message to ensure you indeed want to delete the attribute. If you are certain about the deletion, proceed by clicking the "Delete" button, as indicated in the prompt.  To cancel the delete operation, click the `X` button on the top-right corner of the prompt.
 
 ### **Step 6: Attribute Deletion Process**
 
-After confirming the deletion, the platform will begin the process of removing the selected attribute from the event. Depending on the platform and the complexity of the attribute, the deletion process might take a few moments.
+After confirming the deletion, Design Studio will begin the process of removing the selected attribute from the event.
 
 ### **Step 7: Review and Continue**
 
 Review the data model to ensure that the deleted attribute is no longer associated with the event. You can now proceed with other actions, such as editing other attributes or working on different parts of the model.
 
-Congratulations! You've successfully learned how to delete an attribute from an event using the steps outlined in this tutorial.
+Congratulations! You've successfully learned how to delete an attribute from an event.
