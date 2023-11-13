@@ -23,6 +23,7 @@ const sidebars = {
     "installation",
     "quick-start",
     "tutorial",
+    "modelling-steps",
     {
       type: "category",
       label: "Concepts",
