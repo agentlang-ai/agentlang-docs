@@ -1,6 +1,6 @@
 # Installation
 
-Download the [Fractl CLI tool](https://raw.githubusercontent.com/fractl-io/fractl-releases/87fe3632fca9cf1e9bdd4b2655ed89fed345d6ae/fractl) and copy it to a location known to your system search-path, for e.g `/usr/local/bin` or `/usr/bin`.
+Download the [Fractl CLI tool](https://raw.githubusercontent.com/fractl-io/fractl/main/bin/fractl) and copy it to a location known to your system search-path, for e.g `/usr/local/bin` or `/usr/bin`.
 
 ## hello, world
 
