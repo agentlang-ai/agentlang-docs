@@ -87,7 +87,10 @@ You should see the following response:
 > You may [download](https://github.com/fractl-io/fractl/blob/main/resources/logback.xml) and reuse the logback.xml
 > file that's available in the Fractl repository.
 
-The `:Hello` model can be converted to a standalone Java application with the following build command:
+The `:Hello` model can be converted to a standalone Java application with the `fractl build` command.
+Before running the build command, make sure [Leiningen](https://leiningen.org/) is installed locally.
+
+You can trigger the build as:
 
 ```shell
 fractl build
