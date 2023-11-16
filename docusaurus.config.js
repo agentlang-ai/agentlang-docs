@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Fractl',
   tagline: 'Generative AI-powered Programming Language',
-  favicon: 'img/fracl-tiny-logo.png',
+  favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://fractl.io',
