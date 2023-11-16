@@ -107,7 +107,7 @@ Some REST API calls you may try on your own are shown below:
 1. Lookup a blog-post by its globally-unique-identifier or `:guid`.
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/BlogPost/pos01
+curl http://localhost:8080/_e/Blog.Core/BlogPost/post01
 ```
 
 2. Lookup all instances of the `:BlogPost` entity.
