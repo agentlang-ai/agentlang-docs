@@ -171,6 +171,15 @@ All blog-posts that belong to a particular category is listed by the following `
 curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
 ```
 
+By default, multiple edges can be created between the same nodes. This behavior of the `:between` relationship can be overridden
+by the `:one-n` and `:one-one` properties. For example, to ensure that a blog-post is added only once to a category, `:BelongsTo`
+should be changed as follows:
+
+```clojure
+(relationship :BelongsTo
+ {:meta {:between [:BlogPost :Category :one-one true]}})
+```
+
 ## Querying data
 
 In this section we'll look at a few more examples of querying data.
