@@ -137,21 +137,3 @@ It also keeps track of the date and time when the friendship was created.
   :FriendsSince? [:>= "2022-01-01"]}}
 ```
 
-By default, multiple edges can be created between the same nodes. This behavior can be overridden by the
-`:one-n` and `:one-one` properties.
-
-**Example**
-
-```clojure
-; :one-one
-; Only one instance of R can be created with a particular
-; combination of :A and :B
-(relationship :R
- {:meta {:between [:A :B :one-one true]}})
-
-; :one-n
-; Only one instance of R can be created with an :A.
-; There could be duplicate edges to the same instance of :B.
-(relationship :R
- {:meta {:between [:A :B :one-n true]}})
-```
