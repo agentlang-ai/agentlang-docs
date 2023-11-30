@@ -76,7 +76,7 @@ for our model has changed. Then start the application by running the `fractl run
 ```shell
 curl -X POST http://localhost:8080/_e/Blog.Core/User \
 -H 'Content-Type: application/json' \
--d '{"Blog.Core/User": {"Email": "jj@fractl.io", "FirstName": "James", "LastName": "Jay"}}
+-d '{"Blog.Core/User": {"Email": "jj@fractl.io", "FirstName": "James", "LastName": "Jay"}}'
 
 curl -X POST http://localhost:8080/_e/Blog.Core/User \
 -H 'Content-Type: application/json' \
