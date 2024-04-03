@@ -74,11 +74,11 @@ for our model has changed. Then start the application by running the `fractl run
 1. Create a couple of users
 
 ```shell
-curl -X POST http://localhost:8080/_e/Blog.Core/User \
+curl -X POST http://localhost:8080/api/Blog.Core/User \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/User": {"Email": "jj@fractl.io", "FirstName": "James", "LastName": "Jay"}}'
 
-curl -X POST http://localhost:8080/_e/Blog.Core/User \
+curl -X POST http://localhost:8080/api/Blog.Core/User \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/User": {"Email": "mm@fractl.io", "FirstName": "Madhu", "LastName": "M"}}'
 ```
@@ -86,7 +86,7 @@ curl -X POST http://localhost:8080/_e/Blog.Core/User \
 2. Create blog posts under individual users
 
 ```shell
-curl -X POST http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost \
+curl -X POST http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "hello, world", "Content": "My first post"}}'
 ```
@@ -98,20 +98,20 @@ blog-post from the user. Also note the system generated globally-unique identifi
 3. Fetch all blog posts made by a user
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost
+curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost
 ```
 
 4. Fetch an individual blog-post by path
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
+curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
 ```
 
 5. Update a blog-post by path
 
 ```shell
 
-curl -X PUT http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01 \
+curl -X PUT http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01 \
 -H 'Content-Type: application/json' \
 -d '{"Data": {"Title": "hello, there"}}'
 ```
@@ -119,7 +119,7 @@ curl -X PUT http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPos
 6. Delete a blog-post by path
 
 ```shell
-curl -X DELETE http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
+curl -X DELETE http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
 ```
 
 **Exercise 1** Add a new entity `:BlogComment` to represent comments on blog-posts. Connect comments and blog-posts through
@@ -139,7 +139,7 @@ may be represented by the entity shown below:
 A new category is created as:
 
 ```shell
-curl -X POST http://localhost:8080/_e/Blog.Core/Category \
+curl -X POST http://localhost:8080/api/Blog.Core/Category \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/Category": {"Name": "Programming"}}'
 ```
@@ -157,7 +157,7 @@ A `:between` relationship is stored in the system just like an entity instance -
 request.
 
 ```clojure
-curl -X POST http://localhost:8080/_e/Blog.Core/BelongsTo \
+curl -X POST http://localhost:8080/api/Blog.Core/BelongsTo \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/BelongsTo": {"BlogPost": "2da0f682-c0f3-456b-b177-c45c19fe74eb", "Category": "Programming"}}'
 ```
@@ -168,7 +168,7 @@ be the value of the `:BlogPost.Id` attribute.
 All blog-posts that belong to a particular category is listed by the following `GET` request:
 
 ```shell
-curl  http://localhost:8080/_e/Blog.Core/Category/Programming/BelongsTo/BlogPost
+curl  http://localhost:8080/api/Blog.Core/Category/Programming/BelongsTo/BlogPost
 ```
 
 ## Querying data
@@ -178,7 +178,7 @@ In this section we'll look at a few more examples of querying data.
 The following request will return all blog-posts by the user `jj@fractl.io` with the title `"hello, world"`.
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
+curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
 ```
 What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
 a user-defined query to the model. Custom queries and business logic is added to a Fractl model by way of
@@ -200,7 +200,7 @@ All blog-posts whose title starts with the string specified in `:LookupPosts.Tit
 To invoke the dataflow, we send an instance of the `:LookupPosts` event to the blog application over an HTTP POST:
 
 ```shell
-curl -X POST http://localhost:8080/_e/Blog.Core/LookupPosts \
+curl -X POST http://localhost:8080/api/Blog.Core/LookupPosts \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/LookupPosts": {"Title": "hello%"}}'
 ```

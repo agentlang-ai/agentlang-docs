@@ -51,7 +51,7 @@ $ curl -X POST http://localhost:8080/_login/ \
 If the login succeeds, an auth-token is returned - which has to be added to each subsequent RESTful API call.
 
 ```shell
-$ curl -X POST http://localhost:8080/_e/Acme.Core/Company \
+$ curl -X POST http://localhost:8080/api/Acme.Core/Company \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer eyJr...' \
 -d '{"Acme.Core/Company { .... }}'
