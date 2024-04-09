@@ -19,10 +19,10 @@ or grant permissions on that instance to other users.
 ## Identity management
 
 Users are represented by instances of the `:Fractl.Kernel.Identity/User` entity. New users are usually added to the application
-through the `/_signup` API:
+through the `/signup` API:
 
 ```shell
-$ curl -X POST http://localhost:8080/_signup/ \
+$ curl -X POST http://localhost:8080/signup/ \
 -H 'Content-Type: application/json' \
 -d '{
     "Fractl.Kernel.Identity/SignUp": {
@@ -42,7 +42,7 @@ $ curl -X POST http://localhost:8080/_signup/ \
 Once a user has signed-up, he/she may login to the application as,
 
 ```shell
-$ curl -X POST http://localhost:8080/_login/ \
+$ curl -X POST http://localhost:8080/login/ \
 -H 'Content-Type: application/json' \
 -d '{"Fractl.Kernel.Identity/UserLogin":
 {"Username": "joe@acme.com", "Password": "Ch7Sjj@123"}}'
