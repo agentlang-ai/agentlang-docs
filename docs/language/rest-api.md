@@ -30,7 +30,7 @@ If authentication is enabled for the model, set the `Authorization` header as `B
 ## Create
 
 ```shell
-POST /_e/ComponentName/EntityName
+POST /api/ComponentName/EntityName
 
 {:ComponentName/EntityName
  {:Attribute1 value1
@@ -40,7 +40,7 @@ POST /_e/ComponentName/EntityName
 **Example**
 
 ```shell
-POST /_e/Acme.Company/Department
+POST /api/Acme.Company/Department
 
 {"Acme.Company/Department":
  {"No": 103,
@@ -50,7 +50,7 @@ POST /_e/Acme.Company/Department
 #### Create an Entity Instance Under a `:contains` Relationship
 
 ```shell
-POST /_e/ComponentName/ParentEntityName/parent-guid/Relationship/ChildEntityName
+POST /api/ComponentName/ParentEntityName/parent-guid/Relationship/ChildEntityName
 
 {:ComponentName/ChildEntityName
  {:Attribute1 value1
@@ -60,7 +60,7 @@ POST /_e/ComponentName/ParentEntityName/parent-guid/Relationship/ChildEntityName
 **Example**
 
 ```shell
-POST /_e/Acme.Company/Department/101/WorksFor/Employee
+POST /api/Acme.Company/Department/101/WorksFor/Employee
 
 {"Acme.Company/Employee":
  {"No": "E101",
@@ -74,7 +74,7 @@ It's also possible to create a parent entity-instance along with a list of its c
 The following example creates a new department with two employees:
 
 ```shell
-POST /_e/Acme.Company/Department
+POST /api/Acme.Company/Department
 
 {"Acme.Company/Department":
  {"No": 104,
@@ -89,20 +89,20 @@ POST /_e/Acme.Company/Department
 The simplest query is based on the globally-unique-identifier (`:guid`) of the entity.
 
 ```shell
-GET /_e/ComponentName/EntityName/guid
+GET /api/ComponentName/EntityName/guid
 ```
 
 **Example**
 
 ```shell
-GET /_e/Acme.Company/Department/104
+GET /api/Acme.Company/Department/104
 ```
 
 To return all child instances contained by the parent, the `/__tree` suffix may be added to the `GET` URL.
 The following request will return the department and all its employees (under the `->` key in the `:Department` instance).
 
 ```shell
-GET /_e/Acme.Company/Department/104/__tree
+GET /api/Acme.Company/Department/104/__tree
 ```
 
 The `GET` request without the `guid` will return all instances of the entity.
@@ -110,21 +110,21 @@ The `GET` request without the `guid` will return all instances of the entity.
 **Example**
 
 ```shell
-GET /_e/Acme.Company/Department
+GET /api/Acme.Company/Department
 ```
 
 Additional data-filters may be passed as query-parameters. As an example, let's try to fetch only those departments
 in the "b" block:
 
 ```shell
-GET /_e/Acme.Company/Department?Block=b
+GET /api/Acme.Company/Department?Block=b
 ```
 
 #### Query for Child Entities
 
 ```shell
-GET /_e/Component/ParentEntity/parent-guid/ContainsRelationship/ChildEntity
-GET /_e/Component/ParentEntity/parent-guid/ContainsRelationship/ChildEntity/child-id
+GET /api/Component/ParentEntity/parent-guid/ContainsRelationship/ChildEntity
+GET /api/Component/ParentEntity/parent-guid/ContainsRelationship/ChildEntity/child-id
 ```
 
 The first form will return all children from the contains-relationship. The second form will
@@ -133,13 +133,13 @@ return the child instance with specified `:id`.
 **Example**
 
 ```shell
-GET /_e/Acme.Company/Department/104/WorksFor/Employee/E101
+GET /api/Acme.Company/Department/104/WorksFor/Employee/E101
 ```
 
 ## Update
 
 ```shell
-PUT /_e/ComponentName/EntityName/guid
+PUT /api/ComponentName/EntityName/guid
 
 {:ComponentName/EntityName
  {:Attribute1 new-value1
@@ -149,7 +149,7 @@ PUT /_e/ComponentName/EntityName/guid
 **Example**
 
 ```shell
-PUT /_e/Acme.Company/Department/104
+PUT /api/Acme.Company/Department/104
 
 {"Acme.Company/Department":
  {"Block": "a"}}
@@ -158,7 +158,7 @@ PUT /_e/Acme.Company/Department/104
 #### Updating Child Instances
 
 ```shell
-PUT /_e/ComponentName/ParentEntityName/parent-guid/ContainsRelationshipName/ChildEntityName/child-id
+PUT /api/ComponentName/ParentEntityName/parent-guid/ContainsRelationshipName/ChildEntityName/child-id
 
 {:ComponentName/ChildEntityName
  {:Attribute1 new-value-1
@@ -168,7 +168,7 @@ PUT /_e/ComponentName/ParentEntityName/parent-guid/ContainsRelationshipName/Chil
 **Example**
 
 ```shell
-PUT /_e/Acme.Company/Department/104/WorksFor/Employee/E102
+PUT /api/Acme.Company/Department/104/WorksFor/Employee/E102
 
 {"Acme.Company/Employee":
  {"Name": "Matthew"}}
@@ -177,8 +177,8 @@ PUT /_e/Acme.Company/Department/104/WorksFor/Employee/E102
 ## Delete
 
 ```shell
-DELETE /_e/ComponentName/EntityName/guid
-DELETE /_e/ComponentName/ParentEntityName/parent-guid/ContainsRelationshipName/ChildEntityName/child-id
+DELETE /api/ComponentName/EntityName/guid
+DELETE /api/ComponentName/ParentEntityName/parent-guid/ContainsRelationshipName/ChildEntityName/child-id
 ```
 
 **Example**

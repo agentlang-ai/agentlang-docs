@@ -53,7 +53,7 @@ fractl run
 Test the application using an HTTP post request like,
 
 ```shell
-curl --location --request POST 'http://localhost:8080/_e/Hello.Core/SayHello' \
+curl --location --request POST 'http://localhost:8080/api/Hello.Core/SayHello' \
 --header 'Content-Type: application/json' \
 --data-raw '{"Hello.Core/SayHello": {}}'
 ```

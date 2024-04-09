@@ -75,7 +75,7 @@ fractl run
 The blog-service should start listening for incoming HTTP request on port `8080`. Let's try to create a blog entry:
 
 ```shell
-curl -X POST http://localhost:8080/_e/Blog.Core/BlogPost \
+curl -X POST http://localhost:8080/api/Blog.Core/BlogPost \
   -H 'Content-Type: application/json' \
   -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "Hello world", "Content": "This is my first post", "PostedBy": "mm@fractl.io"}}'
 ```
@@ -107,19 +107,19 @@ Some REST API calls you may try on your own are shown below:
 1. Lookup a blog-post by its globally-unique-identifier or `:guid`.
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/BlogPost/post01
+curl http://localhost:8080/api/Blog.Core/BlogPost/post01
 ```
 
 2. Lookup all instances of the `:BlogPost` entity.
 
 ```shell
-curl http://localhost:8080/_e/Blog.Core/BlogPost
+curl http://localhost:8080/api/Blog.Core/BlogPost
 ```
 
 3. Update an instance by its `:guid`.
 
 ```shell
-curl -X PUT http://localhost:8080/_e/Blog.Core/BlogPost/post01 \
+curl -X PUT http://localhost:8080/api/Blog.Core/BlogPost/post01 \
   -H 'Content-Type: application/json' \
   -d '{"Data": {"Title": "Hello, World", "PostedBy": "jj@fractl.io"}}'
 ```
@@ -127,7 +127,7 @@ curl -X PUT http://localhost:8080/_e/Blog.Core/BlogPost/post01 \
 4. Delete an instance by its `:guid`.
 
 ```shell
-curl -X DELETE http://localhost:8080/_e/Blog.Core/BlogPost/post01
+curl -X DELETE http://localhost:8080/api/Blog.Core/BlogPost/post01
 ```
 
 Now that we've tested the model, we are ready to make a build for release:

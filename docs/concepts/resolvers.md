@@ -61,21 +61,21 @@ Use the following HTTP requests to test the resolver.
 ```shell
 curl --header "Content-Type: application/json" --request POST \
 --data '{"Acme/ExternalUser": {"Email": "mat@acme.com"}}' \
-http://localhost:8080/_e/Acme/ExternalUser
+http://localhost:8080/api/Acme/ExternalUser
 ```
 
 2. Query the user:
 
 ```shell
 curl --header "Content-Type: application/json" \
-http://localhost:8080/_e/Acme/ExternalUser/mat@acme.com
+http://localhost:8080/api/Acme/ExternalUser/mat@acme.com
 ```
 
 3. Delete the user:
 
 ```shell
 curl --header "Content-Type: application/json" --request DELETE \
-http://localhost:8080/_e/Acme/ExternalUser/mat@acme.com
+http://localhost:8080/api/Acme/ExternalUser/mat@acme.com
 ```
 
 With each CRUD operation, you should see the appropriate log-statement from the resolver in the console.
@@ -112,7 +112,7 @@ You can trigger the external-event as,
 ```shell
 curl --header "Content-Type: application/json" --request POST\
 --data '{"Acme/TriggerExternalEvent": {"Z": 20}}'\
-http://localhost:8080/_e/Acme/TriggerExternalEvent
+http://localhost:8080/api/Acme/TriggerExternalEvent
 ```
 
 You should get the result as computed by the resolver's `:eval` method:
