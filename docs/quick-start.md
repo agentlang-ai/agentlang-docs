@@ -1,149 +1,26 @@
 # Quick Start
 
-In this section, we will develop a more involved application in Agentlang. We'll be designing the model for a blogging-service.
-To start, create a directory to store the model files:
+In this section, we will develop a more involved application in Agentlang. We'll be designing a customer-support agent, that can answer user queries on specific products and also keep track of its chat-session. Let's start by creating a new Agentlang script called `customer_support.agent`.
 
-```shell
-mkdir blog
-```
-
-We need a "project" file in the `blog` directory to capture some meta information about the model
-we are developing. This project file in called `model.agentlang`. Create this file as `blog/model.agentlang`
-with the following content:
 
 ```clojure
-{:name :blog
- :version "0.0.1"
- :agentlang-version "current"
- :components [:Blog.Core]}
+(component :CustomerSupport)
+
+(agent :CustomerSupport/Agent
+ {:UserInstruction "You are an agent that user-questions about specific products."
+  :LLM {:Type "openai"}})
+
+(inference :Chat {:agent :CustomerSupport/Agent})
 ```
 
-The meta-data about the model is expressed as an [edn](https://github.com/edn-format/edn)-map of key-value pairs.
-The following keys are required in this map:
-   1. `:name` - the unique name of the model
-   2. `:version` - the version of the model
-   3. `:agentlang-version` - the version of the Agentlang runtime required to run the model
-   4. `:components` - a list or vector of the components where the business objects of the model are defined
+TODO: run the service and execute some queries. show how chat-history is maintained.
 
-The blog model has just one component - `:Blog.Core`. Now we need to define this component.
-The file in which we define the component has to be in a directory structure that matches
-its name - so we create the file `blog/blog/core.agentlang` with the following content:
+TODO: explain the need for documents and add documents.
 
-```clojure
-(component :Blog.Core)
+TODO: split the various aspects of support into multiple agents and show interactions between them (delegates)
 
-(entity :BlogPost
- {:Name {:type :String
-         :guid true}
-  :Title :String
-  :Content :String
-  :PostedBy :Email
-  :PostedOn :Now})
-```
+TODO: next application - ocr agent
 
-In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its definition is self-explanatory - a blog-post is made up
-of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
-explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system. (`:guid` means *globally-unique-identifier* - this could be any string or numeric value that uniquely identifies an instance of a `:BlogPost` in the system).
+TODO: next application - extend ocr example with a planner agent and pattern evaluation
 
-The basic blog-application is almost ready. Now we need to create a configuration file that will be used by Agentlang
-for running this application. Create the file `blog/config.edn` with the following settings:
-
-```clojure
-{:service {:port 8080}
- :store {:type :h2 :dbname "./data/blog"}}
-```
-
-This configuration will direct Agentlang to start the blog-service on port `8080` and store its data
-in the [H2](https://www.h2database.com/html/main.html) database file - `data/blog`.
-
-At this stage, the project folder should look like:
-
-```shell
-/blog
-  - config.edn
-  - model.agentlang
-  - /blog
-      - core.agentlang
-```
-
-To test the model, run the following command from the root `blog` directory:
-
-```shell
-agentlang run
-```
-
-The blog-service should start listening for incoming HTTP request on port `8080`. Let's try to create a blog entry:
-
-```shell
-curl -X POST http://localhost:8080/api/Blog.Core/BlogPost \
-  -H 'Content-Type: application/json' \
-  -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "Hello world", "Content": "This is my first post", "PostedBy": "mm@agentlang.io"}}'
-```
-
-The service will allow us to interact with the entities defined in the model over a RESTful API. As the preceding command
-shows, invoking `POST _e/Blog.Core/BlogPost` with a JSON encoded `:BlogPost` object will create and persist a new `:BlogPost`
-instance in the system. A success response to the `POST` request will be,
-
-```json
-[{
-	"status": "ok",
-	"result": [{
-		"type-*-tag-*-": "entity",
-		"-*-type-*-": "Blog.Core/BlogPost",
-		"Title": "Hello world",
-		"Content": "This is my first post",
-		"PostedBy": "mm@agentlang.io",
-		"PostedOn": "2023-09-19T13:23:40.755039609",
-		"Name": "post01"
-	}]
-}]
-```
-
-Note that Agentlang has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
-supposed to do. We can use the value of the `:guid` attribute - `:Name` - to lookup, update or delete the blog-post instance.
-
-Some REST API calls you may try on your own are shown below:
-
-1. Lookup a blog-post by its globally-unique-identifier or `:guid`.
-
-```shell
-curl http://localhost:8080/api/Blog.Core/BlogPost/post01
-```
-
-2. Lookup all instances of the `:BlogPost` entity.
-
-```shell
-curl http://localhost:8080/api/Blog.Core/BlogPost
-```
-
-3. Update an instance by its `:guid`.
-
-```shell
-curl -X PUT http://localhost:8080/api/Blog.Core/BlogPost/post01 \
-  -H 'Content-Type: application/json' \
-  -d '{"Data": {"Title": "Hello, World", "PostedBy": "jj@agentlang.io"}}'
-```
-
-4. Delete an instance by its `:guid`.
-
-```shell
-curl -X DELETE http://localhost:8080/api/Blog.Core/BlogPost/post01
-```
-
-Now that we've tested the model, we are ready to make a build for release:
-
-
-```shell
-agentlang build
-```
-
-This will create a standalone jar file of the blog-application in the `out` directory.
-You may now launch this application using the Java virtual machine:
-
-
-```shell
-java -jar out/blog/target/blog-0.0.1-standalone.jar -c config.edn
-```
-
-In the [next step](tutorial.md) of this tutorial, we will add more features to the blog-application, and in that process,
-explore Agentlang in more depth.
+TODO: get back to customer-support and show how agents can be made specific to users (this may involve dataflows for initing agents)
