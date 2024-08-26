@@ -1,6 +1,6 @@
 # Advanced Tutorial
 
-Let's continue our exploration of Fractl by further developing the [blog-application](quick-start.md). Currently, the
+Let's continue our exploration of Agentlang by further developing the [blog-application](quick-start.md). Currently, the
 `:Blog.Core` component looks like this:
 
 ```clojure
@@ -69,24 +69,24 @@ need an attribute to act as a globally-unique identifier for a blog-post - now t
 is `:Identifier`. The type `:Identifier` expands to `{:type :UUID :guid true :default <an-auto-generated-uuid>}`.
 
 Let's test our updated model. First delete the old data-file - `data/blog` - as the [schema](concepts/schema-migration.md)
-for our model has changed. Then start the application by running the `fractl run` command and try the following requests.
+for our model has changed. Then start the application by running the `agentlang run` command and try the following requests.
 
 1. Create a couple of users
 
 ```shell
 curl -X POST http://localhost:8080/api/Blog.Core/User \
 -H 'Content-Type: application/json' \
--d '{"Blog.Core/User": {"Email": "jj@fractl.io", "FirstName": "James", "LastName": "Jay"}}'
+-d '{"Blog.Core/User": {"Email": "jj@agentlang.io", "FirstName": "James", "LastName": "Jay"}}'
 
 curl -X POST http://localhost:8080/api/Blog.Core/User \
 -H 'Content-Type: application/json' \
--d '{"Blog.Core/User": {"Email": "mm@fractl.io", "FirstName": "Madhu", "LastName": "M"}}'
+-d '{"Blog.Core/User": {"Email": "mm@agentlang.io", "FirstName": "Madhu", "LastName": "M"}}'
 ```
 
 2. Create blog posts under individual users
 
 ```shell
-curl -X POST http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost \
+curl -X POST http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost \
 -H 'Content-Type: application/json' \
 -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "hello, world", "Content": "My first post"}}'
 ```
@@ -98,20 +98,20 @@ blog-post from the user. Also note the system generated globally-unique identifi
 3. Fetch all blog posts made by a user
 
 ```shell
-curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost
+curl http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost
 ```
 
 4. Fetch an individual blog-post by path
 
 ```shell
-curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
+curl http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost/post01
 ```
 
 5. Update a blog-post by path
 
 ```shell
 
-curl -X PUT http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01 \
+curl -X PUT http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost/post01 \
 -H 'Content-Type: application/json' \
 -d '{"Data": {"Title": "hello, there"}}'
 ```
@@ -119,7 +119,7 @@ curl -X PUT http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPo
 6. Delete a blog-post by path
 
 ```shell
-curl -X DELETE http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost/post01
+curl -X DELETE http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost/post01
 ```
 
 **Exercise 1** Add a new entity `:BlogComment` to represent comments on blog-posts. Connect comments and blog-posts through
@@ -175,13 +175,13 @@ curl  http://localhost:8080/api/Blog.Core/Category/Programming/BelongsTo/BlogPos
 
 In this section we'll look at a few more examples of querying data.
 
-The following request will return all blog-posts by the user `jj@fractl.io` with the title `"hello, world"`.
+The following request will return all blog-posts by the user `jj@agentlang.io` with the title `"hello, world"`.
 
 ```shell
-curl http://localhost:8080/api/Blog.Core/User/jj@fractl.io/PostsBy/BlogPost?Title=hello%2C%20world
+curl http://localhost:8080/api/Blog.Core/User/jj@agentlang.io/PostsBy/BlogPost?Title=hello%2C%20world
 ```
 What if we want to fetch all blog-posts whose title starts with the string `"hello"`? For this we need to add
-a user-defined query to the model. Custom queries and business logic is added to a Fractl model by way of
+a user-defined query to the model. Custom queries and business logic is added to a Agentlang model by way of
 [**dataflows**](concepts/declarative-dataflow). A dataflow is attached to an **event**, which is a data structure
 similar to entities. When an instance of the event is created, the attached dataflow is executed. So for our requirement,
 we define the following event and dataflow:
@@ -207,6 +207,6 @@ curl -X POST http://localhost:8080/api/Blog.Core/LookupPosts \
 Note that the value passed to `:Title` ends with the wildcard character `%` - this is because
 we want to match all titles that starts with the characters "hello".
 
-We have reached the end of our whirlwind tour of Fractl. There's a lot of ground left to cover - please
-continue your journey by reading about the core [concepts](concepts/intro.md) of Fractl and
+We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please
+continue your journey by reading about the core [concepts](concepts/intro.md) of Agentlang and
 the [language reference](language/reference/overview.md).

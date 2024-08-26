@@ -1,109 +1,53 @@
 # Installation
 
-Download the [Fractl CLI tool](https://raw.githubusercontent.com/fractl-io/fractl/main/bin/fractl) and copy it to a location known to your system search-path, for e.g `/usr/local/bin` or `/usr/bin`.
+TODO: add install instructions
 
 ## hello, world
 
-To make sure everything works fine, let's create a very simple Fractl program. Fractl programs are known as models,
-because they are very high-level descriptions of the problem being solved. First let's create a place to keep our models:
+To make sure everything works fine, let's create a very simple Agentlang program. We will design an agent that will entertain the user by telling jokes.
 
-
-```shell
-mkdir ~/fractl-models
-```
-
-Our first Fractl model is going to be very simple - it returns the message "hello, world". It's overkill to use a
-modelling language like Fractl to write a hello-world app, but that's good enough to test our installation and to
-familiarize ourselves with the basic developer workflow.
-
-Create the directory `~/fractl-models/hello` and add a file named `model.fractl` there.
-The contents of this file is shown below:
+In your favorite text editor, create a file named `hello.agent` with the following code:
 
 ```clojure
-{:name :Hello
- :components [:Hello.Core]
- :fractl-version "current"}
+(component :Hello)
+
+(agent :FunnyAgent
+ {:UserInstruction "You are a friendly agent who entertains the user by telling jokes."
+  :LLM {:Type "openai"}})
+
+(inference :TellMeAJoke {:agent :FunnyAgent})
 ```
 
-All Fractl models must contain a `model.fractl` file to capture some basic information about the project.
-Two entries that must be provided here are the name of the model and the version of Fractl required to build and run it.
-The Fractl-version could be very specific like `"0.4.6"` or the string `"current"` - which basically tries to run the model
-using the active Fractl runtime.
+An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component named `:Hello`.
 
-A model is made up of components where all the data structures and business logic of the application is defined.
-The `:Hello` model contains a single component named `:Hello.Core`. To define it, first create
-the directory `~/fractl-models/hello/hello` and add the following `core.fractl` file there:
+After specifying the component, we define an `agent` named `:FunnyAgent`. (In Agentlang, names are usually specified as keywords (i.e symbols prefixed by a full-colon). By convention, these names are [upper camel cased](https://en.wikipedia.org/wiki/Camel_case). For agents, names may also be a string, like "funny-agent", but for consistency, let's stick to keywords for now). An `agent` requires atleast two attributes to be specified, one is the `:UserInstruction` which tells the `agent` what it's supposed to do. The other attribute is `:LLM`, which configures the llm-provider. Here we set `openai` as the llm-provider. It's possible to have fine-grained configuration for the LLM, but the default settings are good-enough for now.
+
+The last part of the program defines an `inference`, which is the preferred way to invoke an agent. When we define an `inference`, the Agentlang runtime will setup an HTTP endpoint that can be used to interact with the `agent`. To test this endpoint, we have to first start the application. As we have set OpenAI as the llm-provider, make sure you have set the `OPENAI_API_KEY` environment variable to a valid OpenAI API key. Then run the following command:
 
 ```clojure
-(component :Hello.Core)
-
-(record :Message
- {:Value :String})
-
-(dataflow :SayHello
- {:Message {:Value "hello, world"}})
+$ agent hello.agent
 ```
 
-You can now run the model. From `~/fractl-models/hello` execute the following command:
+This will start the application as an HTTP service on port `8080`. You can interact with the funny agent by sending it a request as shown below:
 
 ```shell
-fractl run
-```
-
-Test the application using an HTTP post request like,
-
-```shell
-curl --location --request POST 'http://localhost:8080/api/Hello.Core/SayHello' \
+curl --location --request POST 'http://localhost:8080/api/Hello/TellMeAJoke' \
 --header 'Content-Type: application/json' \
---data-raw '{"Hello.Core/SayHello": {}}'
+--data-raw '{"Hello/TellMeAJoke": {"UserInstruction": "Tell me a joke about AI agents"}}'
 ```
 
-You should see the following response:
+You should get a response similar to this:
 
 ```javascript
 [
-  {
-    "status": "ok",
-    "result": [
-      {
-        "type-*-tag-*-": "record",
-        "-*-type-*-": [
-          "Hello.Core",
-          "Message"
-        ],
-        "Value": "hello, world"
-      }
-    ],
-    "message": null
-  }
+    {
+        "status": "ok",
+        "result": [
+            "Why did the AI agent go to therapy? \nBecause it had too many unresolved issues!",
+            "gpt-3.5-turbo"
+        ]
+    }
 ]
 ```
 
-> **Note** To customize application logging, set the `JDK_JAVA_OPTIONS` environment variable as,
->
->  ```shell
->  export JDK_JAVA_OPTIONS=-Dlogback.configurationFile=/path/to/logback.xml
->  ```
-> You may [download](https://github.com/fractl-io/fractl/blob/main/resources/logback.xml) and reuse the logback.xml
-> file that's available in the Fractl repository.
-
-The `:Hello` model can be converted to a standalone Java application with the `fractl build` command.
-Before running the build command, make sure [Leiningen](https://leiningen.org/) is installed locally.
-
-You can trigger the build as:
-
-```shell
-fractl build
-```
-
-Once the build is over, you'll find a standalone jar file under `./out/hello/target`.
-The file name will be `hello-0.0.1-standalone.jar`. This can now be executed using the Java Virtual Machine,
-
-```shell
-cd ./out/hello
-java -jar target/hello-0.0.1-standalone.jar -c config.edn
-```
-
-Use the previous HTTP POST request to make sure the application is working fine.
-
-With Fractl setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start) guide.
+With Agentlang setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start) guide.

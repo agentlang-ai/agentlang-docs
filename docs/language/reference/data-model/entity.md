@@ -1,6 +1,6 @@
 # Entity
 
-An `entity` is a `record` whose instances are automatically persisted by Fractl.
+An `entity` is a `record` whose instances are automatically persisted by Agentlang.
 
 **Example**
 

@@ -1,7 +1,7 @@
 # Relationship
 
 A `relationship` is used to create hierarchical or graph-like structures from entities. 
-There are two types of relationships that are possible in Fractl - `contains` and `between`.
+There are two types of relationships that are possible in Agentlang - `contains` and `between`.
 
 ## contains
 

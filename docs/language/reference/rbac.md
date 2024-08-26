@@ -1,6 +1,6 @@
 # Security & Access Control
 
-Fractl allows role-based-access-control for an application to be expressed in a very declarative way. For instance,
+Agentlang allows role-based-access-control for an application to be expressed in a very declarative way. For instance,
 if only managers are allowed to create new companies and employees are only allowed to view company-data, 
 an appropriate `:rbac` spec could be added to the `:Company` entity definition:
 
@@ -18,16 +18,16 @@ or grant permissions on that instance to other users.
 
 ## Identity management
 
-Users are represented by instances of the `:Fractl.Kernel.Identity/User` entity. New users are usually added to the application
+Users are represented by instances of the `:Agentlang.Kernel.Identity/User` entity. New users are usually added to the application
 through the `/signup` API:
 
 ```shell
 $ curl -X POST http://localhost:8080/signup/ \
 -H 'Content-Type: application/json' \
 -d '{
-    "Fractl.Kernel.Identity/SignUp": {
+    "Agentlang.Kernel.Identity/SignUp": {
         "User": {
-            "Fractl.Kernel.Identity/User": {
+            "Agentlang.Kernel.Identity/User": {
                 "Name": "joe",
                 "Password": "Ch7Sjj@123",
                 "Email": "joe@acme.com",
@@ -44,7 +44,7 @@ Once a user has signed-up, he/she may login to the application as,
 ```shell
 $ curl -X POST http://localhost:8080/login/ \
 -H 'Content-Type: application/json' \
--d '{"Fractl.Kernel.Identity/UserLogin":
+-d '{"Agentlang.Kernel.Identity/UserLogin":
 {"Username": "joe@acme.com", "Password": "Ch7Sjj@123"}}'
 ```
 
@@ -60,19 +60,19 @@ $ curl -X POST http://localhost:8080/api/Acme.Core/Company \
 ## Assigning roles
 
 When a user signs-up he/she may be assigned a default role, the most convenient way to do this is by implementing a dataflow for the
-`:Fractl.Kernel.Identity/PostSignUp` event. The following example shows how a newly signed-up user is added to the "employee" role
+`:Agentlang.Kernel.Identity/PostSignUp` event. The following example shows how a newly signed-up user is added to the "employee" role
 by default:
 
 ```clojure
-(dataflow :Fractl.Kernel.Identity/PostSignUp
+(dataflow :Agentlang.Kernel.Identity/PostSignUp
  
  ;; Query the user by email.
- {:Fractl.Kernel.Identity/User
-  {:Email? :Fractl.Kernel.Identity/PostSignUp.SignupRequest.User.Email}
+ {:Agentlang.Kernel.Identity/User
+  {:Email? :Agentlang.Kernel.Identity/PostSignUp.SignupRequest.User.Email}
   :as [:U]}
 
  ;; Add the user to the employee-role.
- {:Fractl.Kernel.Rbac/RoleAssignment
+ {:Agentlang.Kernel.Rbac/RoleAssignment
   {:Role "employee" :Assignee :U.Email}}
 
  ;; Return the user to complete the sign-up-process.
@@ -110,7 +110,7 @@ RBAC is enabled by the following simple setting in `config.edn`:
 ```clojure
 {:rbac-enbled true}
 ```
-A few environment variables need to be set so that the Fractl runtime can interact with the identity-backend, which defaults to
+A few environment variables need to be set so that the Agentlang runtime can interact with the identity-backend, which defaults to
 Amazon Cognito. These environment variables are:
 
 ```

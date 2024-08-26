@@ -1,20 +1,20 @@
 # Modelling in 3-Steps
 
-This document gives a short description of the basic steps involved in modelling a business application in Fractl.
+This document gives a short description of the basic steps involved in modelling a business application in Agentlang.
 Please keep in mind that these steps are not design recipes, but are intended to show the common tasks involved in 
-developing a Fractl model. In practice, a Fractl application evolves over many iterative cycles of design, experimentation,
+developing a Agentlang model. In practice, a Agentlang application evolves over many iterative cycles of design, experimentation,
 implementation and testing.
 
 ## Step 1 - Define Entities and Their Relationships
 
 Entities are the "actors" involved in the business process.
 Entities do not exist in isolation, but are related to other entities in complex ways.
-Fractl allow these relationships to be intuitively expressed in the model.
+Agentlang allow these relationships to be intuitively expressed in the model.
 
 For example, in the model of a "library", you can think of a few basic entities like
 the library itself, books and members. Books are contained in libraries. 
 A member is related to a library via her membership, and she can checkout books. 
-These data structures and their inter-relationships can be represented in Fractl as:
+These data structures and their inter-relationships can be represented in Agentlang as:
 
 ```clojure
 (component :Library.Core)
@@ -62,7 +62,7 @@ These data structures and their inter-relationships can be represented in Fractl
 
 ## Step 2 - Implement Custom Business Logic
 
-If you load the above model into Fractl, you'll be immediately able to perform CRUD operations
+If you load the above model into Agentlang, you'll be immediately able to perform CRUD operations
 on the entities and their relationships. You have a scalable, REST API enabled "library" service
 ready in so few lines of code! But when you reach the book checkout process you notice that a few more
 checks must be in place - before we could create an instance of `:Checkout` we need to make sure that
@@ -116,17 +116,17 @@ explicit here for illustrative purpose only. In a real application, you'll want 
 specific role like "library-admin" and use the generic "admin" role more sparingly.)
 
 When an admin creates a `:Member`, we would like to enable authentication and authorization for the new
-member. This is usually done in a dataflow attached to the [:Fractl.Kernel.Identity/PostSignUp](language/reference/rbac#identity-management) event. In this example, we achieve this by a special dataflow that's setup to run after the `:Member` creation:
+member. This is usually done in a dataflow attached to the [:Agentlang.Kernel.Identity/PostSignUp](language/reference/rbac#identity-management) event. In this example, we achieve this by a special dataflow that's setup to run after the `:Member` creation:
 
 ```clojure
 (dataflow [:after :create :Member]
- {:Fractl.Kernel.Identity/User
+ {:Agentlang.Kernel.Identity/User
   {:Email :Instance.Email
    :Name :Instance.Name
    :Password "Member@lib123"
    :FirstName :Instance.Name
    :LastName :Instance.Name}}
- {:Fractl.Kernel.Rbac/RoleAssignment
+ {:Agentlang.Kernel.Rbac/RoleAssignment
   {:Role "member"
    :Assignee :Instance.Email}})
 ```
@@ -169,14 +169,14 @@ Finally, we can setup an admin user during application-initialization:
 
 ```clojure
 (dataflow
- :Fractl.Kernel.Lang/AppInit
- {:Fractl.Kernel.Identity/User
+ :Agentlang.Kernel.Lang/AppInit
+ {:Agentlang.Kernel.Identity/User
   {:Email "admin@library.com"
    :Name "Admin"
    :Password "Admin@lib123"
    :FirstName "Admin"
    :LastName "Admin"}}
- {:Fractl.Kernel.Rbac/RoleAssignment
+ {:Agentlang.Kernel.Rbac/RoleAssignment
   {:Role "admin"
    :Assignee "admin@library.com"}})
 ```

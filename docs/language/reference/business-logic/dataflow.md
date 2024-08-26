@@ -1,6 +1,6 @@
 # Dataflow
 
-Business and data-processing logic is expressed in Fractl as *dataflows*. 
+Business and data-processing logic is expressed in Agentlang as *dataflows*. 
 A `dataflow` declaration will have the following general syntax:
 
 ```clojure

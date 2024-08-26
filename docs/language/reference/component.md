@@ -1,6 +1,6 @@
 # Component
 
-A Fractl model consist of multiple components. A component captures the entities and business logic
+A Agentlang model consist of multiple components. A component captures the entities and business logic
 relevant to a significant concept in the model. For example, the model for an inventory application
 may have different components for warehouses, suppliers and customers.
 
@@ -18,9 +18,9 @@ namespace import specifications for Clojure or Java.
 
 ```clojure
 (component :Acme.Inventory.CRM
- {:clj-import '[(:require [fractl.lang.datetime :as dt]
+ {:clj-import '[(:require [agentlang.lang.datetime :as dt]
                           [clojure.java.io :as io])
-                (:use [fractl.util])]})
+                (:use [agentlang.util])]})
 ```
 
 The value of `:refer` must be a vector of component names that the current component is dependent on.

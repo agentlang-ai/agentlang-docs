@@ -40,7 +40,7 @@ With these new declarations, the `:Contact` record can be defined as:
 ## Attribute Spec
 
 The attribute-specification normally consists of a type-name which may be drawn from a pool of basic types 
-built-into Fractl. These built-in types are listed below:
+built-into Agentlang. These built-in types are listed below:
 
 ```clojure
 :String - a string literal enclosed in double-quotes
@@ -81,12 +81,12 @@ the keyword. Valid property names and their settings are described below:
 
 ```
 :check - a single-arg Clojure predicate for validating values assigned to the attribute
-:unique - if `true`, Fractl will ensure each instance of an entity will have a different value for this attribute
+:unique - if `true`, Agentlang will ensure each instance of an entity will have a different value for this attribute
 :immutable - if `true`, once assigned, the attribute's value will remain read-only
 :optional - if `true`, attribute value is optional
 :default - the default value of the attribute
 :type - name of the attribute's type
-:guid - if `true`, the attribute will be used by Fractl to uniquely identify each instance of an entity
+:guid - if `true`, the attribute will be used by Agentlang to uniquely identify each instance of an entity
 :expr - a Clojure expression that will be evaluated to compute the attribute's value
 :format - a regex pattern for validating an attribute of type :Kernel/String
 :listof - only a list (a Clojure vector) of the specified type can be assigned to the attribute
@@ -101,10 +101,10 @@ the keyword. Valid property names and their settings are described below:
 ```
 
 The `:default` option could be a literal (string, number etc) or a no-arg function. If it's a function,
-Fractl will call the function and use the return value as the default. (The `:default` value is used when
+Agentlang will call the function and use the return value as the default. (The `:default` value is used when
 no value is specified for the attribute while creating an instance).
 
-Note that for `:ref` the value provided must exist at the other end of the path, otherwise Fractl runtime will
+Note that for `:ref` the value provided must exist at the other end of the path, otherwise Agentlang runtime will
 throw an exception. This is similar to a foreign-key relationship in an RDBMS.
 
 The `:indexed` property should be set for attributes on which queries are performed. Note that

@@ -1,6 +1,6 @@
 # Quick Start
 
-In this section, we will develop a more involved application in Fractl. We'll be designing the model for a blogging-service.
+In this section, we will develop a more involved application in Agentlang. We'll be designing the model for a blogging-service.
 To start, create a directory to store the model files:
 
 ```shell
@@ -8,13 +8,13 @@ mkdir blog
 ```
 
 We need a "project" file in the `blog` directory to capture some meta information about the model
-we are developing. This project file in called `model.fractl`. Create this file as `blog/model.fractl`
+we are developing. This project file in called `model.agentlang`. Create this file as `blog/model.agentlang`
 with the following content:
 
 ```clojure
 {:name :blog
  :version "0.0.1"
- :fractl-version "current"
+ :agentlang-version "current"
  :components [:Blog.Core]}
 ```
 
@@ -22,12 +22,12 @@ The meta-data about the model is expressed as an [edn](https://github.com/edn-fo
 The following keys are required in this map:
    1. `:name` - the unique name of the model
    2. `:version` - the version of the model
-   3. `:fractl-version` - the version of the Fractl runtime required to run the model
+   3. `:agentlang-version` - the version of the Agentlang runtime required to run the model
    4. `:components` - a list or vector of the components where the business objects of the model are defined
 
 The blog model has just one component - `:Blog.Core`. Now we need to define this component.
 The file in which we define the component has to be in a directory structure that matches
-its name - so we create the file `blog/blog/core.fractl` with the following content:
+its name - so we create the file `blog/blog/core.agentlang` with the following content:
 
 ```clojure
 (component :Blog.Core)
@@ -45,7 +45,7 @@ In the `:Blog.Core` component we have a single entity called `:BlogPost`. Its de
 of a title and content. It also captures information on who created the post and when. The `:Name` attribute requires some 
 explanation - it's a string-value that must be unique for each blog-post - because it's used to uniquely identify a blog-post in the system. (`:guid` means *globally-unique-identifier* - this could be any string or numeric value that uniquely identifies an instance of a `:BlogPost` in the system).
 
-The basic blog-application is almost ready. Now we need to create a configuration file that will be used by Fractl
+The basic blog-application is almost ready. Now we need to create a configuration file that will be used by Agentlang
 for running this application. Create the file `blog/config.edn` with the following settings:
 
 ```clojure
@@ -53,7 +53,7 @@ for running this application. Create the file `blog/config.edn` with the followi
  :store {:type :h2 :dbname "./data/blog"}}
 ```
 
-This configuration will direct Fractl to start the blog-service on port `8080` and store its data
+This configuration will direct Agentlang to start the blog-service on port `8080` and store its data
 in the [H2](https://www.h2database.com/html/main.html) database file - `data/blog`.
 
 At this stage, the project folder should look like:
@@ -61,15 +61,15 @@ At this stage, the project folder should look like:
 ```shell
 /blog
   - config.edn
-  - model.fractl
+  - model.agentlang
   - /blog
-      - core.fractl
+      - core.agentlang
 ```
 
 To test the model, run the following command from the root `blog` directory:
 
 ```shell
-fractl run
+agentlang run
 ```
 
 The blog-service should start listening for incoming HTTP request on port `8080`. Let's try to create a blog entry:
@@ -77,7 +77,7 @@ The blog-service should start listening for incoming HTTP request on port `8080`
 ```shell
 curl -X POST http://localhost:8080/api/Blog.Core/BlogPost \
   -H 'Content-Type: application/json' \
-  -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "Hello world", "Content": "This is my first post", "PostedBy": "mm@fractl.io"}}'
+  -d '{"Blog.Core/BlogPost": {"Name": "post01", "Title": "Hello world", "Content": "This is my first post", "PostedBy": "mm@agentlang.io"}}'
 ```
 
 The service will allow us to interact with the entities defined in the model over a RESTful API. As the preceding command
@@ -92,14 +92,14 @@ instance in the system. A success response to the `POST` request will be,
 		"-*-type-*-": "Blog.Core/BlogPost",
 		"Title": "Hello world",
 		"Content": "This is my first post",
-		"PostedBy": "mm@fractl.io",
+		"PostedBy": "mm@agentlang.io",
 		"PostedOn": "2023-09-19T13:23:40.755039609",
 		"Name": "post01"
 	}]
 }]
 ```
 
-Note that Fractl has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
+Note that Agentlang has filled-in the `:PostedOn` attribute with the current date-time value, which is what the `:Now` datatype is
 supposed to do. We can use the value of the `:guid` attribute - `:Name` - to lookup, update or delete the blog-post instance.
 
 Some REST API calls you may try on your own are shown below:
@@ -121,7 +121,7 @@ curl http://localhost:8080/api/Blog.Core/BlogPost
 ```shell
 curl -X PUT http://localhost:8080/api/Blog.Core/BlogPost/post01 \
   -H 'Content-Type: application/json' \
-  -d '{"Data": {"Title": "Hello, World", "PostedBy": "jj@fractl.io"}}'
+  -d '{"Data": {"Title": "Hello, World", "PostedBy": "jj@agentlang.io"}}'
 ```
 
 4. Delete an instance by its `:guid`.
@@ -134,7 +134,7 @@ Now that we've tested the model, we are ready to make a build for release:
 
 
 ```shell
-fractl build
+agentlang build
 ```
 
 This will create a standalone jar file of the blog-application in the `out` directory.
@@ -146,4 +146,4 @@ java -jar out/blog/target/blog-0.0.1-standalone.jar -c config.edn
 ```
 
 In the [next step](tutorial.md) of this tutorial, we will add more features to the blog-application, and in that process,
-explore Fractl in more depth.
+explore Agentlang in more depth.

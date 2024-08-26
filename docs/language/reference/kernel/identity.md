@@ -1,6 +1,6 @@
 # Identity
 
-The `:Fractl.Kernel.Identity` component contain definitions for managing "user-identities" in a Fractl application.
+The `:Agentlang.Kernel.Identity` component contain definitions for managing "user-identities" in a Agentlang application.
 
 ```clojure
 (entity :User
@@ -12,7 +12,7 @@ The `:Fractl.Kernel.Identity` component contain definitions for managing "user-i
   :UserData {:type :Map :optional true}})
 ```
 
-The `:User` entity represents a user that can be authenticated by a Fractl application and may be authorised to perform various actions on the business entities. The `:Email` attribute uniquely identifies the user in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
+The `:User` entity represents a user that can be authenticated by a Agentlang application and may be authorised to perform various actions on the business entities. The `:Email` attribute uniquely identifies the user in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
 
 A new user signs-up with the application by calling the `POST /signup` API. The argument to this POST request will be an instance of
 the `:SignUp` event.
@@ -32,9 +32,9 @@ Content-Type: application/json
 
 
 {
-    "Fractl.Kernel.Identity/SignUp": {
+    "Agentlang.Kernel.Identity/SignUp": {
         "User": {
-            "Fractl.Kernel.Identity/User": {
+            "Agentlang.Kernel.Identity/User": {
                 "Name": "Joe",
                 "Password": "Abc@acme123",
                 "Email": "joe@acme.com",
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 ```
 
-The Fractl runtime may be setup to execute some business-logic (like assigning permissions to the new user),
+The Agentlang runtime may be setup to execute some business-logic (like assigning permissions to the new user),
 after each successful signup-request. The application can provide this logic in a dataflow attached to the `:PostSignUp` event.
 
 ```clojure
@@ -61,10 +61,10 @@ the `/signup` request can be accessed as `:SignupRequest.User`. The following co
 executed after signup to assign an [rbac](rbac) role to the new user:
 
 ```clojure
-(dataflow :Fractl.Kernel.Identity/PostSignUp
- {:Fractl.Kernel.Rbac/RoleAssignment
+(dataflow :Agentlang.Kernel.Identity/PostSignUp
+ {:Agentlang.Kernel.Rbac/RoleAssignment
   {:Role "guest-user" 
-   :Assignee :Fractl.Kernel.Identity/PostSignUp.SignupRequest.User.Email}})
+   :Assignee :Agentlang.Kernel.Identity/PostSignUp.SignupRequest.User.Email}})
 ```
 
 After signing-up, the user may receive a confirmation email. The user can use the embedded-link in the email and confirm his account.
@@ -79,7 +79,7 @@ The user may also complete the confirmation process by directly calling the `POS
 
 The `:ConfirmationCode` attribute must be set to the confirmation-code received in the email.
 
-To login to the Fractl application, the user can call the `POST /login` API with an object of the `:UserLogin` event in the
+To login to the Agentlang application, the user can call the `POST /login` API with an object of the `:UserLogin` event in the
 request body.
 
 ```clojure
@@ -94,7 +94,7 @@ An example invocation will be,
 POST /login
 Content-Type: application/json
 
-{"Fractl.Kernel.Identity/UserLogin":
+{"Agentlang.Kernel.Identity/UserLogin":
  {"Username": "joe@acme.com", "Password": "Abc@acme123"}}
 ```
 

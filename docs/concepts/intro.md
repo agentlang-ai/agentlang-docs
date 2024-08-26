@@ -1,6 +1,6 @@
 # Introduction
 
-**Fractl** introduces a number of innovative concepts to programming:
+**Agentlang** introduces a number of innovative concepts to programming:
 
 1. **[Graph-based Data Model](data-model.md)**
 2. **[Entity-graph-Database Mapping](entity-db-mapping.md)**
