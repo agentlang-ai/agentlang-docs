@@ -50,4 +50,4 @@ If all goes well, you will get a response like,
 ]
 ```
 
-With Agentlang setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start) guide.
+With Agentlang setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start.md) guide.
