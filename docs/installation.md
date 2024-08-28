@@ -11,18 +11,19 @@ In your favorite text editor, create a file named `hello.agent` with the followi
 ```clojure
 (component :Hello)
 
-(agent :FunnyAgent
- {:UserInstruction "You are a friendly agent who entertains the user by telling jokes."
-  :LLM {:Type "openai"}})
+{Agent
+ {:Name "funny-agent"
+  :UserInstruction "You are a friendly agent who entertains the user by telling jokes."
+  :LLM {:Type "openai"}}}
 
-(inference :TellMeAJoke {:agent :FunnyAgent})
+(inference :TellMeAJoke {:agent "funny-agent"})
 ```
 
-An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component named `:Hello`.
+An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component - `:Hello`.
 
-After specifying the component, we define an `agent` named `:FunnyAgent`. (In Agentlang, names are usually specified as keywords (i.e symbols prefixed by a full-colon). By convention, these names are [upper camel cased](https://en.wikipedia.org/wiki/Camel_case). For agents, names may also be a string, like "funny-agent", but for consistency, let's stick to keywords for now). An `agent` requires at-least two attributes to be specified, one is the `:UserInstruction` which tells the `agent` what it's supposed to do. The other attribute is `:LLM`, which configures the llm-provider. Here we set `openai` as the llm-provider. It's possible to have fine-grained configuration for the LLM, but the default settings are good-enough for now.
+After specifying the component, we define an `agent` named `"funny-agent"`. An `agent` requires at-least two attributes to be specified. One is `:UserInstruction` which tells the `agent` what it's supposed to do. The other attribute is `:LLM`, which configures the llm-provider. Here we set `openai` as the llm-provider. It's possible to have fine-grained configuration for the LLM, but the default settings are good-enough for now.
 
-The last part of the program defines an `inference`, which is the preferred way to invoke an agent. When we define an `inference`, the Agentlang runtime will setup an HTTP endpoint that can be used to interact with the `agent`. To test this endpoint, we have to first start the application. As we have set OpenAI as the llm-provider, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). Then run the following command:
+The last part of the program defines an `inference`, which is the preferred way to invoke an agent. When we define an `inference`, the Agentlang runtime will setup an HTTP endpoint that can be used to interact with the `agent`. To test this endpoint, we have to first start the application. Before that, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). Then run the following command:
 
 ```clojure
 $ agent hello.agent
