@@ -69,6 +69,8 @@ What we have now is a traditional API service that can perform CRUD on an entity
 (inference :InvokePlanner {:agent "my-company-agent"})
 ```
 
+Note that we are using a new type of agent called "planner" - this agent is capable of generating a plan-of-execution based on some text input. It also makes use of "tools" available from a list of components - here we are using on the entity definitions in the `MyCompany` component. This will enable the planner-agent to generate its plan as CRUD operation on the entities defined in the specified components.
+
 Add the agent and inference definitions to the `:MyCompany` component. (Also, don't forget to define the required `LLM`). Then start the service and try the following request:
 
 ```shell
