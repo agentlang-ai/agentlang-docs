@@ -54,9 +54,57 @@ To filter customers by their type:
 curl http://localhost:8080/api/MyCompany/Customer?Type=premium
 ```
 
-**TODO**: Planning, pattern generation and evaluation with agents
+## Agent that deal with Entities
 
-**TODO**: Add OCR capabilities to the planner
+What we have now is a traditional API service that can perform CRUD on an entity. Is it possible to have an agent that can interpret a user request and translate that to an appropriate operation on an entity? Yes. The following snippet shows how an agent can be defined to convert textual input to an instance of `:Customer`:
+
+```clojure
+{Agent
+ {:Name "my-company-agent"
+  :Type "planner"
+  :ToolComponents ["MyCompany"]
+  :UserInstruction "You are an agent that use tools to create entity instances from text descriptions. For example, you should be able to create a new Customer instance from the input text \"Create a new premium customer with email joe@acme.com and name Joe J\""
+  :LLM "llm01"}}
+
+(inference :InvokePlanner {:agent "my-company-agent"})
+```
+
+Add the agent and inference definitions to the `:MyCompany` component. (Also, don't forget to define the required `LLM`). Then start the service and try the following request:
+
+```shell
+curl --location --request POST 'http://localhost:8080/api/MyCompany/InvokePlanner' \
+--header 'Content-Type: application/json' \
+--data-raw '{"MyCompany/InvokePlanner": {"UserInstruction": "Please add a new standard customer named Susan with email susan@abc.com"}}'
+```
+
+You should see a response similar to,
+
+```javascript
+[
+    {
+        "status": "ok",
+        "result": [
+            [
+                [
+                    {
+                        "type-*-tag-*-": "entity",
+                        "-*-type-*-": [
+                            "MyCompany",
+                            "Customer"
+                        ],
+                        "Email": "susan@abc.com",
+                        "Name": "Susan",
+                        "Type": "standard",
+                        "Created": "2024-08-29T12:21:14.405177377"
+                    }
+                ]
+            ],
+        ],
+    }
+]
+```
+
+This means the agent succeeded in adding the new customer to the database.
 
 We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please
 continue your journey by reading about the core [concepts](concepts/intro.md) of Agentlang and
