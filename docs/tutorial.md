@@ -59,7 +59,7 @@ curl http://localhost:8080/api/MyCompany/Customer?Type=premium
 What we have now is a traditional API service that can perform CRUD on an entity. Is it possible to have an agent that can interpret a user request and translate that to an appropriate operation on an entity? Yes. The following snippet shows how an agent can be defined to convert textual input to an instance of `:Customer`:
 
 ```clojure
-{Agent
+{:Agentlang.Core/Agent
  {:Name "my-company-agent"
   :Type "planner"
   :ToolComponents ["MyCompany"]

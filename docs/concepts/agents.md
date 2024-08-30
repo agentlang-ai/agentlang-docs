@@ -1,6 +1,6 @@
 # Intelligent Agents
 
-Agentlang is the only language designed from the ground-up to program with AI agents. The abstractions for agents and LLMs are defined as entities, i.e the AI capabilities of Agentlang is modelled in Agentlang itself. In an Agentlang model (or program), the names `Agent` and `LLM` are bound to the entity names `:Agentlang.Inference.Service/Agent` and `:Agentlang.Inference.Provider/LLM` respectively. These bindings are provided only for convenience, you may use the complete entity names instead.
+Agentlang is the only language designed from the ground-up to program with AI agents. The abstractions for agents and LLMs are defined as entities, i.e the AI capability of Agentlang is modelled in Agentlang itself.
 
 ## Types of Agents
 
@@ -23,16 +23,16 @@ An agent's capabilities can be enhanced not just by tools, but also with a vecto
   :Title :String
   :Amount :Double})
 
-{LLM {:Type "openai" :Name "llm01"}}
+{:Agentlang.Core/LLM {:Type "openai" :Name "llm01"}}
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "receipt-ocr-agent"
   :Type "ocr"
   :UserInstruction (str "Analyse the image of a receipt and return only the items and their amounts. "
                         "No need to include sub-totals, totals and other data.")
   :LLM "llm01"}}
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "expense-agent"
   :Type "eval"
   :LLM "llm01"
@@ -53,10 +53,10 @@ An agent's capabilities can be enhanced not just by tools, but also with a vecto
 
 ## LLM Configuration
 
-The `:Agentlang.Inference.Provider/LLM` entity has an attribute called `:Config` which allows the LLM provider to be finely tuned. As of now only the OpenAI is supported as a provider and the default configuration suffices for most purposes. The following code-snippet shows how a custom-configuration may be provided for an LLM instance:
+The `:Agentlang.Core/LLM` entity has an attribute called `:Config` which allows the LLM provider to be finely tuned. As of now only the OpenAI is supported as a provider and the default configuration suffices for most purposes. The following code-snippet shows how a custom-configuration may be provided for an LLM instance:
 
 ```clojure
-{:Agentlang.Inference.Provider/LLM ; or simply {LLM { ... }}
+{:Agentlang.Core/LLM
  {:Type "openai"
   :Name "my-llm"
   :Config {:ApiKey (agentlang.util/getenv "OPENAI_API_KEY")

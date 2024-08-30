@@ -6,7 +6,7 @@ In this section, we will develop a more involved application in Agentlang. We'll
 ```clojure
 (component :CustomerSupport)
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "support-agent"
   :UserInstruction "You are a customer-support agent."
   :LLM {:Type "openai"}}}
@@ -33,7 +33,7 @@ $ curl --location --request POST 'http://localhost:8080/api/CustomerSupport/Chat
 The preceding `curl` request will give a valid response based on what the LLM already knows about the specific camera model. What if we need to build a customer-support agent for some niche products that the LLM is not aware of? Agentlang allows its agents to be extended with a `:Documents` attribute. This is basically a list of document files that the agent can use as a "knowledge-base" to provide accurate answers on specific topics. The following snippet shows how the customer-support agent can be enhanced with a knowledge-base:
 
 ```clojure
-{Agent
+{:Agentlang.Core/Agent
  {:Name "support-agent"
   :UserInstruction "You are a customer-support agent."
   :LLM {:Type "openai"}
@@ -93,9 +93,9 @@ $ curl --location --request POST 'http://localhost:8080/api/CustomerSupport/Chat
 The example knowledge-base that we used in the last section is rather small - it has only two text documents. Real knowledge-bases can be quite large and it would help to split the documents among multiple agents. To continue on the customer-support example, we add two dedicated agents for answering queries on each product. Then we will add a third "master" agent that will *delegate* the user query to the appropriate product-specific sub-agent. All this can be modelled as:
 
 ```clojure
-{LLM {:Type "openai" :Name "customer-support-llm"}}
+{:Agentlang.Core/LLM {:Type "openai" :Name "customer-support-llm"}}
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "abc-agent"
   :UserInstruction "You are a customer-support agent that answer queries on the ABC camera only."
   :LLM "customer-support-llm"
@@ -103,7 +103,7 @@ The example knowledge-base that we used in the last section is rather small - it
                :Uri "file://./docs/abc.md"
                :Agent "abc-agent"}]}}
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "xyz-agent"
   :UserInstruction "You are a customer-support agent that answer queries on the XYZ camera only."
   :LLM "customer-support-llm"
@@ -111,7 +111,7 @@ The example knowledge-base that we used in the last section is rather small - it
                :Uri "file://./docs/xyz.md"
                :Agent "xyz-agent"}]}}
 
-{Agent
+{:Agentlang.Core/Agent
  {:Name "support-agent"
   :LLM "customer-support-llm"
   :Type "classifier"
