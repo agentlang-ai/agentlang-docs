@@ -6,7 +6,7 @@ TODO: add install instructions
 
 To make sure everything works fine, let's create a very simple Agentlang program. We will design an agent that will entertain the user by telling jokes.
 
-In your favorite text editor, create a file named `hello.agent` with the following code:
+In your favorite text editor, create a file named `hello.al` with the following code:
 
 ```clojure
 (component :Hello)
@@ -19,14 +19,25 @@ In your favorite text editor, create a file named `hello.agent` with the followi
 (inference :TellMeAJoke {:agent "funny-agent"})
 ```
 
+Before we explain the code, a word about syntax - Agentlang programs are encoded using the [edn](https://github.com/edn-format/edn), an extensible data notation. Specifically, we make extensive use of:
+
+- lists  - sequences enclosed in parenthesis `()`.
+- maps - key-value pairs enclosed in curly braces `{}`.
+- vectors - sequences enclosed in square brackets `[]`.
+- symbols - identifiers like `component` and `inference` that typically refer to some value in memory.
+- keywords - identifiers that start with `:` and typically refers to themselves.
+- strings
+- numbers
+- boolean values - `true`, `false`.
+
 An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component - `:Hello`.
 
-After declaring the component, we define an `agent` named `"funny-agent"`. An agent definition is basically a map of key-value pairs. Agents belong to a built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contains the properties or *attributes* of the agent. An `agent` requires at-least two attributes to be specified. One is `:UserInstruction` which tells the `agent` what it's supposed to do. The other attribute is `:LLM`, which configures the llm-provider. Here we set `openai` as the llm-provider. It's possible to have fine-grained configuration for the LLM, but the default settings are good-enough for now.
+After declaring the component, we define an *agent* named `"funny-agent"`. An agent definition is basically a map of key-value pairs. Agents belong to a built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contains the properties or *attributes* of the agent. An `agent` require at-least two attributes to be specified. One is `:UserInstruction` which tells the agent what it's supposed to do. The other attribute is `:LLM`, which configures the llm-provider. Here we set `openai` as the llm-provider. It's possible to have fine-grained configuration for the LLM, but the default settings are good-enough for now.
 
-The last part of the program defines an `inference`, which is the preferred way to invoke an agent. When we define an `inference`, the Agentlang runtime will setup an HTTP endpoint that can be used to interact with the `agent`. To test this endpoint, we have to first start the application. Before that, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). Then run the following command:
+The last part of the program defines an `inference`, which is the preferred way to invoke an agent. When we define an `inference`, the Agentlang runtime will setup an HTTP endpoint that can be used to interact with the agent. To test this endpoint, we have to first start the application. Before that, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key). Then run the following command:
 
 ```clojure
-$ agent hello.agent
+$ agent hello.al
 ```
 
 This will start the application as an HTTP service on port `8080`. You can interact with the newly-created agent by sending it a request as shown below:
@@ -51,4 +62,4 @@ If all goes well, you will get a response like,
 ]
 ```
 
-With Agentlang setup and working properly, you can now explore the language further by proceeding to the [Quick start](quick-start.md) guide.
+With Agentlang setup and working properly, you can further explore the language by proceeding to the [Quick start](quick-start.md) guide.

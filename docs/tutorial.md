@@ -1,12 +1,12 @@
 # Advanced Tutorial
 
-So far we have explored the AI-oriented capabilities of Agentlang. But Agentlang is not just a wrapper for programming with intelligent agents. It's a fully-capable programming language suitable for developing any complex business application. Agentlang's declarative nature allows developers to specify solutions to a problem as high-level specifications or "models", while the language runtime takes care of all incidental complexities like talking to a database and integrating with external REST APIs or libraries.
+So far we have explored the AI-oriented capabilities of Agentlang. But Agentlang is not just a wrapper for programming with intelligent agents. It's a fully-capable programming language suitable for developing any complex business application. Agentlang's declarative nature allows developers to specify solutions to a problem as high-level "models", while the language runtime takes care of all incidental complexities like talking to a database and integrating with external REST APIs or libraries.
 
-In this section, first we will have a quick look at Agentlang's modelling capabilities. Then we will see how agents can be programmed to make use of the business-model to solve advanced use-cases.
+In this tutorial, we will first have a quick look at Agentlang's modelling capabilities. Then we will see how agents can be programmed to make use of the business-model to solve some advanced use-cases.
 
 ## Entities
 
-Assume that the company you works for needs to keep track of information about all its customers. It should be possible to persist customer records in a database and it should be possible to list all customers, or retrieve information about a specific customer, given some identifier, like the customer's email address. It should also be possible to list customers belonging to one of the categories - "premium" or "standard". All this is solved by the following Agentlang program:
+Assume that your company needs to keep track of information about all its customers. It should be possible to persist customer records in a database and it should be possible to list all customers, or retrieve information about a specific customer, given some identifier, like the customer's email address. It should also be possible to list customers belonging to one of the categories - "premium" or "standard". All these requirements are satisfied by the following Agentlang program:
 
 ```clojure
 (component :MyCompany)
@@ -18,12 +18,12 @@ Assume that the company you works for needs to keep track of information about a
   :Type {:oneof ["premium" "standard"] :indexed true}})
 ```
 
-What the program does is to simply define an `entity` called `:Customer`. An `entity` defines the "schema" or data-structure for a business object. The structure of a business object is defined in terms of `attributes`. The `:Customer` entity has four attributes - `:Email`, `:Name`, `:Created` and `:Type`. The `:Email` attribute is defined as the globally-unique-identifier (`:guid`) of the entity, which means no two customers can have the same email address.
+All the program does is to define an `entity` called `:Customer`. An `entity` captures the "schema" or data-structure for a business object, in terms of `attributes`. The `:Customer` entity has four attributes - `:Email`, `:Name`, `:Created` and `:Type`. The `:Email` attribute is defined as the globally-unique-identifier (`:guid`) of the entity, which means no two customers can have the same email address.
 
-Save this program to a file named `customer.agent` and run it as:
+Save this program to a file named `customer.al` and run it as:
 
 ```shell
-$ agent customer.agent
+$ agent customer.al
 ```
 
 To create a new `:Customer`, use the following HTTP POST:
@@ -69,7 +69,7 @@ What we have now is a traditional API service that can perform CRUD on an entity
 (inference :InvokePlanner {:agent "my-company-agent"})
 ```
 
-Note that we are using a new type of agent called "planner" - this agent is capable of generating a plan-of-execution based on some text input. It also makes use of "tools" available from a list of components - here we are using on the entity definitions in the `MyCompany` component. This will enable the planner-agent to generate its plan as CRUD operation on the entities defined in the specified components.
+Note that we are using a new type of agent called "planner" - this agent is capable of generating a plan-of-execution based on some text input. It also makes use of "tools" available from a list of components - here we are using the entity definitions from the `MyCompany` component. This will enable the planner-agent to generate its plan-of-execution in terms of CRUD operations on the entities defined in the specified components.
 
 Add the agent and inference definitions to the `:MyCompany` component. (Also, don't forget to define the required `LLM`). Then start the service and try the following request:
 
