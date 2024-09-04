@@ -2,7 +2,7 @@
 
 Custom business logic is written in Agentlang using **dataflows**. Each dataflow is a collection of patterns. Each pattern is a declarative assertion on the domain that performs a (sometimes, conditional) CRUD operation on entity instance(s), evaluates a function or trigger other events.
 
-Dataflow patterns are written in a data-oriented syntax in Agentlang language and are represented by dataflow pattern blocks in the design studio.
+Dataflow patterns are written in a data-oriented syntax in and are represented by dataflow pattern blocks in the design studio.
 
 ## References
 

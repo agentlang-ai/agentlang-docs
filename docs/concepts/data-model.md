@@ -12,7 +12,7 @@ The following are some salient features of the data model:
 
 ![Graph Data Model](img/entity-relationship.png "Entity-Relationship")
 
-* **Hierarchical**: There are two kinds of relationships - `:contains` and `:between`. While `:between` relationship is a simple association between two entities, `:contains` relationship form a more structured containment/parent-child relationship. Entities that are related to each other via a `:contains` relationship form a tree. So, the data model ends up being a graph of trees.
+* **Hierarchical**: There are two kinds of relationships - `:contains` and `:between`. While `:between` relationship is a simple association between two entities, `:contains` relationship form a more structured parent-child relationship. Entities that are related to each other via a `:contains` relationship form a tree. So, the data model ends up being a graph of trees.
 
 ![Hierarchical Graph Data Model](img/entity-relationship-contains.png "Entity-Relationship-contains")
 
@@ -22,9 +22,7 @@ Since the Entity records of an application are organized as a graph, it is impor
 
 * **Type Composition and Inheritance**:
 
-Agentlang also supports a more traditional way to design the schema, as compositions of data structures.
-For example, a `:Person` entity may be seen as a composition of various simpler structures like personal and
-contact information:
+Agentlang also supports a more traditional way to design the schema, as compositions of data structures. For example, a `:Person` entity may be seen as a composition of various simpler structures like personal and contact information:
 
 ```clojure
 (record :PersonalInformation
@@ -55,5 +53,4 @@ New derived-types could be defined by way of type-inheritance:
   :Courses {:listof :String}})
 ```
 
-The `:Student` entity will have all the attributes defined for a `:Person` (like `:Name` and `:Contact`)
-in addition to its own local attributes like `:School` and `:Courses`.
+The `:Student` entity will have all the attributes defined for a `:Person` (like `:Name` and `:Contact`) in addition to its own local attributes like `:School` and `:Courses`.

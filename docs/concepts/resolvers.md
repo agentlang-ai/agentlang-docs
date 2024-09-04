@@ -25,10 +25,8 @@ completely off-loaded to the external service. In the sample code that follows, 
   (swap! db assoc (:Email inst) inst)
   inst)
 
-(def
-  ext-user-resolver
-  (agentlang.resolver.core/make-resolver
-   :ext.user.resolver ; a unique name for the resolver.
+(resolver :Acme/UserResolver ; a unique name for the resolver
+ {:with-methods
    {:create upsert
     :update upsert
     :delete (fn [inst]
@@ -42,15 +40,11 @@ completely off-loaded to the external service. In the sample code that follows, 
 			     (println (str "looking up " value))
                  (when-let [inst (get @db value)]
                    ;; Successful queries always return a sequence of instances.
-                   [inst]))))}))
-
-(agentlang.resolver.registry/override-resolver :Acme/ExternalUser ext-user-resolver)
+                   [inst]))))}
+  :paths [:Acme/ExternalUser]})
 ```
 
-Basically a resolver consists of a map of CRUD and query functions. The `agentlang.resolver.registry/override-resolver`
-function hands-over the complete responsibility of managing the instances of the `:ExternalUser` entity to the
-new resolver. If you want instances of the entity to be persisted in the local store as well, call the
-`agentlang.resolver.registry/compose-resolver` function instead.
+Basically a resolver consists of a map of CRUD and query functions. The `:paths` property helps to hands-over the complete responsibility of managing the instances of the `:ExternalUser` entity to the new resolver. If you want instances of the entity to be persisted in the local store as well, set the `:compose?` property to `true`.
 
 ## Testing the Resolver
 
@@ -78,13 +72,11 @@ curl --header "Content-Type: application/json" --request DELETE \
 http://localhost:8080/api/Acme/ExternalUser/mat@acme.com
 ```
 
-With each CRUD operation, you should see the appropriate log-statement from the resolver in the console.
-If you inspect the Agentlang database, you should see that no local records are being created for `:ExternalUser`.
+With each CRUD operation, you should see the appropriate log-statement from the resolver in the console. If you inspect the Agentlang database, you should see that no local records are being created for `:ExternalUser`.
 
 ## Custom Event Handling
 
-In addition to handling CRUD for entities, resolvers can also handle event-instances. For this the resolver has to
-be provided a handler for the `:eval` method. Let's look at an example:
+In addition to handling CRUD for entities, resolvers can also handle event-instances. For this the resolver has to be provided a handler for the `:eval` method. Let's look at an example:
 
 ```clojure
 (event :Acme/ExternalEvent {:Z :Int})
@@ -96,22 +88,19 @@ be provided a handler for the `:eval` method. Let's look at an example:
  {:Acme/ExternalEvent
   {:Z :Acme/TriggerExternalEvent.Z}})
 
-(def
-  ext-event-resolver
-  (agentlang.resolver.core/make-resolver
-   :ext.event.resolver
+(resolver :Acme/EventResolver
+  {:with-methods
    {:eval (fn [event-inst]
             {:Acme/ExternalResult
-             {:Value (* (:Z event-inst) 100)}})}))
-
-(agentlang.resolver.registry/override-resolver :Acme/ExternalEvent ext-event-resolver)
+             {:Value (* (:Z event-inst) 100)}})}
+   :paths [:Acme/ExternalEvent]})
 ```
 
 You can trigger the external-event as,
 
 ```shell
-curl --header "Content-Type: application/json" --request POST\
---data '{"Acme/TriggerExternalEvent": {"Z": 20}}'\
+curl --header "Content-Type: application/json" --request POST \
+--data '{"Acme/TriggerExternalEvent": {"Z": 20}}' \
 http://localhost:8080/api/Acme/TriggerExternalEvent
 ```
 
