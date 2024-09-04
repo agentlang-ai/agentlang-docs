@@ -87,7 +87,7 @@ Also note that setting up `:authentication` will also require the `:rbac` interc
 **:rbac-enabled** - true or false
 
 Setting `:rbac-enabled` to `true` will set `:authentication` to its default values. It also enabled the `:rbac` interceptor.
-Usually this is the only flag required to enable authentication and authorization in a Agentlang application.
+Usually this is the only flag required to enable authentication and authorization in an Agentlang application.
 
 **:deploy** - map
 

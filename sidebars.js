@@ -73,6 +73,7 @@ const sidebars = {
                 "language/reference/kernel/lang",
                 "language/reference/kernel/identity",
                 "language/reference/kernel/rbac",
+                "language/reference/kernel/ai",		  
               ],
             },
             "language/reference/rbac",

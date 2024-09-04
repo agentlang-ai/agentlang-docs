@@ -1,6 +1,6 @@
 # Identity
 
-The `:Agentlang.Kernel.Identity` component contain definitions for managing "user-identities" in a Agentlang application.
+The `:Agentlang.Kernel.Identity` component contain definitions for managing "user-identities" in an Agentlang application.
 
 ```clojure
 (entity :User
@@ -12,7 +12,7 @@ The `:Agentlang.Kernel.Identity` component contain definitions for managing "use
   :UserData {:type :Map :optional true}})
 ```
 
-The `:User` entity represents a user that can be authenticated by a Agentlang application and may be authorised to perform various actions on the business entities. The `:Email` attribute uniquely identifies the user in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
+The `:User` entity represents a user that can be authenticated by an Agentlang application and may be authorised to perform various actions on the business entities. The `:Email` attribute uniquely identifies the user in the system. The user may sign-in using the email-password combination or via a third-party authentication service like Google.
 
 A new user signs-up with the application by calling the `POST /signup` API. The argument to this POST request will be an instance of
 the `:SignUp` event.

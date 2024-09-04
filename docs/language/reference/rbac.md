@@ -1,8 +1,6 @@
 # Security & Access Control
 
-Agentlang allows role-based-access-control for an application to be expressed in a very declarative way. For instance,
-if only managers are allowed to create new companies and employees are only allowed to view company-data, 
-an appropriate `:rbac` spec could be added to the `:Company` entity definition:
+Agentlang allows role-based-access-control for an application to be expressed in a very declarative way. For instance, if only managers are allowed to create new companies and employees are only allowed to view company-data, an appropriate `:rbac` spec could be added to the `:Company` entity definition:
 
 ```clojure
 (entity :Acme.Core/Company
@@ -10,16 +8,13 @@ an appropriate `:rbac` spec could be added to the `:Company` entity definition:
   :rbac [{:roles ["manager"] :allow [:create]}
          {:roles ["employee"] :allow [:read]}]})
 ```
-When a user belonging to the "manager" role creates an instance of `:Company`, that user also becomes the *owner* of that
-instance. A user may *read*, *update* or *delete* an entity-instance that it owns. The user may also assign new owners
-or grant permissions on that instance to other users.
+When a user belonging to the "manager" role creates an instance of `:Company`, that user also becomes the *owner* of that instance. A user may *read*, *update* or *delete* an entity-instance that it owns. The user may also assign new owners or grant permissions on that instance to other users.
 
 **Note** The role named `admin` is special - users belonging to the `admin` role can execute CRUD operations on all entities in the system. (In other words, they become **superusers** of the system).
 
 ## Identity management
 
-Users are represented by instances of the `:Agentlang.Kernel.Identity/User` entity. New users are usually added to the application
-through the `/signup` API:
+Users are represented by instances of the `:Agentlang.Kernel.Identity/User` entity. New users are usually added to the application through the `/signup` API:
 
 ```shell
 $ curl -X POST http://localhost:8080/signup/ \

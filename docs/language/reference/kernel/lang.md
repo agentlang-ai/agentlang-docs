@@ -4,7 +4,7 @@ The `:Agentlang.Kernel.Lang` component defines the core-attribute types that can
 
 	* `:String` - texts of arbitrary length, enclosed in double-quotes
     * `:Keyword` - symbolic constants prefixed by a `:`. E.g - :left, :blue. Keywords may not contain spaces.
-	* `:Path` - fully qualified name of a Agentlang data-type, encoded as a keyword. E.g - :Acme.Erp/Employee.
+	* `:Path` - fully qualified name of an Agentlang data-type, encoded as a keyword. E.g - :Acme.Erp/Employee.
     * `:DateTime` - date-time strings, usually in the format `2011-12-03T10:15:30`.
 	* `:Date` - strings with only the date part of a `:DateTime`.
     * `:Time` - strings with only the time part of a `:DateTime`.

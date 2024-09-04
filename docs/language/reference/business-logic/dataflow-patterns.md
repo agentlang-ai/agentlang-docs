@@ -393,10 +393,7 @@ The arguments passed to the function should be one of,
  1. a literal or a sequence of literals
  2. a path to a local instance, attribute or alias
 
-`type-or-predicate` must be either the name of a Agentlang type or a single-argument function.
-If it's a type-name, the value returned by `f` should be an instance of the same type. If it's
-a function, it should return `true` for the value returned by `f`. Otherwise, `:eval` will terminate the
-dataflow, by returning an error.
+`type-or-predicate` must be either the name of an Agentlang type or a single-argument function. If it's a type-name, the value returned by `f` should be an instance of the same type. If it's a function, it should return `true` for the value returned by `f`. Otherwise, `:eval` will terminate the dataflow, by returning an error.
 
 **Example**
 
