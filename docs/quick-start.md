@@ -1,17 +1,15 @@
 # Quick Start
 
-In this section, we will develop a more involved application in Agentlang. We'll be designing a customer-support agent, that can answer user queries on specific products and also keep track of its chat-session. Let's start by creating a new Agentlang script called `customer_support.al`.
+In this section, we will develop a more involved Agentlang application. We'll be designing a customer-support agent that can answer user queries on specific products and also keep track of its chat-session. Let's start by creating a new Agentlang script called `customer_support.al`.
 
 
 ```clojure
 (component :CustomerSupport)
 
 {:Agentlang.Core/Agent
- {:Name "support-agent"
+ {:Name :CustomerSupport/Agent
   :UserInstruction "You are a customer-support agent."
-  :LLM {:Type "openai"}}}
-
-(inference :Chat {:agent "support-agent"})
+  :Input :CustomerSupport/Chat}}
 ```
 
 As we saw in the last section, you can use the `agent` command to run the customer-support agent:
@@ -30,20 +28,20 @@ $ curl --location --request POST 'http://localhost:8080/api/CustomerSupport/Chat
 
 ## Enhancing the Agent with a Knowledge-Base
 
-The preceding HTTP request will give a valid response based on what the LLM already knows about the specific camera model. What if we need to build a customer-support agent for some niche products that the LLM is not aware of? Agentlang allows its agents to be extended with a `:Documents` attribute. This is basically a list of document files that the agent can use as a "knowledge-base" to provide accurate answers on specific topics. The following snippet shows how the customer-support agent can be enhanced with a knowledge-base:
+The preceding HTTP request will give a valid response based on what the LLM already knows about that specific camera model. What if we need to build a customer-support agent for some niche products that the LLM is not aware of? Agentlang allows its agents to be extended with a `:Documents` attribute. This is basically a list of document files that the agent can use as a "knowledge-base" to provide accurate answers on specific topics. The following snippet shows how the customer-support agent can be enhanced with a knowledge-base:
 
 ```clojure
 {:Agentlang.Core/Agent
- {:Name "support-agent"
+ {:Name :CustomerSupport/Agent
   :UserInstruction "You are a customer-support agent."
-  :LLM {:Type "openai"}
+  :Input :CustomerSupport/Chat
   :Documents [{:Title "ABC Camera User Manual"
                :Uri "file://./docs/abc.md"}
               {:Title "XYZ Camera User Manual"
                :Uri "file://./docs/xyz.md"}]}}
 ```
 
-Here we set two user-manuals as the knowledge-base for the customer-support agent. (You can set any text file for the `:Uri` attribute). Now if you ask questions specific to the products "ABC" and "XYZ", the agent will formulate an answer based on the provided manuals.
+Here we set two text files as the knowledge-base for the customer-support agent. (You can set any text file for the `:Uri` attribute). Now if you ask questions specific to the products "ABC" and "XYZ", the agent will formulate an answer based on the provided manuals.
 
 Agentlang makes use of a [vector database](https://en.wikipedia.org/wiki/Vector_database) for maintaining its knowledge-base and it has built-in support for [pgvector](https://github.com/pgvector/pgvector). So before you actually run and test the updated agent, please make sure you have an instance of Postgres with the pgvector extension enabled. Also make sure the following DDL statement is executed in your Postgres instance:
 
@@ -65,13 +63,14 @@ CREATE TABLE text_embedding
 The `text_embedding` table is where the knowledge-base will be stored. Once the vector database is setup, we need to tell the Agentlang runtime to start using it as a knowledge-base. This information is passed via a configuration file called `config.edn`. You can add the following content to this file:
 
 ```clojure
-{:inference-service-enabled true
- :publish-schema {:vectordb :pgvector
-                  :config {:host "your-postgres-hostname"
-                           :port 5432 ; postgres-port
-                           :dbname "postgres-db-name"
-                           :user "postgres-user"
-                           :password "postgres-password"}}}
+{:embeddings
+ {:vectordb :pgvector
+  :config
+  {:host "postgres_host"
+   :port 5432 ; postgres_port
+   :dbname "postgres_dbname"
+   :user "postgres_user"
+   :password "postgres_password"}}}
 ```
 
 Now you can run the agent again with this configuration:
@@ -88,44 +87,36 @@ $ curl --location --request POST 'http://localhost:8080/api/CustomerSupport/Chat
 --data-raw '{"CustomerSupport/Chat": {"UserInstruction": "how can I set white-balance in ABC camera?"}}'
 ```
 
-The response will contain very specific information based on the data from the manual pertaining to the "ABC" camera.
+The response will contain very specific information based on the data from the manual relevant for the "ABC" camera.
 
 ## Interactions between Agents
 
 The example knowledge-base that we used in the last section is rather small - it has only two text documents. Real knowledge-bases can be quite large and it would help to split the documents among multiple agents. To continue on the customer-support example, we add two dedicated agents for answering queries on each product. Then we will add a third "master" agent that will *delegate* the user query to the appropriate product-specific sub-agent. All this can be modelled as:
 
 ```clojure
-{:Agentlang.Core/LLM {:Type "openai" :Name "customer-support-llm"}}
-
 {:Agentlang.Core/Agent
- {:Name "abc-agent"
+ {:Name :CustomerSupport/AbcAgent
   :UserInstruction "You are a customer-support agent that answer queries on the ABC camera only."
-  :LLM "customer-support-llm"
   :Documents [{:Title "ABC Camera User Manual"
                :Uri "file://./docs/abc.md"
-               :Agent "abc-agent"}]}}
+               :Agent :CustomerSupport/AbcAgent}]}}
 
 {:Agentlang.Core/Agent
- {:Name "xyz-agent"
+ {:Name :CustomerSupport/XyzAgent
   :UserInstruction "You are a customer-support agent that answer queries on the XYZ camera only."
-  :LLM "customer-support-llm"
   :Documents [{:Title "XYZ Camera User Manual"
                :Uri "file://./docs/xyz.md"
-               :Agent "xyz-agent"}]}}
+               :Agent :CustomerSupport/XyzAgent}]}}
 
 {:Agentlang.Core/Agent
- {:Name "support-agent"
-  :LLM "customer-support-llm"
+ {:Name :CustomerSupport/Master
   :Type "classifier"
+  :Input :CustomerSupport/Chat
   :Delegates
-  [{:To "abc-agent"}
-   {:To "xyz-agent"}]}}
-
-(inference :Chat {:agent "support-agent"})
+  [{:To :CustomerSupport/AbcAgent}
+   {:To :CustomerSupport/XyzAgent}]}}
 ```
 
-There are two new agents in the updated model - each one dedicated for a specific product. The `support-agent` now acts as a "classifier" that decides which sub-agent or *delegate* should be invoked to handle the user-query. The actual response is generated by one of the delegates.
-
-Also note that we moved the definition of the `LLM` outside of the `Agent` constructs - this is useful when more than one agent will be interacting with the same llm-provider.
+There are two new agents in the updated model - each one dedicated for a specific product. The `master` agent now acts as a "classifier" that decides which sub-agent or *delegate* should be invoked to handle the user-query. The actual response is generated by one of the delegates.
 
 In this tutorial, we learned about some of the common patterns that can be used to design AI application using Agentlang's powerful abstractions. So far, we have only scratched the surface of what Agentlang can do. As mentioned earlier, Agentlang is a tool for bridging the gap between AI-oriented problem solving and traditional business applications. In the [advanced tutorial](tutorial.md) that follows, we will explore this in some more depth.
