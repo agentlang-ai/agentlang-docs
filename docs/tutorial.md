@@ -112,4 +112,4 @@ You should see a response similar to,
 
 This means the agent succeeded in adding the new customer to the database.
 
-We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please continue your journey by reading more about agents that can generate complex business workflows or about the core [concepts](concepts/intro.md) of Agentlang and the [language reference](language/reference/overview.md). You may also want to explore business-application modelling in some more depth [here](modelling-steps.md).
+We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please continue your journey by reading [more about agents](planner.md) that can generate complex business workflows or about the core [concepts](concepts/intro.md) of Agentlang and the [language reference](language/reference/overview.md). You may also want to explore business-application modelling in some more depth [here](modelling-steps.md).
