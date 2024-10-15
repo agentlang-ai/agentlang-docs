@@ -6,7 +6,14 @@ In this tutorial, we will first have a quick look at Agentlang's modelling capab
 
 ## Entities
 
-Assume that your company needs to keep track of information about all its customers. It should be possible to persist customer records in a database and it should be possible to list all customers, or retrieve information about a specific customer, given some identifier, like the customer's email address. It should also be possible to list customers belonging to one of the categories - "premium" or "standard". All these requirements are satisfied by the following Agentlang program:
+Assume that your company needs to keep track of information about all its customers. Some of the requirements of this application are:
+
+  1. Persist customer records in a database
+  2. List all customers
+  3. Retrieve information about a specific customer, given some identifier, like the customer's email address.
+  4. List customers belonging to one of the categories - "premium" or "standard".
+
+All these requirements are satisfied by the following Agentlang program:
 
 ```clojure
 (component :MyCompany)
@@ -31,10 +38,10 @@ To create a new `:Customer`, use the following HTTP POST:
 ```shell
 curl --location --request POST 'http://localhost:8080/api/MyCompany/Customer' \
 --header 'Content-Type: application/json' \
---data-raw '{"MyCompany/Customer": {"Email": "joe@acme.com", "Name": "J Joe", "Type": "standard"}}`
+--data-raw '{"MyCompany/Customer": {"Email": "joe@acme.com", "Name": "J Joe", "Type": "standard"}}'
 ```
 
-You can create as many *instances* of `:Customer` as you want - they are all automatically persisted to a local [H2](https://www.h2database.com/html/main.html) database file. (To reuse this database for multiple runs of the application, update `config.edn` with the setting - `{:store {:type :h2 :dbname "./data/customer"}}`. You may also point the application to a Postgres database. For this, create a `config.edn` file with the setting - `{:store {:type :postgres}}`. Also set these environment variables to the appropriate values: `POSTGRES_HOST` (default "localhost"), `POSTGRES_DB` (default "postgres"), `POSTGRES_USER` (default "postgres") and `POSTGRES_PASSWORD`).
+You can create as many *instances* of `:Customer` as you want - they are all automatically persisted to a local [H2](https://www.h2database.com/html/main.html) database file. (To reuse this database for multiple runs of the application, update `config.edn` with the setting - `{:store {:type :h2 :dbname "./data/customer"}}`. You may also point the application to a Postgres database. To do this, create a `config.edn` file with the setting - `{:store {:type :postgres}}`. Also set these environment variables to the appropriate values: `POSTGRES_HOST` (default "localhost"), `POSTGRES_DB` (default "postgres"), `POSTGRES_USER` (default "postgres") and `POSTGRES_PASSWORD`).
 
 To list all customers, send a `GET` request to the same endpoint:
 
@@ -60,23 +67,20 @@ What we have now is a traditional API service that can perform CRUD on an entity
 
 ```clojure
 {:Agentlang.Core/Agent
- {:Name "my-company-agent"
-  :Type "planner"
-  :ToolComponents ["MyCompany"]
-  :UserInstruction "You are an agent that use tools to create entity instances from text descriptions. For example, you should be able to create a new Customer instance from the input text \"Create a new premium customer with email joe@acme.com and name Joe J\""
-  :LLM "llm01"}}
-
-(inference :InvokePlanner {:agent "my-company-agent"})
+ {:Name :MyCompany/Agent
+  :Type :planner
+  :Tools [:MyCompany/Customer]
+  :Input :MyCompany/InvokeAgent}}
 ```
 
-Note that we are using a new type of agent called "planner" - this agent is capable of generating a plan-of-execution based on some text input. It also makes use of "tools" available from a list of components - here we are using the entity definitions from the `MyCompany` component. This will enable the planner-agent to generate its plan-of-execution in terms of CRUD operations on the entities defined in the specified components.
+Note that we are using a new type of agent called `:planner` - this agent is capable of generating a plan-of-execution based on some text input. It also makes use of "tools" available from a list of components - here we are using the entity definitions from the `:MyCompany` component. This will enable the planner-agent to generate its plan-of-execution in terms of CRUD operations on the entities defined in the specified components.
 
 Add the agent and inference definitions to the `:MyCompany` component. (Also, don't forget to define the required `LLM`). Then start the service and try the following request:
 
 ```shell
-curl --location --request POST 'http://localhost:8080/api/MyCompany/InvokePlanner' \
+curl --location --request POST 'http://localhost:8080/api/MyCompany/InvokeAgent' \
 --header 'Content-Type: application/json' \
---data-raw '{"MyCompany/InvokePlanner": {"UserInstruction": "Please add a new standard customer named Susan with email susan@abc.com"}}'
+--data-raw '{"MyCompany/InvokeAgent": {"UserInstruction": "Please add a new standard customer named Susan with email susan@abc.com"}}'
 ```
 
 You should see a response similar to,
@@ -108,6 +112,4 @@ You should see a response similar to,
 
 This means the agent succeeded in adding the new customer to the database.
 
-We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please
-continue your journey by reading about the core [concepts](concepts/intro.md) of Agentlang and
-the [language reference](language/reference/overview.md). You may also want to explore business-application modelling in some more depth [here](modelling-steps.md).
+We have reached the end of our whirlwind tour of Agentlang. There's a lot of ground left to cover - please continue your journey by reading more about agents that can generate complex business workflows or about the core [concepts](concepts/intro.md) of Agentlang and the [language reference](language/reference/overview.md). You may also want to explore business-application modelling in some more depth [here](modelling-steps.md).
