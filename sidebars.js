@@ -23,6 +23,7 @@ const sidebars = {
     "installation",
     "quick-start",
     "tutorial",
+    "planner",
     "modelling-steps",
     {
       type: "category",
