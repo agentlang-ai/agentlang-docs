@@ -55,7 +55,7 @@ For example, in the model of a library, you can think of a few basic entities li
 
 ## Step 2 - Implement Custom Business Logic
 
-If you load the above model into Agentlang, you can immediately perform CRUD operations on the entities and their relationships. You have a scalable, REST API enabled "library" service ready in so few lines of code! But when you reach the book checkout process you notice that a few more checks must be in place - before we could create an instance of `:Checkout` we need to make sure that the `:Member` has a `:Membership` in the `:Library` and the `:Book` is available for checkout.
+If you load the above model into Agentlang, you can immediately perform CRUD operations on the entities and their relationships. You have a scalable, REST API enabled "library" service ready in so few lines of code! But when you reach the book checkout process you notice that a few more checks must be in place - before we can create an instance of `:Checkout` we need to make sure that the `:Member` has a `:Membership` in the `:Library` and the `:Book` is available for checkout.
 
 Business logic like these are expressed as `dataflow`s which are triggered by `event`s. For our custom checkout rules, we define the following event and attach a dataflow to it:
 

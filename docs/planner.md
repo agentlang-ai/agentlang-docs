@@ -1,6 +1,6 @@
 # Workflow Planning Agents
 
-The following program shows a slightly more sophisticated planner. There are two main entities in the model - `Issue` and `User`. `Issue` represents a bug or feature report and `User` represents a user in the system. There are certain workflows that needs to be triggered when an `Issue` or `User` is created. The   instruction for the `:Acme.Core/RequestHandler` agent below describes this workflow in plain English. An `Issue` or `User` creation request also comes into the system as an English sentence. The agent parses this sentence, identifies which workflow to run the executes the relevant "code".
+The following program shows a slightly more sophisticated planner. There are two main entities in the model - `Issue` and `User`. `Issue` represents a bug or feature report and `User` represents a user in the system. There are certain workflows that needs to be triggered when an `Issue` or `User` is created. The   instruction for the `:Acme.Core/RequestHandler` agent below describes this workflow in plain English. An `Issue` or `User` creation request also comes into the system as an English sentence. The agent parses this sentence, identifies which workflow to run and then executes the relevant "code".
 
 ```clojure
 (component :Acme.Core)
@@ -49,7 +49,9 @@ As you might have noticed, there's no code for "business logic" or workflows def
 Example request:
 
 ```shell
-curl --location --request POST 'http://localhost:8000/api/Acme.Core/InvokeRequestHandler' --header 'Content-Type: application/json' --data-raw '{"Acme.Core/InvokeRequestHandler": {"UserInstruction": "Create a user James with email james@acme.com in the sales department"}}'
+curl --location --request POST 'http://localhost:8000/api/Acme.Core/InvokeRequestHandler' \
+--header 'Content-Type: application/json' \
+--data-raw '{"Acme.Core/InvokeRequestHandler": {"UserInstruction": "Create a user James with email james@acme.com in the sales department"}}'
 ```
 
 Response:
@@ -69,10 +71,12 @@ Response:
     }
 ]
 ```
+
 You can send a few `GET` requests to verify that the objects required by the entire workflow is created. For instance, here's the email-message created for the user:
 
 ```shell
-curl --location --request GET 'http://localhost:8000/api/Acme.Core/EmailMessage' --header 'Content-Type: application/json'
+curl --location --request GET 'http://localhost:8000/api/Acme.Core/EmailMessage' \
+--header 'Content-Type: application/json'
 ```
 
 Response:
@@ -95,7 +99,9 @@ Response:
 ```
 
 ```shell
-curl --location --request POST 'http://localhost:8000/api/Acme.Core/InvokeRequestHandler' --header 'Content-Type: application/json' --data-raw '{"Acme.Core/InvokeRequestHandler": {"UserInstruction": "Create a new bug with title \"execution failing\" and body \"execution fails with arithmetic expression\". The issue should be assigned to kate@acme.com"}}'
+curl --location --request POST 'http://localhost:8000/api/Acme.Core/InvokeRequestHandler' \
+--header 'Content-Type: application/json' \
+--data-raw '{"Acme.Core/InvokeRequestHandler": {"UserInstruction": "Create a new bug with title \"execution failing\" and body \"execution fails with arithmetic expression\". The issue should be assigned to kate@acme.com"}}'
 ```
 
 Response:
