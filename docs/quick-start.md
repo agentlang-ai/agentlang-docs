@@ -110,7 +110,7 @@ The example knowledge-base that we used in the last section is rather small - it
 
 {:Agentlang.Core/Agent
  {:Name :CustomerSupport/Master
-  :Type "classifier"
+  :Type :classifier
   :Input :CustomerSupport/Chat
   :Delegates
   [{:To :CustomerSupport/AbcAgent}

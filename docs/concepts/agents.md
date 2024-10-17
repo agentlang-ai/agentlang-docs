@@ -10,6 +10,7 @@ The various types of agents built-into Agentlang are:
 2. `:ocr` - An agent that analyzes an image to extract textual information.
 3. `:planner` - A planner can make use of *tools* in the form of entity and event definitions appearing in a component. A planner may also use other agents as tools. (For a detailed example of a planner-agent, please see the [advanced tutorial](../tutorial.md) section).
 4. `:eval` - An agent that can generate dataflow patterns like `:planner`, but requires explicit instructions to do so.
+5. `:classifier` - An agent that analyzes input text and decides which delegate to invoke the specific request.
 
 An agent's capabilities can be enhanced not just by tools, but also with a *knowledge-base*. This is detailed in the [quick start](../quick-start.md) guide.
 
