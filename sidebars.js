@@ -32,6 +32,7 @@ const sidebars = {
         "concepts/intro",
         "concepts/data-model",
         "concepts/entity-db-mapping",
+        "concepts/agents",
         "concepts/zero-trust-programming",
         "concepts/declarative-dataflow",
         "concepts/resolvers",

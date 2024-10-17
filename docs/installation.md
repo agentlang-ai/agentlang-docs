@@ -61,4 +61,27 @@ You should get a response like,
 ]
 ```
 
+## Setting up a custom LLM provider
+
+An agent internally uses a default LLM provider for generating its responses. A custom LLM provider can be assigned for this purpose. The following code snippet shows how this could be done:
+
+```clojure
+(component :Hello)
+
+{:Agentlang.Core/LLM
+ {:Type :openai
+  :Name :my-llm
+  :Config {:ApiKey (agentlang.util/getenv "OPENAI_API_KEY")
+           :CompletionApiEndpoint "https://api.openai.com/v1/chat/completions"
+           :CompletionModel "gpt-4o-min"}}}
+
+{:Agentlang.Core/Agent
+ {:Name :Hello/FriendlyAgent
+  :LLM :my-llm
+  :UserInstruction "You are a friendly agent who answer questions posted by a human."
+  :Input :Hello/Chat}}
+```
+
+You can test the custom LLM by using the HTTP POST request from the preceding section.
+
 With Agentlang setup and working properly, you can further explore the language by proceeding to the [Quick start](quick-start.md) guide.
