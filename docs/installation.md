@@ -1,6 +1,13 @@
 # Installation
 
-TODO: add install instructions
+[Download](https://github.com/agentlang-ai/agentlang.cli/releases) the latest release of the Agentlang CLI tool. You may download a binary distribution 
+and decompress as follows:
+
+```shell
+tar xvf agentlang.cli-<version>-bin.tar.gz
+```
+
+Now, you may set `PATH` environment variable to the created directory and use the agent command. You would need Java 21 and Git installed to use this CLI tool.
 
 ## hello, world
 
@@ -17,7 +24,7 @@ In your favorite text editor, create a file named `hello.al` with the following 
   :Input :Hello/Chat}}
 ```
 
-Before we explain the code, a word about syntax - Agentlang programs are encoded in [edn](https://github.com/edn-format/edn), an extensible data notation. Specifically, an Agentlang script is made up of:
+Before we explain the code, a word about syntax - Agentlang programs are encoded in [edn](https://github.com/edn-format/edn), the extensible data notation. Specifically, an Agentlang script is made up of:
 
 - lists  - sequences enclosed in parenthesis `()`
 - maps - key-value pairs enclosed in curly braces `{}`
@@ -28,16 +35,16 @@ Before we explain the code, a word about syntax - Agentlang programs are encoded
 - numbers - integer or floating-point values
 - boolean - `true` or `false`
 
-An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component - `:Hello`.
+An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component named `:Hello`.
 
-After declaring the component, we define an *agent* named `:Hello/FriendlyAgent`. An agent definition is basically a map of key-value pairs. Agents belong to a built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contain the properties or *attributes* of the agent. An `agent` require at-least three attributes to be specified. One, as we saw earlier, is its `:Name`. The next required attribute is `:UserInstruction`, which describes the agent to itself or explains to the agent what its supposed to do - all in plain English. The third attribute required by an agent is `:Input` - which simply defines a name under which an HTTP API will be exposed for interacting with the agent.
+After declaring the component, we define an *agent* named `:Hello/FriendlyAgent`. An agent definition is basically a map of key-value pairs. Agents belong to the built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contain the properties or *attributes* of the agent. An `agent` require at-least three attributes to be specified. One, as we saw earlier, is its `:Name`. The next required attribute is `:UserInstruction`, which describes the agent to itself or explains to the agent what it's supposed to do - all in plain English. The third attribute required by an agent is `:Input` - which simply defines a name under which an HTTP API will be exposed for interacting with the agent. User interaction with an agent happens by giving it more user-instructions.
 
 With that basic description of the agent behind us, we can proceed to run it. But before that, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
 Now run the following command:
 
 ```clojure
-$ agent hello.al
+agent hello.al
 ```
 
 This will start the application as an HTTP service on port `8080`. You can interact with the newly-created agent by sending it a request as shown below:
@@ -84,4 +91,4 @@ An agent internally uses a default LLM provider for generating its responses. A 
 
 You can test the custom LLM by using the HTTP POST request from the preceding section.
 
-You may further explore the language by proceeding to the [Quick start](quick-start.md) guide.
+With Agentlang now installed and setup, you may further explore the language by proceeding to the [Quick start](quick-start.md) guide.
