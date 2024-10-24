@@ -33,7 +33,7 @@ The following program shows a slightly more sophisticated planner. There are two
   :Password :Password})
 
 {:Agentlang.Core/Agent
- {:Name :Acme.Core/RequestHandler
+ {:Name :acme-request-handler
   :Type :planner
   :UserInstruction (str "If the input is a request for creating an issue, then\n"
                         "  1. Create a new issue object.\n"

@@ -19,7 +19,7 @@ In your favorite text editor, create a file named `hello.al` with the following 
 (component :Hello)
 
 {:Agentlang.Core/Agent
- {:Name :Hello/FriendlyAgent
+ {:Name :friendly-agent
   :UserInstruction "You are a friendly agent who answer questions posted by a human."
   :Input :Hello/Chat}}
 ```
@@ -37,7 +37,7 @@ Before we explain the code, a word about syntax - Agentlang programs are encoded
 
 An application written in Agentlang consists of multiple modules called *components*. In the above program, we have just one component named `:Hello`.
 
-After declaring the component, we define an *agent* named `:Hello/FriendlyAgent`. An agent definition is basically a map of key-value pairs. Agents belong to the built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contain the properties or *attributes* of the agent. An `agent` require at-least three attributes to be specified. One, as we saw earlier, is its `:Name`. The next required attribute is `:UserInstruction`, which describes the agent to itself or explains to the agent what it's supposed to do - all in plain English. The third attribute required by an agent is `:Input` - which simply defines a name under which an HTTP API will be exposed for interacting with the agent. User interaction with an agent happens by giving it more user-instructions.
+After declaring the component, we define an *agent* named `:friendly-agent`. An agent definition is basically a map of key-value pairs. Agents belong to the built-in component called `:Agentlang.Core`, so an agent definition map has a single key `:Agentlang.Core/Agent`. The value of that key is another map that contain the properties or *attributes* of the agent. An `agent` require at-least three attributes to be specified. One, as we saw earlier, is its `:Name`. The next required attribute is `:UserInstruction`, which describes the agent to itself or explains to the agent what it's supposed to do - all in plain English. The third attribute required by an agent is `:Input` - which simply defines a name under which an HTTP API will be exposed for interacting with the agent. User interaction with an agent happens by giving it more user-instructions.
 
 With that basic description of the agent behind us, we can proceed to run it. But before that, make sure you have set the `OPENAI_API_KEY` environment variable to a valid [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
@@ -83,7 +83,7 @@ An agent internally uses a default LLM provider for generating its responses. A 
            :CompletionModel "gpt-4o-min"}}}
 
 {:Agentlang.Core/Agent
- {:Name :Hello/FriendlyAgent
+ {:Name :friendly-agent
   :LLM :my-llm
   :UserInstruction "You are a friendly agent who answer questions posted by a human."
   :Input :Hello/Chat}}

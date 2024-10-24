@@ -69,7 +69,7 @@ What we now have is a traditional API service that can perform CRUD on an entity
 
 ```clojure
 {:Agentlang.Core/Agent
- {:Name :MyCompany/Agent
+ {:Name :mycompany-agent
   :Type :planner
   :Tools [:MyCompany/Customer]
   :Input :MyCompany/InvokeAgent}}
