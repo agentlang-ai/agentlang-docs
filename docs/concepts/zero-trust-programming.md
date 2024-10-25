@@ -1,12 +1,12 @@
 # Zero-trust Programming
 
-By default, a Fractl application in production will not allow any operation - read or write - on entities and relationships without *permits*. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, Fractl incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on changing needs.
+By default, an Agentlang application in production will not allow any operation - read or write - on entities and relationships without *permits*. The developer has to explicitly permit operations on each construct - this enables fine-granular security right in the programming language. Further, Agentlang incorporates facilities to add/modify/revoke permissions during runtime, enabling the application security rules to be dynamically modified based on changing needs.
 
 > **Note**: An "entity" is different from an "instance of an entity" - the former is a type, whereas the latter is a value of that type.
 
 ## Fine-granular Access Control
 
-The following are some of the salient security features in Fractl:
+The following are some of the salient security features in Agentlang:
 
 * **Role-based Entity Permissions**: Developers can define permissions for users of different roles to perform CRUD operations of entities declaratively. 
 
@@ -18,7 +18,7 @@ In the example above, **any** user of the role "Manager" can perform Create, Rea
 
 ![Create-only permission](img/create-only-entity-permissions.png "Ownership with Create-only Permission")
 
-* **Permissions flow**: The **Graph-based Hierarchical Data Model** introduced by **Fractl** enables a zero-trust programming paradigm with minimal configuration. Permissions flow down the data model tree via the `:contains` relationship links. This permission flow applies both to Role-based permissions and instance ownership-based permissions:
+* **Permissions flow**: The **Graph-based Hierarchical Data Model** introduced by Agentlang enables a zero-trust programming paradigm with minimal configuration. Permissions flow down the data model tree via the `:contains` relationship links. This permission flow applies both to Role-based permissions and instance-ownership-based permissions:
     * **RBAC**: In the example below, any user that belongs to the `manager` role can perform Create, Read, Update operations on entity "Company". As a result, the user can also perform the same exact set of operations on "Account" under "Company". (Also see the documentation on [RBAC](/docs/language/reference/rbac)).
     * **Instance ownership**: A user who "owns" an instance of the entity "Company" automatically owns all instances of "Account" under "Company".
 

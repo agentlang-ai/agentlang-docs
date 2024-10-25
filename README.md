@@ -1,6 +1,6 @@
 # Website
 
-Documents for Fractl Language.
+Documents for the Agentlang Language.
 
 ### Installation
 

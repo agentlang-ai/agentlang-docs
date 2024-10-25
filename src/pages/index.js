@@ -18,7 +18,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Introduction to Fractl
+            Introduction to Agentlang
           </Link>
         </div>
       </div>

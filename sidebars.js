@@ -23,6 +23,7 @@ const sidebars = {
     "installation",
     "quick-start",
     "tutorial",
+    "planner",
     "modelling-steps",
     {
       type: "category",
@@ -31,6 +32,7 @@ const sidebars = {
         "concepts/intro",
         "concepts/data-model",
         "concepts/entity-db-mapping",
+        "concepts/agents",
         "concepts/zero-trust-programming",
         "concepts/declarative-dataflow",
         "concepts/resolvers",
@@ -73,6 +75,7 @@ const sidebars = {
                 "language/reference/kernel/lang",
                 "language/reference/kernel/identity",
                 "language/reference/kernel/rbac",
+                "language/reference/kernel/ai",		  
               ],
             },
             "language/reference/rbac",

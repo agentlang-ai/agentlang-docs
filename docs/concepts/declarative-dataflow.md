@@ -1,8 +1,8 @@
 # Declarative Dataflow
 
-Custom business logic is written in Fractl using **dataflows**. Each dataflow is a collection of patterns. Each pattern is a declarative assertion on the domain that performs a (sometimes, conditional) CRUD operation on entity instance(s), evaluates a function or trigger other events.
+Custom business logic is written in Agentlang using **dataflows**. Each dataflow is a collection of patterns. Each pattern is a declarative assertion on the domain that performs a (sometimes, conditional) CRUD operation on entity instance(s), evaluates a function or trigger other events.
 
-Dataflow patterns are written in a data-oriented syntax in Fractl language and are represented by dataflow pattern blocks in the design studio.
+Dataflow patterns are written in a data-oriented syntax in and are represented by dataflow pattern blocks in the design studio.
 
 ## References
 
@@ -16,7 +16,7 @@ Most Dataflow patterns, when evaluated, generate a result - which is either an i
   :Name "J Joe"}
 
 {:Acme.Core/SendEmail
- {:Email :Acme.Core/Person.Email ; "jj@fractl.io"
+ {:Email :Acme.Core/Person.Email ; "jj@agentlang.io"
   :Subject "Job offer"
   :Attachments "offer-letter.pdf"}}
 
@@ -27,7 +27,7 @@ Most Dataflow patterns, when evaluated, generate a result - which is either an i
  :as :P}
 
 {:Acme.Core/SendEmail
- {:Email :P.Email ; "jj@fractl.io"
+ {:Email :P.Email ; "jj@agentlang.io"
   ;; ...
   }}
 ```

@@ -1,6 +1,6 @@
 # REPL
 
-Fractl supports a REPL environment. REPL is the language shell in which users can evaluate Fractl definitions and dataflow patterns.
+Agentlang supports a REPL environment. REPL is the language shell in which users can evaluate Agentlang definitions and dataflow patterns.
 The REPL can accelerate development by allowing users to explore and fine-tune small snippets of code, instead of wrangling with the entire stack.
 
 ## Getting Started
@@ -9,8 +9,8 @@ For this tutorial, we will use the `Blog` application from the [Quick Start](qui
 Use the following commands to launch the REPL from the `blog` model directory:
 
 ```shell
-cd ~/fractl-models/blog
-fractl repl
+cd ~/agentlang-models/blog
+agentlang repl
 ```
 
 This will land you in the prompt:
@@ -19,8 +19,8 @@ This will land you in the prompt:
 blog>
 ```
 
-From this prompt you can type-in and evaluate Fractl patterns and have the results printed back. For instance, the following session
-shows how to create a user and add a new blog-post under that user. (The response from the Fractl evaluator is shown as comments,
+From this prompt you can type-in and evaluate Agentlang patterns and have the results printed back. For instance, the following session
+shows how to create a user and add a new blog-post under that user. (The response from the Agentlang evaluator is shown as comments,
 some responses are left-out):
 
 ```clojure
@@ -58,42 +58,42 @@ blog> {:BlogPost
 ;   :PostedOn "2023-11-03T14:40:37.583122517"}
 ```
 
-You can type in `?` at the prompt to get some useful information about the Fractl runtime - like its version, the names of the loaded components etc. Type `:quit` to exit the REPL.
+You can type in `?` at the prompt to get some useful information about the Agentlang runtime - like its version, the names of the loaded components etc. Type `:quit` to exit the REPL.
 
-You can start the REPL from any directory, if you set the `FRACTL_MODEL_PATHS` environment variable to point to the root directories that contain Fractl models.
+You can start the REPL from any directory, if you set the `FRACTL_MODEL_PATHS` environment variable to point to the root directories that contain Agentlang models.
 
 ```shell
 cd /home/me/work
-export FRACTL_MODEL_PATHS=/home/me/fractl-models
-fractl repl blog
+export FRACTL_MODEL_PATHS=/home/me/agentlang-models
+agentlang repl blog
 ```
 
 By default the REPL runs without logging support. Only relevant error or warning messages are printed to the standard-output.
 To enable full logging, start the REPL with the `:with-logs` option:
 
 ```shell
-fractl repl :with-logs blog
+agentlang repl :with-logs blog
 ```
 
 ## A Complete Live Session
 
-Let's see how we can use the REPL to interactively develop a complete Fractl application. As this is an illustration, the application is a really simple one - a personal TODO-list manager. The app allows to create TODO-list entries, update their status and also keep notes attached to the todo-items. Let's fire-up the REPL and create the model!
+Let's see how we can use the REPL to interactively develop a complete Agentlang application. As this is an illustration, the application is a really simple one - a personal TODO-list manager. The app allows to create TODO-list entries, update their status and also keep notes attached to the todo-items. Let's fire-up the REPL and create the model!
 
 ```shell
-cd ~/fractl-models
-fractl repl
+cd ~/agentlang-models
+agentlang repl
 ```
 
 As we are not running from a particular model directory, you should see the following generic-prompt:
 
 ```shell
-fractl>
+agentlang>
 ```
 
 The first step is to define the component:
 
 ```clojure
-fractl> (component :Todo.Core)
+agentlang> (component :Todo.Core)
 ; :Todo.Core
 todo>
 ```

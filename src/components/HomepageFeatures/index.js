@@ -4,12 +4,12 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'AI first',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Fractl was designed to build web apps, simple to planet-scale, easily. Use
-        Fractl to build web backends incredibly fast.
+        Agentlang is the only language out there designed from the ground-up for programming with AI Agents.
+        Use Agentlang to build planet-scale, AI-powered business applications.
       </>
     ),
   },
@@ -18,7 +18,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Fractl lets you focus on your business domain.
+        The high-level and declarative nature of Agentlang lets you focus on your business domain.
       </>
     ),
   },
@@ -27,8 +27,8 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        The growing list of connectors enable you to build apps that interact 
-        with systems that you already use and love.
+       Agentlang has first-class integration with major LLM-providers, databases and Java libraries
+       which will enable you to build apps that interact with systems that you already use and love.
       </>
     ),
   },
