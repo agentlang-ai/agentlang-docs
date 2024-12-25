@@ -1,7 +1,7 @@
 # Configuration
 
 The runtime configuration required by a model in provided via the `config.edn` file.
-Configuration is an arbitrary map, the keys that are considered by the Fractl runtime is
+Configuration is an arbitrary map, the keys that are considered by the Agentlang runtime is
 described here:
 
 **:service** - map
@@ -16,7 +16,7 @@ The default value for port is `8080`.
 
 **:script-extn** - string
  
-The extension of component files. Defaults to `.fractl`.
+The extension of component files. Defaults to `.agentlang`.
 
 **:store** - map
 
@@ -29,13 +29,13 @@ E.g
 ```clojure
 {:store {:type :h2
          :dbname "./data"
-         :username "fractl-db"
+         :username "agentlang-db"
          :password #$ FRACTL_DB_PASSWORD}}
 ```
 The tag `#$` identifies a variable reference and tries to derive its value from the system environment.
 Here, the database password will be looked-up in the `FRACTL_DB_PASSWORD` environment variable.
 
-Fractl also has in-built support for the Postgres database, which can be configured as:
+Agentlang also has in-built support for the Postgres database, which can be configured as:
 
 ```clojure
 {:store {:type :postgres
@@ -70,7 +70,7 @@ E.g:
                   :superuser-email #$ FRACTL_SUPERUSER_EMAIL}}
 ```
 
-Cognito expects a few environment variables to be set on the system running the Fractl application. These are
+Cognito expects a few environment variables to be set on the system running the Agentlang application. These are
 listed below:
 
 ```shell
@@ -87,26 +87,26 @@ Also note that setting up `:authentication` will also require the `:rbac` interc
 **:rbac-enabled** - true or false
 
 Setting `:rbac-enabled` to `true` will set `:authentication` to its default values. It also enabled the `:rbac` interceptor.
-Usually this is the only flag required to enable authentication and authorization in a Fractl application.
+Usually this is the only flag required to enable authentication and authorization in an Agentlang application.
 
 **:deploy** - map
 
-Configuration for deploying Fractl applications to the fractl.io platform. This is usually invoked via the `fractl deploy` command.
+Configuration for deploying Agentlang applications to the agentlang.io platform. This is usually invoked via the `agentlang deploy` command.
 
 E.g:
 
 ```clojure
-{:deploy {:host "https://fractl.io/deployment/acme"
+{:deploy {:host "https://agentlang.io/deployment/acme"
           :user "jj@acme.com"
           :password #$ FRACTL_DEPLOYMENT_PASSWORD}}
 ```
 
 **:build** - map
 
-Information required for the Fractl compiler, invoked by the `fractl build` command. For example, the compiler can be directed
+Information required for the Agentlang compiler, invoked by the `agentlang build` command. For example, the compiler can be directed
 to generate a UI for the application with the following setting:
 
 ```clojure
 {:build {:client {:root-entity :Accounts.Core/Company
-                  :api-host "https://fractl-io/apps/acme/accounts"}}}
+                  :api-host "https://agentlang-io/apps/acme/accounts"}}}
 ```

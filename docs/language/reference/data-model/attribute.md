@@ -1,9 +1,6 @@
 # Attribute
 
-You may find that some attribute specifications repeat themselves in different records.
-For instance, the specifications for phone number and zip code could repeat for customers,
-suppliers and other records. So having a reusable specification for these attributes 
-can become handy. The `attribute` declaration can help us here.
+You may find that some attribute specifications repeat themselves in different records. For instance, the specifications for phone number and zip code could repeat for customers, suppliers and other records. So having a reusable specification for these attributes can become handy. The `attribute` construct can help us here.
 
 **Example**
 
@@ -39,8 +36,7 @@ With these new declarations, the `:Contact` record can be defined as:
 
 ## Attribute Spec
 
-The attribute-specification normally consists of a type-name which may be drawn from a pool of basic types 
-built-into Fractl. These built-in types are listed below:
+The attribute-specification normally consists of a type-name which may be drawn from a pool of basic types built-into Agentlang. These built-in types are listed below:
 
 ```clojure
 :String - a string literal enclosed in double-quotes
@@ -81,12 +77,12 @@ the keyword. Valid property names and their settings are described below:
 
 ```
 :check - a single-arg Clojure predicate for validating values assigned to the attribute
-:unique - if `true`, Fractl will ensure each instance of an entity will have a different value for this attribute
+:unique - if `true`, Agentlang will ensure each instance of an entity will have a different value for this attribute
 :immutable - if `true`, once assigned, the attribute's value will remain read-only
 :optional - if `true`, attribute value is optional
 :default - the default value of the attribute
 :type - name of the attribute's type
-:guid - if `true`, the attribute will be used by Fractl to uniquely identify each instance of an entity
+:guid - if `true`, the attribute will be used by Agentlang to uniquely identify each instance of an entity
 :expr - a Clojure expression that will be evaluated to compute the attribute's value
 :format - a regex pattern for validating an attribute of type :Kernel/String
 :listof - only a list (a Clojure vector) of the specified type can be assigned to the attribute
@@ -101,10 +97,10 @@ the keyword. Valid property names and their settings are described below:
 ```
 
 The `:default` option could be a literal (string, number etc) or a no-arg function. If it's a function,
-Fractl will call the function and use the return value as the default. (The `:default` value is used when
+Agentlang will call the function and use the return value as the default. (The `:default` value is used when
 no value is specified for the attribute while creating an instance).
 
-Note that for `:ref` the value provided must exist at the other end of the path, otherwise Fractl runtime will
+Note that for `:ref` the value provided must exist at the other end of the path, otherwise Agentlang runtime will
 throw an exception. This is similar to a foreign-key relationship in an RDBMS.
 
 The `:indexed` property should be set for attributes on which queries are performed. Note that
@@ -130,3 +126,54 @@ The `:indexed` property should be set for attributes on which queries are perfor
   (and (= 5 (count s))
        (<= 501 (Integer/parseInt s) 99950)))
 ```
+
+### Extended Attributes for Relationships
+
+Consider the following model of a relationship between Employees:
+
+```clojure
+(entity :Acme/Department
+ {:No {:type :Int :guid true}})
+
+(entity :Acme/Employee
+ {:Id {:type :Int :guid true}
+  :Name :String})
+
+(relationship :Acme/DepartmentEmployee
+ {:meta {:contains [:Acme/Department :Acme/Employee]}})
+```
+
+Now we can create a department and add employees under it using separate API calls to `POST :Acme/Department` and `POST :Acme/Employee`. Sometimes it's more convenient to create the parent (department) and the related children (employees) together, in a single shot. This can be achieved by extending `:Department` with an optional attribute that can take a vector of employee information. Such an attribute can be defined as:
+
+```clojure
+(attribute :Acme/Employees
+ {:extend :Acme/Department
+  :type :Acme/Employee
+  :relationship :Acme/DepartmentEmployee})
+```
+
+This will allow the creation of a department with a list of employee-instances as:
+
+```shell
+POST api/Acme/Department
+
+{"Acme/Department": {"No": 101, "Employees": [{"Id": 1, "Name": "sam"}, {"Id": 2, "Name": "Joe"}]}}
+```
+
+Such extension attributes can be defined for both `:contains` and `:between` relationships. The extended-attribute definition can also accept an optional `:order` property, which specifies the order in which the attributes needs to be evaluated. For example, the following extensions makes sure that the `:A` attribute is set before `:B`:
+
+```clojure
+(attribute :A
+ {:extend :Entity1
+  :type :Entity2
+  :relationships :Relationhip1
+  :order 0})
+
+(attribute :B
+ {:extend :Entity1
+  :type :Entity3
+  :relationships :Relationhip2
+  :order 1})
+```
+
+The value of the attribute with the lowest `order` will be processed first. This will be required resolve any dependency issues between instances created for different extended attributes.

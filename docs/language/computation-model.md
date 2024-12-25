@@ -1,12 +1,12 @@
 # Computation Model
 
-This document describes the rules followed by the Fractl runtime for evaluating dataflow-patterns.
+This document describes the rules followed by the Agentlang runtime for evaluating dataflow-patterns.
 
-## The Fractl Interpreter
+## The Agentlang Interpreter
 
-Evaluating the patterns in a dataflow is the job of an abstract machine known as the **Fractl Interpreter**.
-The Fractl Interpreter executes a sequence of low-level commands known as opcode - this means it cannot work
-directly with dataflow patterns. So before evaluating a dataflow, the interpreter will ask the Fractl compiler 
+Evaluating the patterns in a dataflow is the job of an abstract machine known as the **Agentlang Interpreter**.
+The Agentlang Interpreter executes a sequence of low-level commands known as opcode - this means it cannot work
+directly with dataflow patterns. So before evaluating a dataflow, the interpreter will ask the Agentlang compiler 
 to translate the patterns to opcode. This compilation process happens only once for a dataflow, as the generated 
 opcode is cached for future executions.
 
@@ -42,7 +42,7 @@ compiler will generate code to query and then update the queried instance.
 
 ## Vector Patterns
 
-A **vector pattern** takes the form `[:command arg1 arg2 ...]`. Fractl can deal with a bunch of commands like `:delete`, 
+A **vector pattern** takes the form `[:command arg1 arg2 ...]`. Agentlang can deal with a bunch of commands like `:delete`, 
 `:match` or `:for-each`, the rules of compiling and evaluating these are built-into the language. (For more information,
 please see the [Dataflow Patterns](reference/business-logic/dataflow-patterns) document).
 
